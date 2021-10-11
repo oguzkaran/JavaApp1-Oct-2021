@@ -1,0 +1,5 @@
+C:\Users\Karans\Dropbox\CSD\Kurslar\JavaApp1-Mar-2020\src\005-SpringBoot\022-WikipediaSearchMicroservices\WikiInfoRestClientWebAPI-MehmetDurmaz\WikiInfoSearch\bin\Release\netcoreapp3.1\CSD.WikiInfoSearch.exe
+C:\Users\Karans\Dropbox\CSD\Kurslar\JavaApp1-Mar-2020\src\005-SpringBoot\022-WikipediaSearchMicroservices\WikiInfoRestClientWebAPI-MehmetDurmaz\WikiInfoSearch\bin\Release\netcoreapp3.1\CSD.WikiInfoSearch.dll
+C:\Users\Karans\Dropbox\CSD\Kurslar\JavaApp1-Mar-2020\src\005-SpringBoot\022-WikipediaSearchMicroservices\WikiInfoRestClientWebAPI-MehmetDurmaz\WikiInfoSearch\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Karans\Dropbox\CSD\Kurslar\JavaApp1-Mar-2020\src\005-SpringBoot\022-WikipediaSearchMicroservices\WikiInfoRestClientWebAPI-MehmetDurmaz\WikiInfoSearch\bin\Release\netcoreapp3.1\CSD.WikiInfoSearch.RestClientService.dll
+C:\Users\Karans\Dropbox\CSD\Kurslar\JavaApp1-Mar-2020\src\005-SpringBoot\022-WikipediaSearchMicroservices\WikiInfoRestClientWebAPI-MehmetDurmaz\WikiInfoSearch\bin\Release\netcoreapp3.1\CSD.Extensions.Net.Http.dll

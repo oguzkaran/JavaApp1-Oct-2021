@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WikiInfoSearch\WebApp.csproj", "{B388B27F-9038-49E7-8D31-D0E6C64FCD13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WikiInfoSearchRestClientService", "WikiInfoSearchRestClientService\WikiInfoSearchRestClientService.csproj", "{CBED23EF-B0DE-4331-BD22-57EED779B32E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B388B27F-9038-49E7-8D31-D0E6C64FCD13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B388B27F-9038-49E7-8D31-D0E6C64FCD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B388B27F-9038-49E7-8D31-D0E6C64FCD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B388B27F-9038-49E7-8D31-D0E6C64FCD13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBED23EF-B0DE-4331-BD22-57EED779B32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBED23EF-B0DE-4331-BD22-57EED779B32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBED23EF-B0DE-4331-BD22-57EED779B32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBED23EF-B0DE-4331-BD22-57EED779B32E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91379CE6-EED4-4CA2-817F-3CFA9CC6F4DC}
+	EndGlobalSection
+EndGlobal

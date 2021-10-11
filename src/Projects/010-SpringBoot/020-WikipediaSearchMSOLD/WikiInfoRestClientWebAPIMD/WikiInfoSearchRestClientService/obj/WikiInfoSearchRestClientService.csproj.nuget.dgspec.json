@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Karans\\Dropbox\\CSD\\Kurslar\\JavaApp1-Mar-2020\\src\\005-SpringBoot\\022-WikipediaSearchMicroservices\\WikiInfoRestClientWebAPI-MehmetDurmaz\\WikiInfoSearchRestClientService\\WikiInfoSearchRestClientService.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Karans\\Dropbox\\CSD\\Kurslar\\JavaApp1-Mar-2020\\src\\005-SpringBoot\\022-WikipediaSearchMicroservices\\WikiInfoRestClientWebAPI-MehmetDurmaz\\WikiInfoSearchRestClientService\\WikiInfoSearchRestClientService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Karans\\Dropbox\\CSD\\Kurslar\\JavaApp1-Mar-2020\\src\\005-SpringBoot\\022-WikipediaSearchMicroservices\\WikiInfoRestClientWebAPI-MehmetDurmaz\\WikiInfoSearchRestClientService\\WikiInfoSearchRestClientService.csproj",
+        "projectName": "CSD.WikiInfoSearch.RestClientService",
+        "projectPath": "C:\\Users\\Karans\\Dropbox\\CSD\\Kurslar\\JavaApp1-Mar-2020\\src\\005-SpringBoot\\022-WikipediaSearchMicroservices\\WikiInfoRestClientWebAPI-MehmetDurmaz\\WikiInfoSearchRestClientService\\WikiInfoSearchRestClientService.csproj",
+        "packagesPath": "C:\\Users\\Karans\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karans\\Dropbox\\CSD\\Kurslar\\JavaApp1-Mar-2020\\src\\005-SpringBoot\\022-WikipediaSearchMicroservices\\WikiInfoRestClientWebAPI-MehmetDurmaz\\WikiInfoSearchRestClientService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Karans\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

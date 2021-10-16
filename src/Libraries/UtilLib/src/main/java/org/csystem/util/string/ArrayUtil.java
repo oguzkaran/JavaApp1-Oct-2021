@@ -1,7 +1,15 @@
-/*----------------------------------------------------------------------------------------------------------------------
-	ArrayUtil sınıfı
-----------------------------------------------------------------------------------------------------------------------*/
-package org.csystem.util;
+/*----------------------------------------------------------------------
+	FILE        : ArrayUtil.java
+	AUTHOR      : JavaApp1-Oct-2021 group
+	LAST UPDATE : 16.10.2021
+
+	Utility class for array operations
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
+
+package org.csystem.util.string;
 
 import java.util.Random;
 

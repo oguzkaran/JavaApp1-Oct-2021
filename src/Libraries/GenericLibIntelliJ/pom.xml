@@ -19,7 +19,11 @@
 	</properties>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-console</artifactId>
+			<version>10.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

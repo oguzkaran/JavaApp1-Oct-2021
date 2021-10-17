@@ -13,6 +13,13 @@
 	<artifactId>Sample</artifactId>
 	<version>10.0.0</version>
 
+	<repositories>
+		<repository>
+			<id>avaApp1-Oct-2021</id>
+			<url>http://raw.github.com/oguzkaran/javaapp1-oct-2021-maven-repo/main</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -20,13 +27,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util</artifactId>
+			<artifactId>org-csystem-util-console</artifactId>
 			<version>10.0.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util-console</artifactId>
+			<artifactId>org-csystem-util</artifactId>
 			<version>10.0.0</version>
 		</dependency>
 

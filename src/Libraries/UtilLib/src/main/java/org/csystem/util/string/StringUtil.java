@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 16.10.2021
+	LAST UPDATE : 17.10.2021
 
 	Utility class for string operations
 
@@ -39,15 +39,15 @@ public final class StringUtil {
 
     public static String changeCase(String s)
     {
-        char [] c = new char[s.length()];
+        StringBuilder sb = new StringBuilder(s);
+        int length = sb.length();
 
-        for (int i = 0; i < c.length; ++i) {
-            char ch = s.charAt(i);
-
-            c[i] = Character.isUpperCase(ch) ? Character.toLowerCase(ch) : Character.toUpperCase(ch);
+        for (int i = 0; i < length; ++i) {
+            char ch = sb.charAt(i);
+            sb.setCharAt(i, Character.isUpperCase(ch) ? Character.toLowerCase(ch) : Character.toUpperCase(ch));
         }
 
-        return String.valueOf(c);
+        return sb.toString();
     }
 
     public static int countString(String s1, String s2)
@@ -67,18 +67,17 @@ public final class StringUtil {
 
     public static String getLetters(String s)
     {
-        String str = "";
-        int length = s.length();
+        StringBuilder sb = new StringBuilder();
 
+        int length = s.length();
 
         for (int i = 0; i < length; ++i) {
             char c = s.charAt(i);
-
             if (isLetter(c))
-                str += c;
+                sb.append(c);
         }
 
-        return str;
+        return sb.toString();
     }
 
     public static String getLongestPalindrome(String text)
@@ -178,32 +177,9 @@ public final class StringUtil {
 
     public static boolean isPalindrome(String s)
     {
-        int left = 0;
-        int right = s.length() - 1;
+        String letters = getLetters(s);
 
-        while (left < right) {
-            char cLeft = toLowerCase(s.charAt(left));
-
-            if (!isLetter(cLeft)) {
-                ++left;
-                continue;
-            }
-
-            char cRight = toLowerCase(s.charAt(right));
-
-            if (!isLetter(cRight)) {
-                --right;
-                continue;
-            }
-
-            if (cLeft != cRight)
-                return false;
-
-            ++left;
-            --right;
-        }
-
-        return true;
+        return reverse(letters).equals(letters);
     }
 
     public static boolean isPangram(String text, String alphabet)
@@ -244,18 +220,18 @@ public final class StringUtil {
 
     public static String join(ArrayList<String>  list, int startIndex, String sep)
     {
-        String result = "";
+        StringBuilder sb = new StringBuilder();
 
         int size = list.size();
 
-        for (int i = 0; i < size; ++i) {
-            if (!result.isEmpty())
-                result += sep;
+        for (String s : list) {
+            if (sb.length() > 0)
+                sb.append(sep);
 
-            result += list.get(i);
+            sb.append(s);
         }
 
-        return result;
+        return sb.toString();
     }
 
     public static String join(String [] str, char sep)
@@ -270,18 +246,17 @@ public final class StringUtil {
 
     public static String join(String [] str, int startIndex, String sep)
     {
-        String result = "";
-
+        StringBuilder sb = new StringBuilder();
         int length = str.length;
 
         for (int i = startIndex; i < length; ++i) {
-            if (!result.isEmpty())
-                result += sep;
+            if (sb.length() > 0)
+                sb.append(sep);
 
-            result += str[i];
+            sb.append(str[i]);
         }
 
-        return result;
+        return sb.toString();
     }
 
     public static String join(String [] str, String sep)
@@ -312,60 +287,35 @@ public final class StringUtil {
     public static String removeWhiteSpaces(String s)
     {
         int length = s.length();
-        String str = "";
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < length; ++i) {
             char ch = s.charAt(i);
 
             if (!isWhitespace(ch))
-                str += ch;
+                sb.append(ch);
         }
 
-        return str;
+        return sb.toString();
     }
 
     public static String reverse(String s)
     {
-        char [] c = s.toCharArray();
-
-        ArrayUtil.reverse(c);
-
-        return String.valueOf(c);
+        return new StringBuilder(s).reverse().toString();
     }
 
     public static String squeeze(String s1, String s2)
     {
-        String str = "";
+        StringBuilder sb = new StringBuilder();
         int length = s1.length();
 
         for (int i = 0; i < length; ++i) {
             char ch = s1.charAt(i);
             if (!s2.contains(ch + ""))
-                str += ch;
+                sb.append(ch);
         }
 
-        return str;
-    }
-
-    public static String trimLeading(String s)
-    {
-        int i;
-        int length = s.length();
-
-        for (i = 0; i < length && isWhitespace(s.charAt(i)); ++i)
-            ;
-
-        return s.substring(i);
-    }
-
-    public static String trimTrailing(String s)
-    {
-        int i;
-
-        for (i = s.length() - 1; i >= 0 && isWhitespace(s.charAt(i)); --i)
-            ;
-
-        return s.substring(0, i + 1);
+        return sb.toString();
     }
 
     public static String wrapWith(String str, char ch)
@@ -387,6 +337,4 @@ public final class StringUtil {
     {
         return String.format("%c%s%c", chBegin, trim ? str.trim() : str, chEnd);
     }
-
-
 }

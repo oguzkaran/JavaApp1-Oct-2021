@@ -1,20 +1,19 @@
+/*----------------------------------------------------------------------------------------------------------------------
+    StringBuilder sınıfının setLength metodu yazının uzunluğu değiştirilebilir. Bu durumda eğer yazının azaltılıyor ise
+    yazının bazı karakterleri kaybedilir, artırılıyor ise eklenen karakterker null karaketer ('\0') ile beslenir
+----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
-import org.csystem.util.string.StringUtil;
 
-public class App {
+class App {
     public static void main(String[] args)
     {
-        for (;;) {
-            int n = Console.readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...");
+        String s = Console.read("Bir yazı giriniz:");
+        StringBuilder sb = new StringBuilder(s);
 
-            if (n <= 0)
-                break;
+        sb.setLength(5);
 
-            System.out.printf("Text:%s%n", StringUtil.getRandomTextTR(n));
-        }
-
-        System.out.println("Tekrar yapıyor musunuz?");
+        Console.writeLine(sb.toString());
     }
 }

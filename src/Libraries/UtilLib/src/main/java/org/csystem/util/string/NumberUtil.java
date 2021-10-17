@@ -49,6 +49,7 @@ public final class NumberUtil {
         if (a != 0) {
             if (a != 1)
                 str += ONES[a];
+
             str += "yüz";
         }
         if (b != 0)

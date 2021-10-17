@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util</artifactId>
-			<version>10.0.0</version>
+			<version>10.1.0</version>
 		</dependency>
 
 		<dependency>

@@ -18,6 +18,13 @@
 		<java.version>11</java.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>JavaApp1-Oct-2021</id>
+			<url>http://raw.github.com/oguzkaran/javaapp1-oct-2021-maven-repo/main</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.csystem</groupId>

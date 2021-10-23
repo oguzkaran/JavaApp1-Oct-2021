@@ -8,7 +8,6 @@
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-
 package org.csystem.util.array;
 
 import java.util.Random;
@@ -16,15 +15,15 @@ import java.util.Random;
 public final class ArrayUtil {
     private static void bubbleSortAscending(int [] a)
     {
-        for (int i = 0; i < a.length - 1; ++i)
-            for (int k = 0; k < a.length - 1 - i; ++k)
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
                 if (a[k + 1] < a[k])
                     swap(a, k, k + 1);
     }
 
     private static void bubbleSortDescending(int [] a)
     {
-        for (int i = 0; i < a.length - 1; ++i)
+        for (var i = 0; i < a.length - 1; ++i)
             for (int k = 0; k < a.length - 1 - i; ++k)
                 if (a[k + 1] > a[k])
                     swap(a, k, k + 1);
@@ -34,11 +33,11 @@ public final class ArrayUtil {
     {
         int min, minIndex;
 
-        for (int i = 0; i < a.length - 1; ++i) {
+        for (var i = 0; i < a.length - 1; ++i) {
             min = a[i];
             minIndex = i;
 
-            for (int k = i + 1; k < a.length; ++k)
+            for (var k = i + 1; k < a.length; ++k)
                 if (a[k] < min) {
                     min = a[k];
                     minIndex = k;
@@ -53,11 +52,11 @@ public final class ArrayUtil {
     {
         int max, maxIndex;
 
-        for (int i = 0; i < a.length - 1; ++i) {
+        for (var i = 0; i < a.length - 1; ++i) {
             max = a[i];
             maxIndex = i;
 
-            for (int k = i + 1; k < a.length; ++k)
+            for (var k = i + 1; k < a.length; ++k)
                 if (a[k] > max) {
                     max = a[k];
                     maxIndex = k;
@@ -88,11 +87,11 @@ public final class ArrayUtil {
 
     public static int [] copyOf(int [] a, int newLength)
     {
-        int [] r = new int[newLength];
+        var r = new int[newLength];
 
-        int length = Math.min(a.length, newLength);
+        var length = Math.min(a.length, newLength);
 
-        for (int i = 0; i < length; ++i)
+        for (var i = 0; i < length; ++i)
             r[i] = a[i];
 
         return r;
@@ -103,39 +102,39 @@ public final class ArrayUtil {
         display(1, a);
     }
 
-    public static void display(int n, int [] a)
+    public static void display(int n, int...a)
     {
-        String fmt = String.format("%%0%dd ", n);
+        var fmt = String.format("%%0%dd ", n);
 
-        for (int val : a)
+        for (var val : a)
             System.out.printf(fmt, val);
 
         System.out.println();
     }
 
-    public static void display(int n, int [][] a)
+    public static void display(int n, int []...a)
     {
-        for (int [] array : a)
+        for (var array : a)
             display(n, array);
     }
 
-    public static void display(String [] str)
+    public static void display(String...str)
     {
         display('\n', str);
     }
 
-    public static void display(char sep, String [] str)
+    public static void display(char sep, String...str)
     {
-        for (String s : str)
+        for (var s : str)
             System.out.printf("%s%c", s, sep);
     }
 
     public static void drawHistogram(int [] data, int n, char ch)
     {
-        int mavValue = max(data);
+        var mavValue = max(data);
 
-        for (int val : data) {
-            int count = (int)Math.ceil((double)val * n / mavValue);
+        for (var val : data) {
+            var count = (int)Math.ceil((double)val * n / mavValue);
 
             while (count -- > 0)
                 System.out.print(ch);
@@ -151,54 +150,54 @@ public final class ArrayUtil {
 
     public static void fillRandomArray(Random r, int [] a, int min, int max) //[min, max)
     {
-        for (int i = 0; i < a.length; ++i)
-            a[i] = r.nextInt(max - min) + min;
+        for (var i = 0; i < a.length; ++i)
+            a[i] = r.nextInt(max - min + 1) + min;
     }
 
-    public static int [] generateRandomArray(int n, int min, int max) //[min, max)
+    public static int [] getRandomArray(int n, int min, int max) //[min, max]
     {
-        return generateRandomArray(new Random(), n, min, max);
+        return getRandomArray(new Random(), n, min, max);
     }
 
-    public static int [] generateRandomArray(Random r, int n, int min, int max) //[min, max)
+    public static int [] getRandomArray(Random r, int n, int min, int max) //[min, max]
     {
-        int [] a = new int[n];
+        var a = new int[n];
 
         fillRandomArray(r, a, min, max);
 
         return a;
     }
 
-    public static int [][] generateRandomMatrix(int row, int col, int min, int max)
+    public static int [][] getRandomMatrix(int row, int col, int min, int max)
     {
-        return generateRandomMatrix(new Random(), row, col, min, max);
+        return getRandomMatrix(new Random(), row, col, min, max);
     }
 
-    public static int [][] generateRandomMatrix(Random r, int row, int col, int min, int max)
+    public static int [][] getRandomMatrix(Random r, int row, int col, int min, int max)
     {
-        int [][] m = new int[row][];
+        var m = new int[row][];
 
-        for (int i = 0; i < row; ++i)
-            m[i] = generateRandomArray(r, col, min, max);
+        for (var i = 0; i < row; ++i)
+            m[i] = getRandomArray(r, col, min, max);
 
         return m;
     }
 
-    public static int [][] generateRandomSquareMatrix(int n, int min, int max)
+    public static int [][] getRandomSquareMatrix(int n, int min, int max)
     {
-        return generateRandomSquareMatrix(new Random(), n, min, max);
+        return getRandomSquareMatrix(new Random(), n, min, max);
     }
 
-    public static int [][] generateRandomSquareMatrix(Random r, int n, int min, int max)
+    public static int [][] getRandomSquareMatrix(Random r, int n, int min, int max)
     {
-        return generateRandomMatrix(r, n, n, min, max);
+        return getRandomMatrix(r, n, n, min, max);
     }
 
     public static int [] getHistogramData(int [] a, int n) //[0, n]
     {
-        int [] data = new int[n + 1];
+        var data = new int[n + 1];
 
-        for (int val : a)
+        for (var val : a)
             ++data[val];
 
         return data;
@@ -206,7 +205,7 @@ public final class ArrayUtil {
 
     public static boolean isMatrix(int [][] a)
     {
-        for (int i = 1; i < a.length; ++i)
+        for (var i = 1; i < a.length; ++i)
             if (a[i].length != a[0].length)
                 return false;
 
@@ -220,9 +219,9 @@ public final class ArrayUtil {
 
     public static int max(int [] a)
     {
-        int result = a[0];
+        var result = a[0];
 
-        for (int i = 1; i < a.length; ++i)
+        for (var i = 1; i < a.length; ++i)
             if (result < a[i])
                 result = a[i];
 
@@ -231,9 +230,9 @@ public final class ArrayUtil {
 
     public static int min(int [] a)
     {
-        int result = a[0];
+        var result = a[0];
 
-        for (int i = 1; i < a.length; ++i)
+        for (var i = 1; i < a.length; ++i)
             if (result > a[i])
                 result = a[i];
 
@@ -242,7 +241,7 @@ public final class ArrayUtil {
 
     public static int partition(int [] a, int threshold)
     {
-        int partitionIndex = 0;
+        var partitionIndex = 0;
 
         while (partitionIndex != a.length && a[partitionIndex] < threshold)
             ++partitionIndex;
@@ -250,7 +249,7 @@ public final class ArrayUtil {
         if (partitionIndex == a.length)
             return partitionIndex;
 
-        for (int i = partitionIndex + 1; i < a.length; ++i)
+        for (var i = partitionIndex + 1; i < a.length; ++i)
             if (a[i] < threshold)
                 swap(a, i, partitionIndex++);
 
@@ -259,7 +258,7 @@ public final class ArrayUtil {
 
     public static void reverse(int [] a)
     {
-        int halfLength = a.length / 2;
+        var halfLength = a.length / 2;
 
         for (int i = 0; i < halfLength; ++i)
             swap(a, i, a.length - 1 - i);
@@ -267,7 +266,7 @@ public final class ArrayUtil {
 
     public static void reverse(char [] a)
     {
-        int halfLength = a.length / 2;
+        var halfLength = a.length / 2;
 
         for (int i = 0; i < halfLength; ++i)
             swap(a, i, a.length - 1 - i);
@@ -288,9 +287,9 @@ public final class ArrayUtil {
 
     public static int sum(int [] a)
     {
-        int total = 0;
+        var total = 0;
 
-        for (int val : a)
+        for (var val : a)
             total += val;
 
         return total;
@@ -299,7 +298,7 @@ public final class ArrayUtil {
 
     public static int sum(int [][] a)
     {
-        int total = 0;
+        var total = 0;
 
         for (int[] array : a)
             total += sum(array);
@@ -309,9 +308,9 @@ public final class ArrayUtil {
 
     public static int sumDiagonal(int [][] a)
     {
-        int total = 0;
+        var total = 0;
 
-        for (int i = 0; i < a.length; ++i)
+        for (var i = 0; i < a.length; ++i)
             total += a[i][i];
 
         return total;
@@ -319,27 +318,23 @@ public final class ArrayUtil {
 
     public static void swap(int [] a, int i, int k)
     {
-        int temp;
+        var temp = a[i];
 
-        temp = a[i];
         a[i] = a[k];
         a[k] = temp;
     }
 
     public static void swap(double [] a, int i, int k)
     {
-        double temp;
+        var temp = a[i];
 
-        temp = a[i];
         a[i] = a[k];
         a[k] = temp;
     }
 
     public static void swap(char [] a, int i, int k)
     {
-        char temp;
-
-        temp = a[i];
+        char temp = a[i];
         a[i] = a[k];
         a[k] = temp;
     }
@@ -348,10 +343,10 @@ public final class ArrayUtil {
     {
         int row = a.length;
         int col = a[0].length;
-        int [][] t = new int[col][row];
+        var t = new int[col][row];
 
-        for (int i = 0; i < row; ++i)
-            for (int j = 0; j < col; ++j)
+        for (var i = 0; i < row; ++i)
+            for (var j = 0; j < col; ++j)
                 t[j][i] = a[i][j];
 
         return t;

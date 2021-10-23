@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util</artifactId>
-	<version>10.1.0</version>
+	<version>10.2.0</version>
 	<description>Generic Library Provider</description>
 
 	<properties>

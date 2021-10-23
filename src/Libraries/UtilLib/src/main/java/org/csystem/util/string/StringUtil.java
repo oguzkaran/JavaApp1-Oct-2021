@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 17.10.2021
+	LAST UPDATE : 23.10.2021
 
 	Utility class for string operations
 
@@ -39,11 +39,11 @@ public final class StringUtil {
 
     public static String changeCase(String s)
     {
-        StringBuilder sb = new StringBuilder(s);
-        int length = sb.length();
+        var sb = new StringBuilder(s);
+        var length = sb.length();
 
-        for (int i = 0; i < length; ++i) {
-            char ch = sb.charAt(i);
+        for (var i = 0; i < length; ++i) {
+            var ch = sb.charAt(i);
             sb.setCharAt(i, Character.isUpperCase(ch) ? Character.toLowerCase(ch) : Character.toUpperCase(ch));
         }
 
@@ -54,7 +54,7 @@ public final class StringUtil {
     {
         int count = 0;
 
-        for (int index = -1; (index = s1.indexOf(s2, index + 1)) != -1; ++count)
+        for (var index = -1; (index = s1.indexOf(s2, index + 1)) != -1; ++count)
             ;
 
         return count;
@@ -67,12 +67,12 @@ public final class StringUtil {
 
     public static String getLetters(String s)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
 
-        int length = s.length();
+        var length = s.length();
 
-        for (int i = 0; i < length; ++i) {
-            char c = s.charAt(i);
+        for (var i = 0; i < length; ++i) {
+            var c = s.charAt(i);
             if (isLetter(c))
                 sb.append(c);
         }
@@ -82,12 +82,12 @@ public final class StringUtil {
 
     public static String getLongestPalindrome(String text)
     {
-        String result = "";
+        var result = "";
 
-        int end = text.length();
+        var end = text.length();
 
         while (end != 0) {
-            int begin = 0;
+            var begin = 0;
 
             while (begin != end) {
                 String str = text.substring(begin++, end);
@@ -104,10 +104,10 @@ public final class StringUtil {
 
     public static String getRandomText(Random r, int n, String sourceText)
     {
-        StringBuilder sb = new StringBuilder(sourceText);
-        int length = sourceText.length();
+        var sb = new StringBuilder(sourceText);
+        var length = sourceText.length();
 
-        for (int i = 0; i < n; ++i)
+        for (var i = 0; i < n; ++i)
             sb.append(sourceText.charAt(r.nextInt(length)));
 
         return sb.toString();
@@ -125,9 +125,9 @@ public final class StringUtil {
 
     public static String [] getRandomTextsTR(Random r, int n, int minLength, int maxLength)
     {
-        String [] texts = new String[n];
+        var texts = new String[n];
 
-        for (int i = 0; i < n; ++i)
+        for (var i = 0; i < n; ++i)
             texts[i] = getRandomTextTR(r, r.nextInt(maxLength - minLength) + minLength);
 
         return texts;
@@ -145,9 +145,9 @@ public final class StringUtil {
 
     public static String [] getRandomTextsEN(Random r, int n, int minLength, int maxLength)
     {
-        String [] texts = new String[n];
+        var texts = new String[n];
 
-        for (int i = 0; i < n; ++i)
+        for (var i = 0; i < n; ++i)
             texts[i] = getRandomTextEN(r, r.nextInt(maxLength - minLength) + minLength);
 
         return texts;
@@ -161,14 +161,14 @@ public final class StringUtil {
         if (s.isBlank())
             return false;
 
-        char ch = s.charAt(0);
+        var ch = s.charAt(0);
 
         if (!Character.isJavaIdentifierStart(ch))
             return false;
 
-        int length = s.length();
+        var length = s.length();
 
-        for (int i = 1; i < length; ++i)
+        for (var i = 1; i < length; ++i)
             if (!Character.isJavaIdentifierPart(s.charAt(i)))
                 return false;
 
@@ -177,16 +177,16 @@ public final class StringUtil {
 
     public static boolean isPalindrome(String s)
     {
-        String letters = getLetters(s);
+        var letters = getLetters(s);
 
         return reverse(letters).equals(letters);
     }
 
     public static boolean isPangram(String text, String alphabet)
     {
-        int length = alphabet.length();
+        var length = alphabet.length();
 
-        for (int i = 0; i < length; ++i)
+        for (var i = 0; i < length; ++i)
             if (text.indexOf(alphabet.charAt(i)) == -1)
                 return false;
 
@@ -220,11 +220,10 @@ public final class StringUtil {
 
     public static String join(ArrayList<String>  list, int startIndex, String sep)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
+        var size = list.size();
 
-        int size = list.size();
-
-        for (String s : list) {
+        for (var s : list) {
             if (sb.length() > 0)
                 sb.append(sep);
 
@@ -246,10 +245,10 @@ public final class StringUtil {
 
     public static String join(String [] str, int startIndex, String sep)
     {
-        StringBuilder sb = new StringBuilder();
-        int length = str.length;
+        var sb = new StringBuilder();
+        var length = str.length;
 
-        for (int i = startIndex; i < length; ++i) {
+        for (var i = startIndex; i < length; ++i) {
             if (sb.length() > 0)
                 sb.append(sep);
 
@@ -286,11 +285,11 @@ public final class StringUtil {
 
     public static String removeWhiteSpaces(String s)
     {
-        int length = s.length();
-        StringBuilder sb = new StringBuilder();
+        var length = s.length();
+        var sb = new StringBuilder();
 
-        for (int i = 0; i < length; ++i) {
-            char ch = s.charAt(i);
+        for (var i = 0; i < length; ++i) {
+            var ch = s.charAt(i);
 
             if (!isWhitespace(ch))
                 sb.append(ch);
@@ -306,11 +305,11 @@ public final class StringUtil {
 
     public static String squeeze(String s1, String s2)
     {
-        StringBuilder sb = new StringBuilder();
-        int length = s1.length();
+        var sb = new StringBuilder();
+        var length = s1.length();
 
-        for (int i = 0; i < length; ++i) {
-            char ch = s1.charAt(i);
+        for (var i = 0; i < length; ++i) {
+            var ch = s1.charAt(i);
             if (!s2.contains(ch + ""))
                 sb.append(ch);
         }

@@ -23,8 +23,8 @@ public final class NumberUtil {
 
     private static int [] getDigits(long val, int n)
     {
-        int [] digits = new int[val == 0 ? 1 : (int)(log10(abs(val)) / n) + 1];
-        int powOfTen = (int)Math.pow(10, n);
+        var digits = new int[val == 0 ? 1 : (int)(log10(abs(val)) / n) + 1];
+        var powOfTen = (int)Math.pow(10, n);
 
         for (int i = digits.length - 1; i >= 0; digits[i--] = (int)(val % powOfTen), val /= powOfTen)
             ;
@@ -37,7 +37,7 @@ public final class NumberUtil {
         if (val == 0)
             return "sıfır";
 
-        String str = val < 0 ? "eksi" : "";
+        var str = val < 0 ? "eksi" : "";
         val = Math.abs(val);
 
         int a, b, c;
@@ -92,9 +92,9 @@ public final class NumberUtil {
 
     public static long factorial(int n)
     {
-        long result = 1L;
+        var result = 1L;
 
-        for (int i = 2; i <= n; ++i)
+        for (var i = 2; i <= n; ++i)
             result *= i;
 
         return result;
@@ -102,7 +102,7 @@ public final class NumberUtil {
 
     public static int getDigitalRoot(int val)
     {
-        int root = abs(val);
+        var root = abs(val);
 
         while (root > 9)
             root = sumDigits(root);
@@ -127,7 +127,7 @@ public final class NumberUtil {
 
     public static int getDigitsFactorialSum(int val)
     {
-        int sum = 0;
+        var sum = 0;
 
         while (val != 0) {
             sum += factorial(val % 10);
@@ -139,8 +139,8 @@ public final class NumberUtil {
 
     public static int getDigitsPowSum(int val)
     {
-        int n = countDigits(val);
-        int sum = 0;
+        var n = countDigits(val);
+        var sum = 0;
 
         while (val != 0) {
             sum += pow(val % 10, n);
@@ -158,9 +158,11 @@ public final class NumberUtil {
         if (n <= 2)
             return n - 1;
 
-        int prev1 = 1, prev2 = 0, val = 0;
+        var prev1 = 1;
+        var prev2 = 0;
+        var val = 0;
 
-        for (int i = 2; i < n; ++i) {
+        for (var i = 2; i < n; ++i) {
             val = prev1 + prev2;
             prev2 = prev1;
             prev1 = val;
@@ -171,8 +173,8 @@ public final class NumberUtil {
 
     public static int getIndexOfPrimeNumber(int n)
     {
-        int index = 1;
-        int val = 2;
+        var index = 1;
+        var val = 2;
 
         for (;;) {
             if (val == n)
@@ -190,7 +192,9 @@ public final class NumberUtil {
         if (val < 0)
             return 0;
 
-        int prev1 = 1, prev2 = 0, result;
+        var prev1 = 1;
+        var prev2 = 0;
+        int result;
 
         for (;;) {
             result = prev1 + prev2;
@@ -208,8 +212,8 @@ public final class NumberUtil {
         if (n <= 0)
             return -1;
 
-        int count = 0;
-        int val = 2;
+        var count = 0;
+        var val = 2;
 
         for (;;) {
             if (isPrime(val))
@@ -253,10 +257,10 @@ public final class NumberUtil {
         if (val <= 0)
             return false;
 
-        int count = 0;
+        var count = 0;
 
-        for (int x = 1; x * x * x < val;) {
-            for (int y = x + 1; x * x * x + y * y * y <= val; ++y)  {
+        for (var x = 1; x * x * x < val;) {
+            for (var y = x + 1; x * x * x + y * y * y <= val; ++y)  {
                 if (x * x * x + y * y * y == val) {
                     ++count;
                     ++x;
@@ -295,9 +299,9 @@ public final class NumberUtil {
         if (val % 7 == 0)
             return val == 7;
 
-        int sqrtVal = (int)Math.sqrt(val);
+        var sqrtVal = (int)Math.sqrt(val);
 
-        for (int i = 11; i <= sqrtVal; i += 2)
+        for (var i = 11; i <= sqrtVal; i += 2)
             if (val % i == 0)
                 return false;
 
@@ -343,20 +347,22 @@ public final class NumberUtil {
 
     public static String numberToText(long val)
     {
-        int [] digits = getDigitsInThrees(val);
+        var digits = getDigitsInThrees(val);
 
-        String result = "";
+        var result = "";
 
         //TODO:
-        for (int digit : digits)
-            result += numberToText3DigitsTR(digit) + " ";
+        var sb = new StringBuilder();
 
-        return result;
+        for (var digit : digits)
+            sb.append(numberToText3DigitsTR(digit)).append(" ");
+
+        return sb.toString();
     }
 
     public static int reversed(int val)
     {
-        int reverse = 0;
+        var reverse = 0;
 
         while (val != 0) {
             reverse = reverse * 10 + val % 10;
@@ -368,7 +374,7 @@ public final class NumberUtil {
 
     public static int sumDigits(int val)
     {
-        int sum = 0;
+        var sum = 0;
 
         while (val != 0) {
             sum += val % 10;

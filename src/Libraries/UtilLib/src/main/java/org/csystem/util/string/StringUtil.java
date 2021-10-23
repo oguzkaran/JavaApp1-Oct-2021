@@ -104,13 +104,13 @@ public final class StringUtil {
 
     public static String getRandomText(Random r, int n, String sourceText)
     {
+        StringBuilder sb = new StringBuilder(sourceText);
         int length = sourceText.length();
-        char [] c = new char[n];
 
         for (int i = 0; i < n; ++i)
-            c[i] = sourceText.charAt(r.nextInt(length));
+            sb.append(sourceText.charAt(r.nextInt(length)));
 
-        return String.valueOf(c);
+        return sb.toString();
     }
 
     public static String getRandomTextTR(Random r, int n)

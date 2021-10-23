@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : ArrayUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 16.10.2021
+	LAST UPDATE : 23.10.2021
 
 	Utility class for array operations
 
@@ -9,7 +9,7 @@
 	All Rights Free
 -----------------------------------------------------------------------*/
 
-package org.csystem.util.string;
+package org.csystem.util.array;
 
 import java.util.Random;
 

@@ -1,6 +1,16 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    T bir tür olmak üzere T... ve T [] parametreli iki metodun imzası da aynıdır. Aşağıdaki örnekte "bir metot içerisinde
-    aynı imzaya sahip 1(bir) den fazla metot yazılamaz" kuralı gereği error oluşur
+    Aşağıdaki örnekte metot kandisini hep 1(bir) eksik değerle çağırmaktadır. Parametre değişkeni olan n sıfır değerine
+    geldiğinde artık kendini çağırma işlemi sonlanmış ve çıkış süreci başlamıştır. Dikkat edilirse aşağıdaki ömrnekte bir
+    tek foo(0) çağrısı return deyiminden dolayı sonlanır. Diğerleri ilgili çağrılar sonlandığından dolayı akışın *** ile
+    belirtilen deyime gelmesi ve bu deyimin çalıştırılması sonrasında sonlanır.Örnekte foo(0) çağrısı için "Çıkış:0"
+    yazısının ekrana basılmadığına dikkat ediniz. Örneğin ekran çıktısı:
+    Giriş:3
+    Giriş:2
+    Giriş:1
+    Giriş:0
+    Çıkış:1
+    Çıkış:2
+    Çıkış:3
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -9,36 +19,19 @@ import org.csystem.util.console.Console;
 class App {
     public static void main(String[] args)
     {
-        int [] a = {1, 2, 3, 4};
-        int [] b = {5, 6, 7, 8};
-        int [] c = {9, 10, 11};
-
-        Util.display(2, a, b, c);
-        Console.writeLine("--------------------------------");
-        Util.display(2, a, b);
+        Sample.foo(3);
     }
 }
 
-class Util {
-    public static void display(int n, int [][] a) //error
+class Sample {
+    public static void foo(int n)
     {
-        for (var array : a)
-            display(n, array);
-    }
+        Console.writeLine("Giriş:%d", n);
 
-    public static void display(int n, int []... a) //error
-    {
-        for (var array : a)
-            display(n, array);
-    }
+        if (n == 0)
+            return;
 
-    public static void display(int n, int...a)
-    {
-        var fmt = String.format("%%0%dd ", n);
-
-        for (var val : a)
-            Console.write(fmt, val);
-
-        Console.writeLine();
+        foo(n - 1);
+        Console.writeLine("Çıkış:%d", n); //***
     }
 }

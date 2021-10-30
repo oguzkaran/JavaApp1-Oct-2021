@@ -1,36 +1,18 @@
-/*----------------------------------------------------------------------------------------------------------------------
-    ~
-    << >> >>>
-    &
-    ^
-    |
-    >>=, <<=, >>>=, &=, |=, ^=
-----------------------------------------------------------------------------------------------------------------------*/
-package org.csystem.app;
+/*----------------------------------------------------------------------
+	FILE        : NumberUtil.java
+	AUTHOR      : JavaApp1-Oct-2021 group
+	LAST UPDATE : 30.10.2021
+
+	Utility class for bitwise operations
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
+package org.csystem.app.bitwise;
 
 import org.csystem.util.console.Console;
 
-class App {
-    public static void main(String[] args)
-    {
-        WriteBitsByteTest.run();
-    }
-}
-
-class WriteBitsByteTest {
-    public static void run()
-    {
-        for (;;) {
-            var a = Console.readByte("Bir sayı giriniz:");
-
-            Util.writeBits(a);
-            if (a == 0)
-                break;
-        }
-    }
-}
-
-class Util {
+public final class BitwiseUtil {
     private static void writeBits(String bitStr, int bitsLength)
     {
         var lengthOfZeros = bitsLength - bitStr.length();
@@ -38,7 +20,7 @@ class Util {
         Console.writeLine(lengthOfZeros != 0 ? String.format("%0" + lengthOfZeros + "d%s", 0, bitStr) : bitStr);
     }
 
-    private Util()
+    private BitwiseUtil()
     {
     }
 
@@ -67,4 +49,3 @@ class Util {
         writeBits(Integer.toBinaryString(a), 16);
     }
 }
-

@@ -1,6 +1,5 @@
 package org.csystem.app.recursion;
 
-import org.csystem.util.array.ArrayUtil;
 import org.csystem.util.console.Console;
 
 public final class Util {
@@ -20,6 +19,7 @@ public final class Util {
 
         return result;
     }
+
     public static int fibonacciNumber(int n)
     {
         if (n <= 0)
@@ -39,6 +39,17 @@ public final class Util {
         return val;
     }
 
+    public static int gcd(int a, int b)
+    {
+        int min = Math.min(Math.abs(a), Math.abs(b));
+
+        for (int i = min; i >= 2; --i)
+            if (a % i == 0 && b % i == 0)
+                return i;
+
+        return 1;
+    }
+
     public static String reversed(String s)
     {
         char [] chars = s.toCharArray();
@@ -52,6 +63,53 @@ public final class Util {
         }
 
         return String.valueOf(chars);
+    }
+
+    public static void writeCollatz(int n)
+    {
+        for (;;) {
+            Console.writeLine(n);
+
+            if (n == 1)
+                break;
+
+            n = n % 2 == 0 ? n /= 2 : 3 * n + 1;
+        }
+    }
+
+    public static void writeNumber(int val)
+    {
+        writeNumber(val, 10);
+    }
+
+    public static void writeNumber(int val, int radix)
+    {
+        if (val == 0) {
+            System.out.write('0');
+            return;
+        }
+
+        char [] s = new char[11];
+        int i;
+        boolean isNegative = false;
+
+        if (val < 0) {
+            isNegative = true;
+            val = -val;
+        }
+
+        for (i = 0; val != 0; ++i) {
+            s[i] = (char)((val % radix >= 10 ? 'A'- 10 : '0') + val % radix);
+            val /= radix;
+        }
+
+        if (isNegative)
+            s[i++] = '-';
+
+        for (--i; i >= 0; --i)
+            System.out.write(s[i]);
+
+        System.out.flush();
     }
 
     public static void writeReverse(String s)

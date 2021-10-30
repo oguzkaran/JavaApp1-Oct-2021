@@ -14,12 +14,13 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.recursion.test.RecursiveFibonacciNumberTest;
+
+import org.csystem.app.recursion.test.RecursiveGCDTest;
 
 class App {
     public static void main(String[] args)
     {
-        RecursiveFibonacciNumberTest.run();
+        RecursiveGCDTest.run();
     }
 }
 

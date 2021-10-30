@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 23.10.2021
+	LAST UPDATE : 30.10.2021
 
 	Utility class for string operations
 
@@ -104,7 +104,7 @@ public final class StringUtil {
 
     public static String getRandomText(Random r, int n, String sourceText)
     {
-        var sb = new StringBuilder(sourceText);
+        var sb = new StringBuilder();
         var length = sourceText.length();
 
         for (var i = 0; i < n; ++i)
@@ -128,7 +128,7 @@ public final class StringUtil {
         var texts = new String[n];
 
         for (var i = 0; i < n; ++i)
-            texts[i] = getRandomTextTR(r, r.nextInt(maxLength - minLength) + minLength);
+            texts[i] = getRandomTextTR(r, r.nextInt(maxLength - minLength + 1) + minLength);
 
         return texts;
     }

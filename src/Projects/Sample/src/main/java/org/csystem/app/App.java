@@ -1,10 +1,6 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    ~
-    << >> >>>
-    &
-    ^
-    |
-    >>=, <<=, >>>=, &=, |=, ^=
+    Anımsanacağı gibi "bitwise and" ve "bitwise or" operatörleri boolen türü ile kullanıldıklarında kısa devre davranışı
+    olmayan "logical and" ve "logical or" operatörleri gibi çalışırlar
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -13,58 +9,31 @@ import org.csystem.util.console.Console;
 class App {
     public static void main(String[] args)
     {
-        WriteBitsByteTest.run();
+        boolean result = Sample.foo() | Sample.bar() & Sample.tar();
+
+        Console.writeLine(result);
     }
 }
 
-class WriteBitsByteTest {
-    public static void run()
+class Sample {
+    public static boolean foo()
     {
-        for (;;) {
-            var a = Console.readByte("Bir sayı giriniz:");
+        Console.writeLine("foo");
 
-            Util.writeBits(a);
-            if (a == 0)
-                break;
-        }
+        return true;
+    }
+
+    public static boolean bar()
+    {
+        Console.writeLine("bar");
+
+        return false;
+    }
+
+    public static boolean tar()
+    {
+        Console.writeLine("tar");
+
+        return true;
     }
 }
-
-class Util {
-    private static void writeBits(String bitStr, int bitsLength)
-    {
-        var lengthOfZeros = bitsLength - bitStr.length();
-
-        Console.writeLine(lengthOfZeros != 0 ? String.format("%0" + lengthOfZeros + "d%s", 0, bitStr) : bitStr);
-    }
-
-    private Util()
-    {
-    }
-
-    public static void writeBits(int a)
-    {
-        writeBits(Integer.toBinaryString(a), 32);
-    }
-
-    public static void writeBits(long a)
-    {
-        writeBits(Long.toBinaryString(a), 64);
-    }
-
-    public static void writeBits(short a)
-    {
-        writeBits(Integer.toBinaryString(a), 16);
-    }
-
-    public static void writeBits(byte a)
-    {
-        writeBits(Integer.toBinaryString(a), 8);
-    }
-
-    public static void writeBits(char a)
-    {
-        writeBits(Integer.toBinaryString(a), 16);
-    }
-}
-

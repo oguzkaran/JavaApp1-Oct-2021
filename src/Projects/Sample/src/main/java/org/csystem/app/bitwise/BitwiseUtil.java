@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 30.10.2021
+	LAST UPDATE : 31.10.2021
 
 	Utility class for bitwise operations
 
@@ -34,18 +34,4 @@ public final class BitwiseUtil {
         writeBits(Long.toBinaryString(a), 64);
     }
 
-    public static void writeBits(short a)
-    {
-        writeBits(Integer.toBinaryString(a), 16);
-    }
-
-    public static void writeBits(byte a)
-    {
-        writeBits(Integer.toBinaryString(a), 8);
-    }
-
-    public static void writeBits(char a)
-    {
-        writeBits(Integer.toBinaryString(a), 16);
-    }
 }

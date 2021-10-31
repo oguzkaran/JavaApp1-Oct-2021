@@ -24,6 +24,36 @@ public final class BitwiseUtil {
     {
     }
 
+    public static int clearBit(int val, int k) //k -> [0, 31]
+    {
+        return val & ~(1 << k);
+    }
+
+    public static long clearBit(long val, int k) //k -> [0, 63]
+    {
+        return val & ~(1L << k);
+    }
+
+    public static int setBit(int val, int k) //k -> [0, 31]
+    {
+        return val | 1 << k;
+    }
+
+    public static long setBit(long val, int k) //k -> [0, 63]
+    {
+        return val | 1L << k;
+    }
+
+    public static int toggleBit(int val, int k) // k -> [0, 31]
+    {
+        return  val ^ 1 << k;
+    }
+
+    public static long toggleBit(long val, int k) // k -> [0, 63]
+    {
+        return  val ^ 1L << k;
+    }
+
     public static void writeBits(int a)
     {
         writeBits(Integer.toBinaryString(a), 32);

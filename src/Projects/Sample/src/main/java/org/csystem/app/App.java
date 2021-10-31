@@ -1,39 +1,29 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Anımsanacağı gibi "bitwise and" ve "bitwise or" operatörleri boolen türü ile kullanıldıklarında kısa devre davranışı
-    olmayan "logical and" ve "logical or" operatörleri gibi çalışırlar
+    Bir tamsayının belirli bir bitinin elde edilmesi:
+
+
+    if ((x & 1 << k) != 0)
+        k. bit 1
+    else
+        k.bit sıfır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.app.bitwise.BitwiseUtil;
 import org.csystem.util.console.Console;
 
 class App {
     public static void main(String[] args)
     {
-        boolean result = Sample.foo() | Sample.bar() & Sample.tar();
+        int k = 5;
+        int a = 0x00_00_00_61;
 
-        Console.writeLine(result);
+        BitwiseUtil.writeBits(a);
+
+        a = BitwiseUtil.toggleBit(a, k);
+
+        BitwiseUtil.writeBits(a);
+        Console.writeLine("a = %d", a);
     }
 }
 
-class Sample {
-    public static boolean foo()
-    {
-        Console.writeLine("foo");
-
-        return true;
-    }
-
-    public static boolean bar()
-    {
-        Console.writeLine("bar");
-
-        return false;
-    }
-
-    public static boolean tar()
-    {
-        Console.writeLine("tar");
-
-        return true;
-    }
-}

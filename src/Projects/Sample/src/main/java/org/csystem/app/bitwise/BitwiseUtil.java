@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 31.10.2021
+	LAST UPDATE : 07.11.2021
 
 	Utility class for bitwise operations
 
@@ -13,13 +13,6 @@ package org.csystem.app.bitwise;
 import org.csystem.util.console.Console;
 
 public final class BitwiseUtil {
-    private static void writeBits(String bitStr, int bitsLength)
-    {
-        var lengthOfZeros = bitsLength - bitStr.length();
-
-        Console.writeLine(lengthOfZeros != 0 ? String.format("%0" + lengthOfZeros + "d%s", 0, bitStr) : bitStr);
-    }
-
     private BitwiseUtil()
     {
     }
@@ -34,6 +27,45 @@ public final class BitwiseUtil {
         return val & ~(1L << k);
     }
 
+    public static boolean isClear(int val, int k)
+    {
+        return !isSet(val, k);
+    }
+
+    public static boolean isClear(long val, int k)
+    {
+        return !isSet(val, k);
+    }
+
+    public static boolean isEven(int a)
+    {
+        return (a & 1) != 1;
+    }
+    public static boolean isEven(long a)
+    {
+        return (a & 1L) != 1;
+    }
+
+    public static boolean isPowerOfTwo(int val)
+    {
+        return val != 0 && (val & (val - 1)) == 0;
+    }
+
+    public static boolean isPowerOfTwo(long val)
+    {
+        return val != 0 && (val & (val - 1)) == 0;
+    }
+
+    public static boolean isSet(int val, int k)
+    {
+        return (val & 1 << k) != 0;
+    }
+
+    public static boolean isSet(long val, int k)
+    {
+        return (val & 1L << k) != 0;
+    }
+
     public static int setBit(int val, int k) //k -> [0, 31]
     {
         return val | 1 << k;
@@ -42,6 +74,57 @@ public final class BitwiseUtil {
     public static long setBit(long val, int k) //k -> [0, 63]
     {
         return val | 1L << k;
+    }
+
+
+    public static String toBitsStr(byte val)
+    {
+        char [] bits = new char[8];
+
+        for (int k = 7; k >= 0; --k)
+            bits[7 - k] = (val & 1 << k) != 0 ? '1' : '0';
+
+        return String.valueOf(bits);
+    }
+
+    public static String toBitsStr(short val)
+    {
+        char [] bits = new char[16];
+
+        for (int k = 15; k >= 0; --k)
+            bits[15 - k] = (val & 1 << k) != 0 ? '1' : '0';
+
+        return String.valueOf(bits);
+    }
+
+    public static String toBitsStr(int val)
+    {
+        char [] bits = new char[32];
+
+        for (int k = 31; k >= 0; --k)
+            bits[31 - k] = (val & 1 << k) != 0 ? '1' : '0';
+
+        return String.valueOf(bits);
+    }
+
+    public static String toBitsStr(long val)
+    {
+        char [] bits = new char[64];
+
+        for (int k = 63; k >= 0; --k)
+            bits[63 - k] = (val & 1L << k) != 0 ? '1' : '0';
+
+        return String.valueOf(bits);
+    }
+
+    public static String toBitsStr(char ch)
+    {
+        char [] bits = new char[16];
+
+        for (int k = 15; k >= 0; --k)
+            bits[15 - k] = (ch & 1 << k) != 0 ? '1' : '0';
+
+        return String.valueOf(bits);
     }
 
     public static int toggleBit(int val, int k) // k -> [0, 31]
@@ -54,14 +137,28 @@ public final class BitwiseUtil {
         return  val ^ 1L << k;
     }
 
+    public static void writeBits(byte a)
+    {
+        Console.writeLine(toBitsStr(a));
+    }
+
+    public static void writeBits(short a)
+    {
+        Console.writeLine(toBitsStr(a));
+    }
+
     public static void writeBits(int a)
     {
-        writeBits(Integer.toBinaryString(a), 32);
+        Console.writeLine(toBitsStr(a));
     }
 
     public static void writeBits(long a)
     {
-        writeBits(Long.toBinaryString(a), 64);
+        Console.writeLine(toBitsStr(a));
     }
 
+    public static void writeBits(char ch)
+    {
+        Console.writeLine(toBitsStr(ch));
+    }
 }

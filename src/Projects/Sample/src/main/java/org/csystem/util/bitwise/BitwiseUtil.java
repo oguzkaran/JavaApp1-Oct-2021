@@ -1,4 +1,7 @@
 /*----------------------------------------------------------------------
+	UtilLib içerisine eklendi
+-----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
 	LAST UPDATE : 07.11.2021
@@ -8,7 +11,7 @@
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.app.bitwise;
+package org.csystem.util.bitwise;
 
 import org.csystem.util.console.Console;
 
@@ -26,6 +29,31 @@ public final class BitwiseUtil {
     {
         return val & ~(1L << k);
     }
+
+    public static int [] indicesOfSetBits(int val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var idx = 0;
+
+        for (int k = 0; k < 32; ++k)
+            if (isSet(val, k))
+                indices[idx++] = k;
+
+        return indices;
+    }
+
+    public static int [] indicesOfSetBits(long val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var idx = 0;
+
+        for (int k = 0; k < 64; ++k)
+            if (isSet(val, k))
+                indices[idx++] = k;
+
+        return indices;
+    }
+
 
     public static boolean isClear(int val, int k)
     {
@@ -77,9 +105,41 @@ public final class BitwiseUtil {
     }
 
 
+    public static int clearBitsCount(int val)
+    {
+        return 32 - setBitsCount(val);
+    }
+
+    public static int setBitsCount(int val)
+    {
+        var count = 0;
+
+        for (int k = 0; k < 32; ++k)
+            if (isSet(val, k))
+                ++count;
+
+        return count;
+    }
+
+    public static int clearBitsCount(long val)
+    {
+        return 64 - setBitsCount(val);
+    }
+
+    public static int setBitsCount(long val)
+    {
+        var count = 0;
+
+        for (int k = 0; k < 64; ++k)
+            if (isSet(val, k))
+                ++count;
+
+        return count;
+    }
+
     public static String toBitsStr(byte val)
     {
-        char [] bits = new char[8];
+        var bits = new char[8];
 
         for (int k = 7; k >= 0; --k)
             bits[7 - k] = (val & 1 << k) != 0 ? '1' : '0';
@@ -89,7 +149,7 @@ public final class BitwiseUtil {
 
     public static String toBitsStr(short val)
     {
-        char [] bits = new char[16];
+        var bits = new char[16];
 
         for (int k = 15; k >= 0; --k)
             bits[15 - k] = (val & 1 << k) != 0 ? '1' : '0';
@@ -99,7 +159,7 @@ public final class BitwiseUtil {
 
     public static String toBitsStr(int val)
     {
-        char [] bits = new char[32];
+        var bits = new char[32];
 
         for (int k = 31; k >= 0; --k)
             bits[31 - k] = (val & 1 << k) != 0 ? '1' : '0';
@@ -109,7 +169,7 @@ public final class BitwiseUtil {
 
     public static String toBitsStr(long val)
     {
-        char [] bits = new char[64];
+        var bits = new char[64];
 
         for (int k = 63; k >= 0; --k)
             bits[63 - k] = (val & 1L << k) != 0 ? '1' : '0';
@@ -119,7 +179,7 @@ public final class BitwiseUtil {
 
     public static String toBitsStr(char ch)
     {
-        char [] bits = new char[16];
+        var bits = new char[16];
 
         for (int k = 15; k >= 0; --k)
             bits[15 - k] = (ch & 1 << k) != 0 ? '1' : '0';

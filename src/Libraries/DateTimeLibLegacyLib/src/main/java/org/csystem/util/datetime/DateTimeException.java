@@ -1,6 +1,5 @@
 package org.csystem.util.datetime;
 
-@Deprecated
 public class DateTimeException extends RuntimeException  {
     public DateTimeException()
     {}

@@ -1,25 +1,23 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Klavyeden alınan gün ay ve yıl bilgilerine göre kişinin doğum günü geçmişse
-    "geçmiş doğum gününüz kutlu olsun", o gün doğum günü ise "doğum gününüz kutlu olsun", doğum henüz gelmemişse
-    "doğum gününüzü şimdiden kutlarız" mesajlarından birisini ekrana bastıran programı yazınız. Progamı Calendar ve
-    GregorianCalendar sınıfları ile yazabilirsiniz
-    (001-BirthDateRemainderConsoleAppCalendar)
+    Aşağıdaki örnekte ilgili tarihe ilişkin ayın son günü olan tarih elde edilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import org.csystem.util.datetime.DateTime;
 
 class App {
     public static void main(String[] args)
     {
-        var birthDate = new GregorianCalendar(1976, Calendar.SEPTEMBER, 10);
-        var today = new GregorianCalendar();
-        var birthDay = new GregorianCalendar(today.get(Calendar.YEAR), birthDate.get(Calendar.MONTH), birthDate.get(Calendar.DAY_OF_MONTH));
+        var month = Console.readInt("Son kullanma tarihi ay bilgisini giriniz:");
+        var year =  Console.readInt("Son kullanma tarihi yıl bilgisini giriniz:");
+        var expiryDate = DateTime.of(1, month, year);
 
-        Console.writeLine(today.before(birthDay));
-        Console.writeLine(today.after(birthDay));
+        expiryDate = expiryDate.withDay(expiryDate.getEndOfMonth());
+
+        if (DateTime.today().isAfter(expiryDate))
+            Console.writeLine("Kartın son kullanma tarihi geçmiştir");
+        else
+            Console.writeLine("Kartın son kullanma tarihi henüz geçmemiştir");
     }
 }

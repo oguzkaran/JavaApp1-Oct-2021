@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------------------------------------------------
     Sınıf Çalışması: Klavyeden alınan gün ay ve yıl bilgilerine göre kişinin doğum günü geçmişse
     "geçmiş doğum gününüz kutlu olsun", o gün doğum günü ise "doğum gününüz kutlu olsun", doğum henüz gelmemişse
-    "doğum gününüzü şimdiden kutlarız" mesajlarından birisini ekrana bastıran programı yazınız. Programda
-    org.csystem.util.datetime.DateTime sınıfı kullanılmıştır
+    "doğum gününüzü şimdiden kutlarız" mesajlarından birisini ekrana bastıran programı yazınız. Program LocalDate
+    sınıfı ile yazılmıştır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.application.birthdateremainder;
 

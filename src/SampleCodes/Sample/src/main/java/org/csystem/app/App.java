@@ -1,5 +1,9 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Calendar sınıfının before ve after metotları
+    Sınıf Çalışması: Klavyeden alınan gün ay ve yıl bilgilerine göre kişinin doğum günü geçmişse
+    "geçmiş doğum gününüz kutlu olsun", o gün doğum günü ise "doğum gününüz kutlu olsun", doğum henüz gelmemişse
+    "doğum gününüzü şimdiden kutlarız" mesajlarından birisini ekrana bastıran programı yazınız. Progamı Calendar ve
+    GregorianCalendar sınıfları ile yazabilirsiniz
+    (001-BirthDateRemainderConsoleAppCalendar)
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 

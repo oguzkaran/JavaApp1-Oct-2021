@@ -47,9 +47,9 @@ public class BirthDateInfo {
         BirthDateStatus status = BirthDateStatus.SAME;
 
         if (birthDay.after(today))
-            status = BirthDateStatus.BEFORE;
-        else if (birthDay.before(today))
             status = BirthDateStatus.AFTER;
+        else if (birthDay.before(today))
+            status = BirthDateStatus.BEFORE;
 
         return status;
     }

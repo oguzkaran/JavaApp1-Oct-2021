@@ -1,24 +1,42 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    DateTimeFormatter sınıfı
+    BigDecimal sınıfının bir kullanımı. Diğer sınıflar proje içerisindedir. Çok değiştirileceği için buraya
+    yapıştırılmamıştır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.application.shopping.Product;
+import org.csystem.application.shopping.ProductFactory;
 import org.csystem.util.console.Console;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.math.BigDecimal;
 
 class App {
     public static void main(String[] args)
     {
-        var now = LocalDateTime.now();
-        var time = LocalTime.now();
+        ShoppingApp.run();
+    }
+}
 
-        Console.writeLine(DateTimeFormatter.ofPattern("dd-MM-yyyy kk:mm:ss E").format(now));
-        Console.writeLine(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss E").format(now));
-        Console.writeLine(DateTimeFormatter.ofPattern("dd-MM-yyyy KK:mm:ss a E").format(now));
-        Console.writeLine(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a E").format(now));
-        Console.writeLine(DateTimeFormatter.ISO_TIME.format(now));
+final class ShoppingApp {
+    private static BigDecimal getTotal(Product [] products)
+    {
+        //İleride döngü kullanmayacağız
+        var total = BigDecimal.ZERO;
+
+        for (var p : products)
+            total = total.add(p.getTotal());
+
+        return total;
+    }
+
+    private ShoppingApp()
+    {
+    }
+
+    public static void run()
+    {
+        var factory = new ProductFactory();
+
+        Console.writeLine("Total:%s", getTotal(factory.getProducts()));
     }
 }

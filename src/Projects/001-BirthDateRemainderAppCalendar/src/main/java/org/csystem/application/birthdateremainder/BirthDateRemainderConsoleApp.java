@@ -30,7 +30,7 @@ public final class BirthDateRemainderConsoleApp {
 
     public static void run()
     {
-        String [] messages = {"Doğum gününüz kutlu olsun", "Doğum gününüzü şimdiden kutlarız", "Geçmiş doğum gününüz kutlu olsun"};
+        String [] messages = {"Doğum gününüz kutlu olsun", "Geçmiş doğum gününüz kutlu olsun", "Doğum gününüzü şimdiden kutlarız", };
 
         for (;;) {
             var birthDateIInfo = getBirthDateInfo();

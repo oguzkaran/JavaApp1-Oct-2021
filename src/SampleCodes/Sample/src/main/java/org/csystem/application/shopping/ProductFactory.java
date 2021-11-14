@@ -17,12 +17,24 @@ public class ProductFactory {
 
     public void incrementProductByRatio(double ratio)
     {
-        //TODO:
+        //İleride döngü kullanmayacağız
+        for (var p : m_products) {
+            var unitPrice = p.getUnitPrice();
+
+            unitPrice = unitPrice.add(unitPrice.multiply(BigDecimal.valueOf(ratio / 100)));
+            p.setUnitPrice(unitPrice);
+        }
     }
 
     public void decrementProductByRatio(double ratio)
     {
-        //TODO:
+        //İleride döngü kullanmayacağız
+        for (var p : m_products) {
+            var unitPrice = p.getUnitPrice();
+
+            unitPrice = unitPrice.subtract(unitPrice.multiply(BigDecimal.valueOf(ratio / 100)));
+            p.setUnitPrice(unitPrice);
+        }
     }
 
     public Product [] getProducts()

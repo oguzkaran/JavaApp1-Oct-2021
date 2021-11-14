@@ -1,11 +1,9 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    BigDecimal sınıfının bir kullanımı. Diğer sınıflar proje içerisindedir. Çok değiştirileceği için buraya
-    yapıştırılmamıştır
+    Sınıf Çalışması: Klavyeden sıfır girilene kadar alınan BigDecimal sayıların en büyüğünü, en küçüğünü hesaplayan
+    programı yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.application.shopping.Product;
-import org.csystem.application.shopping.ProductFactory;
 import org.csystem.util.console.Console;
 
 import java.math.BigDecimal;
@@ -13,30 +11,16 @@ import java.math.BigDecimal;
 class App {
     public static void main(String[] args)
     {
-        ShoppingApp.run();
+        var start = Console.readBigDecimal("Birinci sayıyı giriniz:");
+        var end = Console.readBigDecimal("İkinci sayıyı giriniz:");
+
+        var sum = BigDecimal.ZERO;
+        var incValue = BigDecimal.valueOf(0.001);
+
+        for (var value = start; value.compareTo(end) < 0; value = value.add(incValue))
+            sum = sum.add(value);
+
+        Console.writeLine("Sum:%s", sum);
     }
 }
 
-final class ShoppingApp {
-    private static BigDecimal getTotal(Product [] products)
-    {
-        //İleride döngü kullanmayacağız
-        var total = BigDecimal.ZERO;
-
-        for (var p : products)
-            total = total.add(p.getTotal());
-
-        return total;
-    }
-
-    private ShoppingApp()
-    {
-    }
-
-    public static void run()
-    {
-        var factory = new ProductFactory();
-
-        Console.writeLine("Total:%s", getTotal(factory.getProducts()));
-    }
-}

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 23.10.2021
+	LAST UPDATE : 14.11.2021
 
 	Utility class for numeric operations
 
@@ -10,11 +10,17 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.number;
 
+import java.math.BigInteger;
+
 import static java.lang.Math.*;
 
 public final class NumberUtil {
     private static final String [] ONES;
     private static final String [] TENS;
+    private static final BigInteger THREE = BigInteger.valueOf(3);
+    private static final BigInteger FIVE = BigInteger.valueOf(5);
+    private static final BigInteger SEVEN = BigInteger.valueOf(7);
+    private static final BigInteger ELEVEN = BigInteger.valueOf(11);
 
     static {
         ONES = new String[] {"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
@@ -279,7 +285,7 @@ public final class NumberUtil {
         return reversed(val) == val;
     }
 
-    public static boolean isPrime(int val)
+    public static boolean isPrime(long val)
     {
         if (val <= 1)
             return false;
@@ -296,10 +302,32 @@ public final class NumberUtil {
         if (val % 7 == 0)
             return val == 7;
 
-        var sqrtVal = (int)Math.sqrt(val);
-
-        for (var i = 11; i <= sqrtVal; i += 2)
+        for (var i = 11L; i * i <= val; i += 2)
             if (val % i == 0)
+                return false;
+
+        return true;
+    }
+
+    public static boolean isPrime(BigInteger val)
+    {
+        if (val.compareTo(BigInteger.ONE) <= 0)
+            return false;
+
+        if (val.remainder(BigInteger.TWO).equals(BigInteger.ZERO))
+            return val.equals(BigInteger.TWO);
+
+        if (val.remainder(THREE).equals(BigInteger.ZERO))
+            return val.equals(THREE);
+
+        if (val.remainder(FIVE).equals(BigInteger.ZERO))
+            return val.equals(FIVE);
+
+        if (val.remainder(SEVEN).equals(BigInteger.ZERO))
+            return val.equals(SEVEN);
+
+        for (var i = ELEVEN; i.multiply(i).compareTo(val) <= 0; i = i.add(BigInteger.TWO))
+            if (val.remainder(i).equals(BigInteger.ZERO))
                 return false;
 
         return true;

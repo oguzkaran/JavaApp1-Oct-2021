@@ -1,26 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Klavyeden sıfır girilene kadar alınan BigDecimal sayıların en büyüğünü, en küçüğünü hesaplayan
-    programı yazınız
+    Aşağıdaki örnekte 128 bit'lik rasgele sayı üretilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        var start = Console.readBigDecimal("Birinci sayıyı giriniz:");
-        var end = Console.readBigDecimal("İkinci sayıyı giriniz:");
+        Random random = new Random();
 
-        var sum = BigDecimal.ZERO;
-        var incValue = BigDecimal.valueOf(0.001);
+        for (int i = 0; i < 10; ++i) {
+            var n = new BigInteger(128, random); //[0, pow(2, 128) - 1]
 
-        for (var value = start; value.compareTo(end) < 0; value = value.add(incValue))
-            sum = sum.add(value);
+            if (random.nextBoolean())
+                n = n.negate();
 
-        Console.writeLine("Sum:%s", sum);
+            Console.writeLine(n);
+        }
     }
 }
 

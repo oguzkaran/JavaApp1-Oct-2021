@@ -12,7 +12,6 @@
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util</artifactId>
 	<version>10.2.0</version>
-	<description>Generic Library Provider</description>
 
 	<properties>
 		<java.version>11</java.version>

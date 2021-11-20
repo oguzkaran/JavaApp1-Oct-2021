@@ -1,14 +1,14 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 14.11.2021
+	LAST UPDATE : 20.11.2021
 
 	Utility class for numeric operations
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.number;
+package org.csystem.util.numeric;
 
 import java.math.BigInteger;
 
@@ -99,6 +99,21 @@ public final class NumberUtil {
 
         for (var i = 2; i <= n; ++i)
             result *= i;
+
+        return result;
+    }
+
+    public static BigInteger factorialBigInteger(int n)
+    {
+        return factorialBigInteger(BigInteger.valueOf(n));
+    }
+
+    public static BigInteger factorialBigInteger(BigInteger n)
+    {
+        var result = BigInteger.ONE;
+
+        for (var i = BigInteger.TWO; i.compareTo(n) <= 0; i = i.add(BigInteger.ONE))
+            result = result.multiply(i);
 
         return result;
     }

@@ -1,19 +1,24 @@
 /*----------------------------------------------------------------------------------------------------------------------
-
+    Arrays sınıfının fill metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
 
+import java.util.Arrays;
+
 class App {
     public static void main(String[] args)
     {
-        var str = Console.read("Bir yazı giriniz:");
+        var n = Console.readUInt("Bir sayı giriniz:");
 
-        if (!str.isBlank())
-            Console.writeLine(str.toUpperCase());
-        else
-            Console.Error.writeLine("Hatalı giriş");
+        String [] names = new String[n];
+
+        Arrays.fill(names, "indefinite");
+
+        for (var name : names)
+            Console.writeLine(name);
+
+
     }
 }
-

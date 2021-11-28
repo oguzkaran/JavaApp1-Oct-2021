@@ -1,23 +1,39 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Arrays sınıfınının sort metodu
+    Apache commons StopWatch sınıfı
+    https://commons.apache.org/
+    Anahtar Notlar: Bu kütüphanedeki hemen hemen her sınıf Apache Lisansına göre kullanılmaktadır. Bu lisansı inceleyeniz:
+    link: http://www.apache.org/licenses/LICENSE-2.0 (28.11.2021)
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.array.ArrayUtil;
+import org.apache.commons.lang3.time.StopWatch;
 import org.csystem.util.console.Console;
+import org.csystem.util.numeric.NumberUtil;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.math.BigInteger;
+import java.util.concurrent.TimeUnit;
 
 class App {
     public static void main(String[] args)
     {
-        var r = new Random();
-        var n = Console.readInt("Bir sayı giriniz:");
-        var a = ArrayUtil.getRandomArray(r, n, 1, 99);
+        long n = 5697859706174583067L;
 
-        ArrayUtil.display(2, a);
-        Arrays.sort(a, 3, 7); //[3, 7)
-        ArrayUtil.display(2, a);
+        var stopWatch = new StopWatch();
+
+        stopWatch.start();
+        var result = NumberUtil.isPrime(n);
+        stopWatch.stop();
+        var elapsed = stopWatch.getTime(TimeUnit.MILLISECONDS);
+
+        Console.writeLine(result ? "Asal" : "Asal değil");
+        Console.writeLine("Elapsed (sec):%f", elapsed / 1000.);
+
+        stopWatch.reset();
+        stopWatch.start();
+        result = NumberUtil.isPrime(BigInteger.valueOf(n));
+        stopWatch.stop();
+        elapsed = stopWatch.getTime(TimeUnit.MILLISECONDS);
+        Console.writeLine(result ? "Asal" : "Asal değil");
+        Console.writeLine("Elapsed (sec):%f", elapsed / 1000.);
     }
 }

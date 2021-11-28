@@ -1,24 +1,23 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Arrays sınıfının fill metodu
+    Arrays sınıfınının sort metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.util.array.ArrayUtil;
 import org.csystem.util.console.Console;
 
 import java.util.Arrays;
+import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        var n = Console.readUInt("Bir sayı giriniz:");
+        var r = new Random();
+        var n = Console.readInt("Bir sayı giriniz:");
+        var a = ArrayUtil.getRandomArray(r, n, 1, 99);
 
-        String [] names = new String[n];
-
-        Arrays.fill(names, "indefinite");
-
-        for (var name : names)
-            Console.writeLine(name);
-
-
+        ArrayUtil.display(2, a);
+        Arrays.sort(a, 3, 7); //[3, 7)
+        ArrayUtil.display(2, a);
     }
 }

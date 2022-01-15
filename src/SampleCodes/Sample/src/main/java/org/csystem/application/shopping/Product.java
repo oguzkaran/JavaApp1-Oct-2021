@@ -95,4 +95,9 @@ public class Product {
     {
         return m_unitPrice.subtract(m_cost).multiply(BigDecimal.valueOf(m_stock));
     }
+
+    public String toString()
+    {
+        return String.format("[%s] %s, %s = %s", m_name, m_cost, m_unitPrice, this.getTotal());
+    }
 }

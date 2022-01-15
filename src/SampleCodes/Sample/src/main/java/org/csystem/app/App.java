@@ -1,26 +1,20 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Basit bir dijital saat uygulaması
+    Java 11 ile birlikte lambda ifadelerinin parametre bildirimlerinde var kullanılabilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.app.function.FunctionalUtil;
 import org.csystem.util.console.Console;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Timer;
-import java.util.TimerTask;
 
 class App {
     public static void main(String[] args)
     {
-        var prompt = Console.read("Mesajı giriniz:");
+        int [] a = {1, 2, 3, 5, 6};
+        int [] b = new int[6];
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            public void run()
-            {
-                Console.write("%s:%s\r", prompt, DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(LocalDateTime.now()));
-            }
-        }, 0, 1000);
+        int count = FunctionalUtil.filter(a, b, val -> val % 2 == 0);
+
+        FunctionalUtil.forEach(b, count, val -> Console.write("%d ", val));
     }
 }
 

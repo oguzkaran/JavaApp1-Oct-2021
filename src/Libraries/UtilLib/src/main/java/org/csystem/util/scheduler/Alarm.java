@@ -10,6 +10,8 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.scheduler;
 
+import org.csystem.util.function.IRunnable;
+
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
@@ -17,17 +19,22 @@ public class Alarm {
     private final Scheduler m_scheduler;
     private final LocalTime m_time;
 
-    private void scheduleCallback(Runnable periodTask)
+    private void scheduleCallback(IRunnable periodTask)
     {
-        if (periodTask != null)
-            periodTask.run();
+        try {
+            if (periodTask != null)
+                periodTask.run();
 
-        LocalTime now = LocalTime.now();
+            LocalTime now = LocalTime.now();
 
-        now = now.withNano(0);
+            now = now.withNano(0);
 
-        if (m_time.equals(now))
-            m_scheduler.cancel();
+            if (m_time.equals(now))
+                m_scheduler.cancel();
+        }
+        catch (Exception ignore) {
+            //...
+        }
     }
 
     public Alarm(int hour, int minute)
@@ -46,12 +53,12 @@ public class Alarm {
         m_scheduler = new Scheduler(1, TimeUnit.SECONDS);
     }
 
-    public Alarm start(Runnable alarmTask)
+    public Alarm start(IRunnable alarmTask)
     {
         return start(alarmTask, null);
     }
 
-    public Alarm start(Runnable alarmTask, Runnable periodTask)
+    public Alarm start(IRunnable alarmTask, IRunnable periodTask)
     {
         m_scheduler.schedule(() -> scheduleCallback(periodTask), alarmTask);
 

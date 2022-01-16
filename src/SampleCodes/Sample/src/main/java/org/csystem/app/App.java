@@ -1,43 +1,25 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: CountDownScheduler sınıfını genişletecek şekilde başlangıçta da bir işin yapılabilmesini
-    sağlayan onStart abstract metodunun eklendiği CountDownSchedulerEx isimli sınıfı yazınız ve test ediniz
+    Sınıf Çalışması: Aşağıda açıklanan Alarm isimli sınıfı yazınız
+    Açıklamalar:
+        - Sınıfın saat, dakika, saniye alan ve LocalTime parametreli iki adet ctoru olacaktır
+        - Sınıfın run metodu Runnable arayüzü ile alarm süresi dolduğunda yapılacak işlemi alacaktır.
+        - Sınıfın ayrıca her saniye yapacağı işe de alabilen bir start metodu da olacaktır
+        - Sınıfı yazarken Timer veya Scheduler kullanılabilir
+        - Alarm sınıfını şu senryo için kullanılan programı yazınız:
+            Komut satırı argümanı ile verilen saat, dakika ve saniye bigilerine göre zaman dolduğunda "Artık uyan",
+            şeklinde bir mesaj veren ve alarm süresi dolana kadar ise sürekli ekrana nokta bastıran programı yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
-import org.csystem.util.scheduler.CountDownSchedulerEx;
-
-import java.util.concurrent.TimeUnit;
+import org.csystem.util.scheduler.Alarm;
 
 class App {
     public static void main(String[] args)
     {
-        CountSownSchedulerExTest.run();
+        var alarm = new Alarm(18, 36);
+
+        alarm.start(() -> Console.writeLine("\nArtık uyan"));
     }
 }
 
-class CountSownSchedulerExTest {
-    public static void run()
-    {
-        var scheduler = new CountDownSchedulerEx(10, 1, TimeUnit.SECONDS) {
-            private int m_count;
-
-            protected void onStart()
-            {
-                Console.writeLine("Geri sayım başlıyor");
-            }
-            protected void onTick(long millisUntilFinished)
-            {
-                ++m_count;
-                Console.write("%02d\r", millisUntilFinished / 1000);
-            }
-
-            protected void onFinish()
-            {
-                Console.writeLine("00");
-                Console.writeLine("Count:%d", m_count);
-                Console.writeLine("Geri sayım tamamlandı");
-            }
-        }.startScheduler();
-    }
-}

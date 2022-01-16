@@ -1,20 +1,43 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Java 11 ile birlikte lambda ifadelerinin parametre bildirimlerinde var kullanılabilir
+    Sınıf Çalışması: CountDownScheduler sınıfını genişletecek şekilde başlangıçta da bir işin yapılabilmesini
+    sağlayan onStart abstract metodunun eklendiği CountDownSchedulerEx isimli sınıfı yazınız ve test ediniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.function.FunctionalUtil;
 import org.csystem.util.console.Console;
+import org.csystem.util.scheduler.CountDownSchedulerEx;
+
+import java.util.concurrent.TimeUnit;
 
 class App {
     public static void main(String[] args)
     {
-        int [] a = {1, 2, 3, 5, 6};
-        int [] b = new int[6];
-
-        int count = FunctionalUtil.filter(a, b, val -> val % 2 == 0);
-
-        FunctionalUtil.forEach(b, count, val -> Console.write("%d ", val));
+        CountSownSchedulerExTest.run();
     }
 }
 
+class CountSownSchedulerExTest {
+    public static void run()
+    {
+        var scheduler = new CountDownSchedulerEx(10, 1, TimeUnit.SECONDS) {
+            private int m_count;
+
+            protected void onStart()
+            {
+                Console.writeLine("Geri sayım başlıyor");
+            }
+            protected void onTick(long millisUntilFinished)
+            {
+                ++m_count;
+                Console.write("%02d\r", millisUntilFinished / 1000);
+            }
+
+            protected void onFinish()
+            {
+                Console.writeLine("00");
+                Console.writeLine("Count:%d", m_count);
+                Console.writeLine("Geri sayım tamamlandı");
+            }
+        }.startScheduler();
+    }
+}

@@ -8,7 +8,7 @@
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util;
+package org.csystem.util.string;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.scheduler;
 
-import org.csystem.util.function.IRunnable;
+import org.csystem.util.scheduler.function.IRunnable;
 
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;

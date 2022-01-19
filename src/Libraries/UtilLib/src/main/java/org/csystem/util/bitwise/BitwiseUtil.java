@@ -10,7 +10,6 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.bitwise;
 
-
 public final class BitwiseUtil {
     private BitwiseUtil()
     {

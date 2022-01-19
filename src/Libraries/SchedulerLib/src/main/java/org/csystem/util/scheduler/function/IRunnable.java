@@ -8,7 +8,7 @@
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.function;
+package org.csystem.util.scheduler.function;
 
 @FunctionalInterface
 public interface IRunnable {

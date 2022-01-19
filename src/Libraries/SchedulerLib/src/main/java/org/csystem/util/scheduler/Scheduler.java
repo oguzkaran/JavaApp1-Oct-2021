@@ -11,9 +11,8 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.scheduler;
 
-import org.csystem.util.function.IRunnable;
+import org.csystem.util.scheduler.function.IRunnable;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;

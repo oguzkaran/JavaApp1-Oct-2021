@@ -1,29 +1,20 @@
 /*----------------------------------------------------------------------
 	FILE        : CommandLineUtil.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 23.07.2021
+	LAST UPDATE : 19.01.2022
 
 	Utility class for command line arguments
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.console;
+package org.csystem.util.console.command;
 
-public final class CommandLineArgsUtil {
-    private CommandLineArgsUtil()
+import org.csystem.util.console.Console;
+
+public final class CommandLineUtil {
+    private CommandLineUtil()
     {}
-
-    private static String join(String [] str, String delimiter)
-    {
-        var result = new StringBuilder();
-
-        for (var s : str)
-            result.append(s).append(delimiter);
-
-        return result.substring(0, result.length() - delimiter.length());
-    }
-
 
     public static void checkForLengthEqual(String [] args, int count, String errMessage, int exitCode)
     {
@@ -60,13 +51,13 @@ public final class CommandLineArgsUtil {
         checkForLengthLess(args, count + 1, errMessage, exitCode);
     }
 
-    public static String getCommandLineArgsJoin(String [] args, String stdIntMessage, String delimiter)
+    public static String getCommandLineArgs(String [] args, String stdIntMessage, String delimiter)
     {
-        return args.length == 0 ? Console.read(stdIntMessage) : join(args, delimiter);
+        return args.length == 0 ? Console.read(stdIntMessage) : String.join(delimiter, args);
     }
 
-    public static String getCommandLineArgsJoin(String [] args, String stdIntMessage, char delimiter)
+    public static String getCommandLineArgs(String [] args, String stdIntMessage, char delimiter)
     {
-        return getCommandLineArgsJoin(args, stdIntMessage, delimiter + "");
+        return getCommandLineArgs(args, stdIntMessage, delimiter + "");
     }
 }

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : ThreadUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 16.01.2022
+	LAST UPDATE : 19.01.2022
 
 	Utility class for thread operations
 
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.*;
 
-public class ThreadUtil {
+public final class ThreadUtil {
     public static void sleep(long timout, TimeUnit timeUnit)
     {
         try {

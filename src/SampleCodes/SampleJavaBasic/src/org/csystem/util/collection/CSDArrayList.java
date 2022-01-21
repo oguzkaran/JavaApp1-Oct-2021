@@ -117,11 +117,11 @@ public class CSDArrayList<E> {
         return oldVal;
     }
 
-    public Object set(int index, E elem)
+    public E set(int index, E elem)
     {
         checkIndex(index);
 
-        Object oldElem = m_elems[index];
+        E oldElem = m_elems[index];
 
         m_elems[index] = elem;
 

@@ -8,6 +8,7 @@ import java.io.IOException;
 public class PeriodicAsyncPasswordGeneratorSimulation {
     public static void run(String [] args)
     {
+
         if (args.length != 4) {
             Console.Error.writeLine("Wrong number of arguments");
             System.exit(1);

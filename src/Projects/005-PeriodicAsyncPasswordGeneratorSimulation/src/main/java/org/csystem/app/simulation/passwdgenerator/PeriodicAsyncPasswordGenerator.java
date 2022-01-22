@@ -18,7 +18,6 @@ public class PeriodicAsyncPasswordGenerator {
     private final int m_n;
     private final int m_count;
     private final long m_period;
-    private final ArrayList<BufferedWriter> m_bws;
 
     private void periodTaskCallback(BufferedWriter bw, Random random)
     {
@@ -37,7 +36,6 @@ public class PeriodicAsyncPasswordGenerator {
         m_n = n;
         m_count = count;
         m_period = period;
-        m_bws = new ArrayList<>();
     }
 
     public void run()
@@ -46,7 +44,7 @@ public class PeriodicAsyncPasswordGenerator {
             for (int i = 0; i < m_n; ++i) {
                 var bw = Files.newBufferedWriter(Path.of(m_prefix + "-" + i + ".txt"), StandardCharsets.UTF_8);
                 var random = new Random();
-                m_bws.add(bw);
+
                 new CounterScheduler(m_count, m_period).schedule(() -> periodTaskCallback(bw, random));
             }
         }

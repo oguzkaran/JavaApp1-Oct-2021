@@ -29,13 +29,19 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-console</artifactId>
-			<version>10.0.0</version>
+			<version>10.1.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util</artifactId>
-			<version>11.2.0</version>
+			<version>13.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-scheduler</artifactId>
+			<version>10.0.0</version>
 		</dependency>
 
 

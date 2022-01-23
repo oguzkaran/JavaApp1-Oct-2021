@@ -1,25 +1,28 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Optional sınıfları:
-    Programlamada sıklıkla karşımıza çıkan bir durum vardır: Bir koşul sağlandığında bir bilgiye ihtiyacımız olabilir.
-    Anca koşul sağlanmadığında is bu bilgiye ihtiyacımız olma dolayısıyla bilginin de oluşturulmaması gerekir. Bu şekildeki
-    türlere "nullable types" denir. Yani "optional" kavramı kısacası "bir bilgi varsa kullanalım yoksa kullanmayalım" şeklinde
-    bir türdür. Java 8 ile birlikte eklene optional sınıfları ile bu şekilde kodlar yazılabilmektedir.
-
-    
+    Optional sınıflarının ifPresentOrElse metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
+
+import org.csystem.app.function.FunctionalUtil;
+import org.csystem.util.array.ArrayUtil;
+import org.csystem.util.console.Console;
+
+import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
+        Random random = new Random();
 
-    }
-}
+        var numbers = ArrayUtil.getRandomArray(random, 0, 0, 99);
 
-class Sample {
-    public static int sum(int [] a)
-    {
+        Console.writeLine("-------------------------------------");
+        FunctionalUtil.forEach(numbers, numbers.length, val -> Console.write("%d ", val));
+        Console.writeLine();
 
+        var resultIntOpt = FunctionalUtil.reduce(numbers, Integer::sum);
+
+        resultIntOpt = resultIntOpt.fi
     }
 }
 

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
-	LAST UPDATE : 20.11.2021
+	LAST UPDATE : 23.01.2022
 
 	Utility class for numeric operations
 
@@ -11,6 +11,9 @@
 package org.csystem.util.numeric;
 
 import java.math.BigInteger;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import static java.lang.Math.*;
 
@@ -422,5 +425,41 @@ public final class NumberUtil {
         }
 
         return Math.abs(sum);
+    }
+
+    public static OptionalInt toInt(String str)
+    {
+        try {
+            return OptionalInt.of(Integer.parseInt(str));
+        }
+        catch (NumberFormatException ignored) {
+
+        }
+
+        return OptionalInt.empty();
+    }
+
+    public static OptionalLong toLong(String str)
+    {
+        try {
+            return OptionalLong.of(Long.parseLong(str));
+        }
+        catch (NumberFormatException ignored) {
+
+        }
+
+        return OptionalLong.empty();
+    }
+
+    public static OptionalDouble toDouble(String str)
+    {
+        try {
+            return OptionalDouble.of(Double.parseDouble(str));
+        }
+        catch (NumberFormatException ignored) {
+
+        }
+
+        return OptionalDouble.empty();
     }
 }

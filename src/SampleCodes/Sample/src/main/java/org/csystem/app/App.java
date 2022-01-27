@@ -22,7 +22,7 @@ class App {
 
         var resultIntOpt = FunctionalUtil.reduce(numbers, Integer::sum);
 
-        resultIntOpt = resultIntOpt.fi
+
     }
 }
 

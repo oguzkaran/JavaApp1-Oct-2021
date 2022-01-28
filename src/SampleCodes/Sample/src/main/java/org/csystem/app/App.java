@@ -6,6 +6,7 @@ package org.csystem.app;
 import org.csystem.app.function.FunctionalUtil;
 import org.csystem.util.array.ArrayUtil;
 import org.csystem.util.console.Console;
+import org.csystem.util.numeric.NumberUtil;
 
 import java.util.Random;
 
@@ -21,7 +22,6 @@ class App {
         Console.writeLine();
 
         var resultIntOpt = FunctionalUtil.reduce(numbers, Integer::sum);
-
 
     }
 }

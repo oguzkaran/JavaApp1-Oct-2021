@@ -439,10 +439,34 @@ public final class NumberUtil {
         return OptionalInt.empty();
     }
 
+    public static OptionalInt toUnsignedInt(String str)
+    {
+        try {
+            return OptionalInt.of(Integer.parseUnsignedInt(str));
+        }
+        catch (NumberFormatException ignored) {
+
+        }
+
+        return OptionalInt.empty();
+    }
+
     public static OptionalLong toLong(String str)
     {
         try {
             return OptionalLong.of(Long.parseLong(str));
+        }
+        catch (NumberFormatException ignored) {
+
+        }
+
+        return OptionalLong.empty();
+    }
+
+    public static OptionalLong toUnsignedLong(String str)
+    {
+        try {
+            return OptionalLong.of(Long.parseUnsignedLong(str));
         }
         catch (NumberFormatException ignored) {
 

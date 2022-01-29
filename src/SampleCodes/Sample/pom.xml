@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util</artifactId>
-			<version>13.1.0</version>
+			<version>13.2.0</version>
 		</dependency>
 
 		<dependency>
@@ -46,6 +46,12 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-scheduler</artifactId>
+			<version>10.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-tuple</artifactId>
 			<version>10.0.0</version>
 		</dependency>
 

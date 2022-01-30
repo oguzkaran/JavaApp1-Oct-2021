@@ -36,8 +36,6 @@
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime-legacy</artifactId>
 			<version>10.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-util-datetime-legacy-10.0.0.jar</systemPath>
 		</dependency>
 
 		<dependency>

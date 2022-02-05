@@ -1,8 +1,8 @@
-package org.csystem.app.plugin;
+package org.csystem.app.reflection;
 
 public class App {
     public static void main(String[] args)
     {
-        SamplePluginApp.run(args);
+        PublicMembersInfoApp.run(args);
     }
 }

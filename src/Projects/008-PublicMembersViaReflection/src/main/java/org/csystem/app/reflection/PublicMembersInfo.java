@@ -1,45 +1,39 @@
-package org.csystem.app.plugin;
+package org.csystem.app.reflection;
 
 import org.csystem.util.console.Console;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SamplePlugin {
+public class PublicMembersInfo {
     private final ArrayList<String> m_types = new ArrayList<>();
 
-    private void printMembers(Class<?> cls)
-    {
-
-    }
-
-    private void printDeclaredFields(Class<?> cls)
+    private void printPublicFields(Class<?> cls)
     {
         Console.writeLine("-----------------------------------------------");
-        Console.writeLine("Declared Fields:");
-        for (var field : cls.getDeclaredFields())
+        Console.writeLine("Public Fields:");
+        for (var field : cls.getFields())
             Console.writeLine("Type:%s, Name:%s", field.getType().getName(), field.getName());
         Console.writeLine("-----------------------------------------------");
     }
 
-    private void printDeclaredMethods(Class<?> cls)
+    private void printPublicMethods(Class<?> cls)
     {
         Console.writeLine("-----------------------------------------------");
-        Console.writeLine("Declared Methods:");
-        for (var method : cls.getDeclaredMethods()) {
+        Console.writeLine("Public Methods:");
+        for (var method : cls.getMethods()) {
             Console.write("%s %s(", method.getReturnType().getSimpleName(), method.getName());
             printParameters(method.getParameters());
         }
         Console.writeLine("-----------------------------------------------");
     }
 
-    private void printDeclaredConstructors(Class<?> cls)
+    private void printPublicConstructors(Class<?> cls)
     {
         Console.writeLine("-----------------------------------------------");
-        Console.writeLine("Declared Constructors:");
-        for (var ctor : cls.getDeclaredConstructors()) {
+        Console.writeLine("Constructors:");
+        for (var ctor : cls.getConstructors()) {
             Console.write("%s(", ctor.getName());
             printParameters(ctor.getParameters());
         }
@@ -62,7 +56,7 @@ public class SamplePlugin {
     private void printInterfaces(Class<?> cls)
     {
         Console.writeLine("-----------------------------------------------");
-        Console.writeLine("Declared interfaces:");
+        Console.writeLine("Interfaces:");
         for (var clsInterface : cls.getInterfaces())
             Console.writeLine(clsInterface.getName());
         Console.writeLine("-----------------------------------------------");
@@ -71,34 +65,28 @@ public class SamplePlugin {
     private void printAnnotations(Class<?> cls)
     {
         Console.writeLine("-----------------------------------------------");
-        Console.writeLine("Declared Annotation:");
+        Console.writeLine("Annotations:");
         for (var annotation : cls.getAnnotations()) {
             var clsAnnotation = annotation.annotationType();
             Console.writeLine("Name:%s", clsAnnotation.getName());
 
-            for (var attr : clsAnnotation.getDeclaredMethods())
+            for (var attr : clsAnnotation.getMethods())
                 Console.writeLine("%s %s()", attr.getReturnType().getSimpleName(), attr.getName());
         }
         Console.writeLine("-----------------------------------------------");
     }
 
-        private void printDeclaredMembers(Class<?> cls)
+    private void printPublicMembers(Class<?> cls)
     {
-        Console.writeLine("Declared Members:");
-
-        printDeclaredFields(cls);
-        printDeclaredMethods(cls);
-        printDeclaredConstructors(cls);
+        Console.writeLine("Public Members:");
+        printPublicFields(cls);
+        printPublicMethods(cls);
+        printPublicConstructors(cls);
         printInterfaces(cls);
         printAnnotations(cls);
     }
 
-    public SamplePlugin()
-    {
-
-    }
-
-    public SamplePlugin(String...types)
+    public PublicMembersInfo(String...types)
     {
         Collections.addAll(m_types, types);
     }
@@ -110,8 +98,7 @@ public class SamplePlugin {
                 var cls = Class.forName(typeName);
                 Console.writeLine("%s byte code found", cls.getName());
                 Console.writeLine("#####################################################");
-                printDeclaredMembers(cls);
-                printMembers(cls);
+                printPublicMembers(cls);
                 Console.writeLine("#####################################################");
             }
             catch (ClassNotFoundException ignore) {

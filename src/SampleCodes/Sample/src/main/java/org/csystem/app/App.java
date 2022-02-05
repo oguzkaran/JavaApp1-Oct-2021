@@ -1,7 +1,15 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Class sınıfının getDeclaredXXXs metotları ile türün tüm elemanlarına erişim belirleyiciden bağımsız olarak
-    erişilebilir. Taban sınıfın hiçbir bölümüne bu metotlar ile erişilemez. Class sınıfının getXXXs metotları ile
-    taban sınıfın da dahil olmak üzere yalnızca public bölüme erişilebilir
+    Class sınıfının getXXXs ve getDeclaredXXXs metotlarının sonunda "s" olmayan versiyonları spwsific bir elemana
+    yönelik bilgileri elde etmek için kullanılır. Constructor sınıfının newInstance metodu ile ilgili sınıf türünden
+    nesne yaratılabilir. Elemanlara yönelik sınıfların (Method, Field, Constructor vs) setAccessible isimli metotları
+    ile eleman erişilebilir duruma getirilebilir. Yani private bir elemana da çalışma zamanı sırasında erişilebilir.
+    Method sınıfının invoke isimli metotları ile Method nesnesine ilişkin metot çağrılabilir. Metot çaprıları uygun
+    argümanlar ile yapılmalıdır. Aksi durumda exception oluşur. Reflection konusuna ilişkin metotlar genel olarak
+    "checked exception" sınıflar türünden nesneler fırlatır. invoke metodunun birinci parametresi metodu çağrıolacak
+    sınıfa ilişkin referanstır. static metotlar için bu parametre null geçilir
+    ~/Projects/009-CallNonStaticMethodViaReflection örneğini inceleyiniz
+
+    Örnek tamamen durumu anlatmak için yazılmıştır. Detaylar gözardı edilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 

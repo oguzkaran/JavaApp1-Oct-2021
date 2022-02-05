@@ -1,12 +1,9 @@
-package org.csystem.app.plugin;
+package org.csystem.app.reflection;
 
-import org.csystem.util.console.Console;
 import org.csystem.util.console.command.CommandLineUtil;
 
-import java.util.concurrent.ConcurrentSkipListMap;
-
-public final class SamplePluginApp {
-    private SamplePluginApp()
+public final class PublicMembersInfoApp {
+    private PublicMembersInfoApp()
     {
     }
 
@@ -14,7 +11,7 @@ public final class SamplePluginApp {
     {
         CommandLineUtil.checkForLengthLess(args, 1, "Wrong number of arguments", 1);
 
-        var sp = new SamplePlugin(args);
+        var sp = new PublicMembersInfo(args);
 
         sp.run();
     }

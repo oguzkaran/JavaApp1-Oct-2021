@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------
+	FILE        : CommandPrompt.java
+	AUTHOR      : Oğuz Karan
+	LAST UPDATE : 06.02.2022
+
+	Annotation based command prompt
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
 package org.csystem.util.console.commandprompt;
 
 import org.csystem.util.console.Console;

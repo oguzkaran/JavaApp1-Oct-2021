@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Triple.java
 	AUTHOR      : JavaApp-Oct-2021 Group
-	LAST UPDATE : 29.01.2022
+	LAST UPDATE : 13.02.2022
 
 	Immutable Value class that represents Tuple<F, S, T>
 
@@ -47,6 +47,15 @@ public final class Triple<F, S, T> {
     public T getThird()
     {
         return m_third;
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        @SuppressWarnings("unchecked")
+        var t = (Triple<F, S, T>)other;
+
+        return m_first.equals(t.m_first) && m_second.equals(t.m_second) && m_third.equals(t.m_third);
     }
 
     @Override

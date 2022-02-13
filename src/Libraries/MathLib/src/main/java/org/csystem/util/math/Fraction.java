@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Fraction.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 05.12.2021
+	AUTHOR      : JavaApp1-Oct-2021 Group
+	LAST UPDATE : 13.02.2022
 
 	Fraction class that represents a fraction
 
@@ -213,6 +213,19 @@ public class Fraction {
         dec(1);
     }
 
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof Fraction))
+            return false;
+
+        var f = (Fraction)other;
+
+        return m_a * f.m_b == f.m_a * m_b;
+    }
+
+    @Override
     public String toString()
     {
         return this.toString(6);

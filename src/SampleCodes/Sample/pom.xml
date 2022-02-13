@@ -52,12 +52,18 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-tuple</artifactId>
-			<version>10.0.0</version>
+			<version>11.0.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-math</artifactId>
+			<version>11.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-collection</artifactId>
 			<version>10.0.0</version>
 		</dependency>
 

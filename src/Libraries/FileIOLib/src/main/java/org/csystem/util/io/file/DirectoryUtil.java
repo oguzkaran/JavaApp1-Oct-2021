@@ -52,8 +52,7 @@ public class DirectoryUtil {
         Path path = Path.of(System.getProperty(pathStr));
         WatchService watchService = FileSystems.getDefault().newWatchService();
 
-        path.register(
-                watchService, events);
+        path.register(watchService, events);
 
         WatchKey key;
 

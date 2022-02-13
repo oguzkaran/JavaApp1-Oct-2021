@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Pair.java
 	AUTHOR      : JavaApp-Oct-2021 Group
-	LAST UPDATE : 29.01.2022
+LAST UPDATE : 13.02.2022
 
 	Immutable Pair class that represents Tuple<F, S>
 
@@ -39,6 +39,15 @@ public final class Pair<F, S> {
     public S getSecond()
     {
         return m_second;
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        @SuppressWarnings("unchecked")
+        var p = (Pair<F, S>)other;
+
+        return m_first.equals(p.m_first) && m_second.equals(p.m_second);
     }
 
     @Override

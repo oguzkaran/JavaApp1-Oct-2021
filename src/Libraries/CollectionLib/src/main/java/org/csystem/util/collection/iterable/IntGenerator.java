@@ -1,4 +1,14 @@
-package org.csystem.util.range;
+/*----------------------------------------------------------------------
+	FILE        : IntGenerator.java
+	AUTHOR      : JavaApp1-Oct-2021 group
+	LAST UPDATE : 13.02.2022
+
+	Iterable int random number generator class
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
+package org.csystem.util.collection.iterable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -25,10 +35,12 @@ public class IntGenerator implements Iterable<Integer> {
         return new IntGenerator(count, supplier);
     }
 
+    //...
+
     @Override
     public Iterator<Integer> iterator()
     {
-        return new Iterator<Integer>() {
+        return new Iterator<>() {
             int count;
             @Override
             public boolean hasNext()

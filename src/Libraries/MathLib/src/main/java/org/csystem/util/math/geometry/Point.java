@@ -66,6 +66,18 @@ public class Point {
 		y += dy;
 	}
 
+	@Override
+	public boolean equals(Object other)
+	{
+		if (!(other instanceof Point))
+			return false;
+
+		var p = (Point)other;
+
+		return x == p.x && y == p.y;
+	}
+
+	@Override
 	public String toString()
 	{
 		return String.format("{x: %f, y: %f}", x, y);

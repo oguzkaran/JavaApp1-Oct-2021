@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Circle.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 09.10.2021
+	AUTHOR      : JavaApp1-Oct-2021 Group
+	LAST UPDATE : 13.02.2022
 
 	Circle class that represents the circle in geometry
 
@@ -42,5 +42,20 @@ public class Circle {
     public double getCircumference()
     {
         return 2 * PI * m_r;
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof Circle))
+            return false;
+
+        return Double.valueOf(m_r).equals(((Circle)other).m_r);
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("{r: %f, area: %f, circumference:%f}", m_r, getArea(), getCircumference());
     }
 }

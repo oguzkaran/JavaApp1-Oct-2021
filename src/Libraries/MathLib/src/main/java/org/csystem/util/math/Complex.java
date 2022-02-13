@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Complex.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 14.11.2021
+	AUTHOR      : JavaApp1-Oct-2021 Group
+	LAST UPDATE : 13.02.2022
 
 	Immutable Complex class that can be used for Complex numbers
 
@@ -118,8 +118,21 @@ public class Complex {
 		return this.inc();
 	}
 
+	@Override
+	public boolean equals(Object other)
+	{
+		if (!(other instanceof Complex))
+			return false;
+
+		var z = (Complex)other;
+
+		return Double.valueOf(m_real).equals(z.m_real) &&  Double.valueOf(m_imag).equals(z.m_imag);
+	}
+
+	@Override
 	public String toString()
 	{				
-		return String.format("|%.1f%si| = %f", m_real, (m_imag < 0 ? " - " : " + ") +  abs(m_imag), this.getNorm());
+		return String.format("|%.1f%si| = %f", m_real, (m_imag < 0 ? " - " : " + ") +  String.format("%.1f", abs(m_imag)),
+				this.getNorm());
 	}
 }

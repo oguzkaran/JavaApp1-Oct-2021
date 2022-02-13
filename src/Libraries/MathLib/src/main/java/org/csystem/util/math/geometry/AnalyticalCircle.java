@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : AnalyticalCircle.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 06.11.2021
+	AUTHOR      : JavaApp1-Oct-2021 Group
+	LAST UPDATE : 13.02.2022
 
 	AnalyticalCircle class that represents the analytical circle in geometry
 
@@ -93,5 +93,22 @@ public class AnalyticalCircle extends Circle {
     public double centerDistance(AnalyticalCircle other)
     {
         return m_center.distance(other.m_center);
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof AnalyticalCircle))
+            return false;
+
+        return super.equals(other) && m_center.equals(((AnalyticalCircle)other).m_center);
+    }
+
+    @Override
+    public String toString()
+    {
+        var cStr = super.toString();
+
+        return String.format("%s, point:%s}", cStr.substring(cStr.length() - 1), m_center);
     }
 }

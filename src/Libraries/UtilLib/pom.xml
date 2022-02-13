@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util</artifactId>
-	<version>13.2.0</version>
+	<version>13.3.0</version>
 
 	<properties>
 		<java.version>11</java.version>

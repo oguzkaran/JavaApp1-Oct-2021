@@ -1,28 +1,36 @@
 /*----------------------------------------------------------------------------------------------------------------------
-     Aşağıdaki örneği inceleyiniz. Örneği, org-csystem-util-tuple kütüphanesinin 10.0.0 ve 11.0.0 versiyonları için
-     çalıştırıp sonucu gözlemleyiniz
+     Set<E>
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.app.data.factory.ProductFactory;
+import org.csystem.app.data.product.ProductInfo;
 import org.csystem.util.console.Console;
-import org.csystem.util.tuple.Pair;
-
-import java.util.ArrayList;
+import org.csystem.util.console.command.CommandLineUtil;
 
 class App {
     public static void main(String[] args)
     {
-        var list = new ArrayList<Pair<Integer, String>>();
+        CommandLineUtil.checkForLengthEqual(args, 1, "Wrong number of arguments", 1);
 
-        list.add(Pair.of(67, "zonguldak"));
-        list.add(Pair.of(34, "istanbul"));
-        list.add(Pair.of(6, "ankara"));
-        list.add(Pair.of(34, "istanbul"));
-        list.add(Pair.of(35, "izmir"));
+        try {
+            var factoryOpt = ProductFactory.loadFromTextFile(args[0]);
+            if (factoryOpt.isEmpty())
+                return;
 
-        var index = list.indexOf(Pair.of(34, "istanbul"));
+            var factory = factoryOpt.get();
 
-        Console.writeLine(index == -1 ? "Not found" : list.get(index) + " found at index:" + index);
+            //factory.PRODUCTS.forEach(Console::writeLine);
+
+            Console.writeLine("-----------------------------------------------------");
+            var products = factory.PRODUCTS.toArray(new ProductInfo[0]);
+
+            for (var pi : products)
+                Console.writeLine(pi);
+        }
+        catch (Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 }
 

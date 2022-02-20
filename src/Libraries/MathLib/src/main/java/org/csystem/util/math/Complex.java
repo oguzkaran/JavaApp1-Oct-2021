@@ -22,7 +22,7 @@ public class Complex {
 	
 	private static Complex subtract(double real1, double imag1, double real2, double imag2)
 	{
-		return add(real1, imag1, -real2, -imag2);				
+		return add(real1, imag1, -real2, -imag2);
 	}
 
 	private final double m_real;

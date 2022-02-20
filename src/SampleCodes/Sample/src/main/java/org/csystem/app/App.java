@@ -1,36 +1,32 @@
 /*----------------------------------------------------------------------------------------------------------------------
-     Set<E>
+    Aşağıdaki örnekte Complex nesnelerine ilişkin referanslar bir kümeye eklenmiştir. TreeSet sınıfına sıralama
+    kriteri verilerek norma göre azalan sırada dizilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.data.factory.ProductFactory;
-import org.csystem.app.data.product.ProductInfo;
 import org.csystem.util.console.Console;
-import org.csystem.util.console.command.CommandLineUtil;
+import org.csystem.util.math.Complex;
+
+import java.util.Random;
+import java.util.TreeSet;
 
 class App {
     public static void main(String[] args)
     {
-        CommandLineUtil.checkForLengthEqual(args, 1, "Wrong number of arguments", 1);
+        var treeSet = new TreeSet<Complex>((z1, z2) -> Double.compare(z2.getNorm(), z1.getNorm()));
+        var r = new Random();
+        var min = -10;
+        var max = 10;
 
-        try {
-            var factoryOpt = ProductFactory.loadFromTextFile(args[0]);
-            if (factoryOpt.isEmpty())
-                return;
-
-            var factory = factoryOpt.get();
-
-            //factory.PRODUCTS.forEach(Console::writeLine);
-
-            Console.writeLine("-----------------------------------------------------");
-            var products = factory.PRODUCTS.toArray(new ProductInfo[0]);
-
-            for (var pi : products)
-                Console.writeLine(pi);
+        for (int i = 0; i < 10; ++i) {
+            int a = r.nextInt(max - min + 1) + min;
+            int b = r.nextInt(max - min + 1) + min;
+            var f = new Complex(a, b);
+            Console.writeLine("%s -> %b", f, treeSet.add(f));
         }
-        catch (Throwable ex) {
-            ex.printStackTrace();
-        }
+
+        Console.writeLine("-----------------------------------------");
+        Console.writeLine(treeSet);
+        Console.writeLine("Size:%d", treeSet.size());
     }
 }
-

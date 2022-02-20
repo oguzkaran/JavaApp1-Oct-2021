@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Fraction.java
 	AUTHOR      : JavaApp1-Oct-2021 Group
-	LAST UPDATE : 13.02.2022
+	LAST UPDATE : 20.02.2022
 
 	Fraction class that represents a fraction
 
@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.math;
 
-public class Fraction {
+public class Fraction implements Comparable<Fraction> {
     private int m_a;
     private int m_b;
 
@@ -213,6 +213,11 @@ public class Fraction {
         dec(1);
     }
 
+    @Override
+    public int compareTo(Fraction other)
+    {
+        return m_a * other.m_b - other.m_a * m_b;
+    }
 
     @Override
     public boolean equals(Object other)

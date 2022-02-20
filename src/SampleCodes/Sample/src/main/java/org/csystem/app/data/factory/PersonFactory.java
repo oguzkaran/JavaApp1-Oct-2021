@@ -44,4 +44,9 @@ public final class PersonFactory {
 
         return result;
     }
+
+    public Person [] getPeopleAsArray()
+    {
+        return PEOPLE.toArray(new Person[0]);
+    }
 }

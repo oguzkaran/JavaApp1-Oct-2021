@@ -1,32 +1,44 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte Complex nesnelerine ilişkin referanslar bir kümeye eklenmiştir. TreeSet sınıfına sıralama
-    kriteri verilerek norma göre azalan sırada dizilmiştir
+    Question: Design a stack that computes the minimum int value in constant time. The push, pop and min methods
+    should operate int O(1) time. Amortized constant time allowed for push method
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.app.data.factory.ProductFactory;
+import org.csystem.app.data.product.ProductInfo;
 import org.csystem.util.console.Console;
-import org.csystem.util.math.Complex;
+import org.csystem.util.console.command.CommandLineUtil;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Random;
-import java.util.TreeSet;
 
 class App {
     public static void main(String[] args)
     {
-        var treeSet = new TreeSet<Complex>((z1, z2) -> Double.compare(z2.getNorm(), z1.getNorm()));
-        var r = new Random();
-        var min = -10;
-        var max = 10;
+        try {
+            CommandLineUtil.checkForLengthEqual(args, 2, "Wrong number of arguments", 1);
+            var factory = ProductFactory.loadFromTextFile(args[0]).get();
+            var products = new ArrayList<ProductInfo>();
+            var random = new Random();
 
-        for (int i = 0; i < 10; ++i) {
-            int a = r.nextInt(max - min + 1) + min;
-            int b = r.nextInt(max - min + 1) + min;
-            var f = new Complex(a, b);
-            Console.writeLine("%s -> %b", f, treeSet.add(f));
+            var count = Integer.parseInt(args[1]);
+            for (int i = 0; i < count; ++i)
+                products.add(factory.getRandomProduct(random).get());
+
+            products.forEach(Console::writeLine);
+            Console.writeLine(Util.areAllDistinct(products));
         }
+        catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+    }
+}
 
-        Console.writeLine("-----------------------------------------");
-        Console.writeLine(treeSet);
-        Console.writeLine("Size:%d", treeSet.size());
+class Util {
+    public static <T> boolean areAllDistinct(Collection<? extends T> collection)
+    {
+        return collection.size() == new HashSet<>(collection).size();
     }
 }

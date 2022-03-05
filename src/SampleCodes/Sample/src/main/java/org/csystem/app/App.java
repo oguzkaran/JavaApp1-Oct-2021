@@ -1,38 +1,36 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Stream arayüzlerinin reduce metodu
+    StreamSupport sınıfının stream metoduna Itreable arayüzünün spliterator metodunun geri dönüş değeri verilerek
+    Stream referansı elde edilebilir Metodun ikinci parametresi true geçilirse "parallel stream" biçiminde çalışacak
+    bir stream referansı elde edilir
+    Aşağıdaki örnekte tedarik edilmemiş ürünlerin her bir için isim ve stok miktarı  ProducNameStockDTO nesneleri
+    olarak elde edilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.data.factory.NumberFactory;
+import org.csystem.app.data.factory.ProductFactory;
+import org.csystem.app.data.product.ProductMapper;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.command.CommandLineUtil;
-import org.csystem.util.numeric.NumberUtil;
 
-import java.nio.file.Path;
-import java.util.stream.IntStream;
+import java.util.stream.StreamSupport;
 
 class App {
     public static void main(String[] args)
     {
         try {
             CommandLineUtil.checkForLengthEqual(args, 1, "Wrong number of arguments", 1);
-            var factory = NumberFactory.loadFromTextFile(Path.of(args[0]));
-            var numbers = factory.getNumbers();
+            var factoryOpt = ProductFactory.loadFromTextFile(args[0]);
 
-            var value = Console.readInt("Input a number:");
+            if (factoryOpt.isEmpty())
+                return;
 
-            IntStream.of(numbers)
-                    .filter(a -> a > value)
-                    .filter(NumberUtil::isPrime)
-                    .forEach(a -> Console.write("%d ", a));
-            Console.writeLine();
+            var products = factoryOpt.get().getProductsAsIterable();
+            var mapper = new ProductMapper();
 
-            var result = IntStream.of(numbers)
-                    .filter(a -> a > value)
-                    .filter(NumberUtil::isPrime)
-                    .reduce(1, (r, a) -> r * a);
-
-            Console.writeLine("Total:%d", result);
+            StreamSupport.stream(products.spliterator(), false)
+                    .filter(p -> p.getStock() < 0)
+                    .map(mapper::toProductStockDTO)
+                    .forEach(Console::writeLine);
         }
         catch (Throwable ex) {
             ex.printStackTrace();

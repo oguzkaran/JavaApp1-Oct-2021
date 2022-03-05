@@ -1,6 +1,7 @@
 package org.csystem.app.data.factory;
 
 import org.csystem.app.data.product.ProductInfo;
+import org.csystem.app.data.product.ProductMapper;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -54,6 +55,22 @@ public final class ProductFactory {
                 productFactory.PRODUCTS.add(getProduct(line));
 
             result = Optional.of(productFactory);
+        }
+
+        return result;
+    }
+
+    public static ProductFactory loadFromTextFile(Path path) throws IOException
+    {
+        var result = new ProductFactory();
+
+        try (var br = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+            if (br.readLine() == null)
+                return result;
+            String line;
+
+            while ((line = br.readLine()) != null)
+                result.PRODUCTS.add(getProduct(line));
         }
 
         return result;

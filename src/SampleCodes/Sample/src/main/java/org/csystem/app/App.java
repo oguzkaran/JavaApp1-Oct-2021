@@ -1,18 +1,13 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    StreamSupport sınıfının stream metoduna Itreable arayüzünün spliterator metodunun geri dönüş değeri verilerek
-    Stream referansı elde edilebilir Metodun ikinci parametresi true geçilirse "parallel stream" biçiminde çalışacak
-    bir stream referansı elde edilir
-    Aşağıdaki örnekte tedarik edilmemiş ürünlerin her bir için isim ve stok miktarı  ProducNameStockDTO nesneleri
-    olarak elde edilmiştir
+    Aşağıdaki örnekte en pahalı nb-tane ürün listelenmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.app.data.factory.ProductFactory;
-import org.csystem.app.data.product.ProductMapper;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.command.CommandLineUtil;
 
-import java.util.stream.StreamSupport;
+import java.util.Comparator;
 
 class App {
     public static void main(String[] args)
@@ -24,12 +19,17 @@ class App {
             if (factoryOpt.isEmpty())
                 return;
 
-            var products = factoryOpt.get().getProductsAsIterable();
-            var mapper = new ProductMapper();
+            var n = Console.readInt("Bir sayı giriniz:");
+            var products = factoryOpt.get().PRODUCTS;
 
-            StreamSupport.stream(products.spliterator(), false)
-                    .filter(p -> p.getStock() < 0)
-                    .map(mapper::toProductStockDTO)
+
+            products.stream().sorted().forEach(Console::writeLine);
+
+            Console.writeLine("---------------------------------------------------");
+
+            products.stream()
+                    .sorted(Comparator.reverseOrder())
+                    .limit(n)
                     .forEach(Console::writeLine);
         }
         catch (Throwable ex) {

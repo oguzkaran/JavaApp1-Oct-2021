@@ -1,34 +1,33 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    deque
+    Aşağıdaki örnekte çift sayılar başa, tek sayılar sona eklenmiştir.
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.data.factory.PersonFactory;
-import org.csystem.app.data.people.Person;
 import org.csystem.util.console.Console;
-import org.csystem.util.console.command.CommandLineUtil;
 
-import java.nio.file.Path;
-import java.util.stream.Collectors;
+import java.util.ArrayDeque;
+import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        try {
-            CommandLineUtil.checkForLengthEqual(args, 1, "Wrong number of arguments", 1);
-            var factory = PersonFactory.loadFromTextFile(Path.of(args[0]));
-            var people = factory.PEOPLE;
+        var random = new Random();
+        var count = Console.readInt("Input a number:");
+        var deque = new ArrayDeque<Integer>();
 
-            var str = people.stream()
-                    .map(Person::getName)
-                    .map(s -> "[[" + s + "]]")
-                    .collect(Collectors.joining(" :: ", "{{", "}}"));
+        for (int i = 0; i < count; ++i) {
+            int val = random.nextInt(100);
 
-            Console.writeLine(str);
+            Console.write("%d ", val);
+            if (val % 2 == 0)
+                deque.addFirst(val);
+            else
+                deque.addLast(val);
         }
-        catch (Throwable ex) {
-            ex.printStackTrace();
-        }
+        Console.writeLine();
+
+        deque.forEach(v -> Console.write("%d ", v));
+        Console.writeLine();
     }
 }
 

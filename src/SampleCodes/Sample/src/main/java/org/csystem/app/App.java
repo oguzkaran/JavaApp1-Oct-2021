@@ -30,5 +30,3 @@ class App {
         Console.writeLine();
     }
 }
-
-

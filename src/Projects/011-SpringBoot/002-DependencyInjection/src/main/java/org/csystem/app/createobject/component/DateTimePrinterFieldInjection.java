@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
 @Component
 public class DateTimePrinterFieldInjection {
     @Autowired
-    private LocalDateTime m_localDateTime;
+    @Qualifier("dateTimeConfigCreateNow")
+    private TemporalAccessor m_localDateTime;
 
     @Autowired
     @Qualifier(BeanName.DATETIMEFORMATTER_BEAN_NAME)

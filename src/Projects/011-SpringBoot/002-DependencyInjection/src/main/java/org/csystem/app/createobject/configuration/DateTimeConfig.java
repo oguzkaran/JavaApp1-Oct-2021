@@ -6,12 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
 
 @Configuration
 public class DateTimeConfig {
-    @Bean
+    @Bean("dateTimeConfigCreateNow")
     @Scope("prototype")
-    public LocalDateTime createNow()
+    public Temporal getNow()
     {
         Console.writeLine("----------------------------------");
         Console.writeLine("DateTimeConfig.createNow");

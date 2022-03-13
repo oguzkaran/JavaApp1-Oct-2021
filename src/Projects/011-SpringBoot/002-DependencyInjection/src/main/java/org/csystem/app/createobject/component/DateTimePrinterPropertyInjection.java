@@ -9,16 +9,17 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
 @Component
 public class DateTimePrinterPropertyInjection {
-    private LocalDateTime m_localDateTime;
+    private TemporalAccessor m_localDateTime;
     private DateTimeFormatter m_formatter;
 
     @Autowired
-    public void setLocalDateTime(LocalDateTime localDateTime)
+    public void setLocalDateTime(@Qualifier("dateTimeConfigCreateNow") TemporalAccessor temporalAccessor)
     {
-        m_localDateTime = localDateTime;
+        m_localDateTime = temporalAccessor;
     }
 
     @Autowired

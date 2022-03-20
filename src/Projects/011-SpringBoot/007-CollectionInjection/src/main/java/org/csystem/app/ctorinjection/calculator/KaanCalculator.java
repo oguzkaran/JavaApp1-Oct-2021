@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KaanCalculator implements ICalculator {
-    private final SimpleCalculator m_simpleCalculator;
+    private final IlkaySimpleCalculator m_simpleCalculator;
 
     @Value("${kaan.calculator.a:0}")
     private int m_a;
@@ -17,7 +17,7 @@ public class KaanCalculator implements ICalculator {
     @Value("${kaan.calculator.op:+}")
     private char m_op;
 
-    public KaanCalculator(SimpleCalculator simpleCalculator)
+    public KaanCalculator(IlkaySimpleCalculator simpleCalculator)
     {
         m_simpleCalculator = simpleCalculator;
     }

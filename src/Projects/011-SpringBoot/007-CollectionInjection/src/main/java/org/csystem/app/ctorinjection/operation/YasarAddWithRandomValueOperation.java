@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 
 @Component
-public class AddWithRandomValueOperation implements IIntBinaryOperation {
+public class YasarAddWithRandomValueOperation implements IIntBinaryOperation {
     private final Random m_random;
 
-    public AddWithRandomValueOperation(Random random)
+    public YasarAddWithRandomValueOperation(Random random)
     {
         m_random = random;
     }

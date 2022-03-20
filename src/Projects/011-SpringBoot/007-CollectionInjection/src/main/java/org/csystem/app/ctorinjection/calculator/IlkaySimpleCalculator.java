@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 
 @Component
-public class SimpleCalculator {
+public class IlkaySimpleCalculator {
     private final Collection<IIntBinaryOperation> m_binaryOperations;
 
     private void throwException(char op)
@@ -15,7 +15,7 @@ public class SimpleCalculator {
         throw new UnsupportedOperationException("Unsupported operation:" + op);
     }
 
-    public SimpleCalculator(Collection<IIntBinaryOperation> binaryOperations)
+    public IlkaySimpleCalculator(Collection<IIntBinaryOperation> binaryOperations)
     {
         m_binaryOperations = binaryOperations;
     }

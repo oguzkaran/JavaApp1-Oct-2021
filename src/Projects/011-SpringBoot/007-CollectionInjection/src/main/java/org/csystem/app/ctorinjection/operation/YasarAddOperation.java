@@ -3,18 +3,18 @@ package org.csystem.app.ctorinjection.operation;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MultiplyOperation implements IIntBinaryOperation {
+public class YasarAddOperation implements IIntBinaryOperation {
     //...
 
     @Override
     public boolean isValid(char op)
     {
-        return op == '*' || op == 'x';
+        return op == '+';
     }
 
     @Override
     public int applyAsInt(int left, int right)
     {
-        return left * right;
+        return left + right;
     }
 }

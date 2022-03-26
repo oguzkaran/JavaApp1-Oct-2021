@@ -19,7 +19,7 @@ public class BirthdateConfig {
     }
 
     @Bean("birthdateConfigGetBirthDate")
-    @Scope("prototype")
+    @Scope("prototype") //Tamamen örnek amaçlı doğum tarihi her istendiğinde (örneğin injection) dinamik olarak bir doğum tarihini elde etmesi için yazılmıştır
     public Temporal getBirthDate()
     {
         return LocalDate.of(1976, Month.SEPTEMBER, 10);

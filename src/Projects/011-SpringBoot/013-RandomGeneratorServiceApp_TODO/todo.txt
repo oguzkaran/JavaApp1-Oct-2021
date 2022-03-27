@@ -1,0 +1,8 @@
+Aşağıdaki açıklanan request'lere ilişkin servisleri bir controller içerisinde yazınız
++ ~/api/random/number/int?min=10&max=20: Bu istekte rasgele üretilmiş [min, max] aralığında sayı üretilsin ve tür bilgisi JSON olarak döndürülecektir
+* ~/api/random/number/double?min=7.8&bound=58.9: Bu istekte rasgele üretilmiş [min, bound) aralığında sayı üretilsin ve tür bilgisi  JSON olarak döndürülecektir
++ ~/api/random/string/tr?len=10: Bu istekte rasgele üretilmiş "len" tane Türkçe karakterden oluşan yazı, dil (tr) ile birlikte JSON olarak döndürülecektir
++ ~/api/random/string/en?len=10: Bu istekte rasgele üretilmiş "len" tane İngilizce karakterden oluşan yazı, dil (en) ile birlikte JSON olarak döndürülecektir
+- ~/api/random/string?len=10&lang=tr: Bu istekte rasgele üretilmiş "len" tane "lang" dilinde karakterden oluşan yazı, dil ile birlikte JSON olarak döndürülecektir
++ Tüm istekler için istek zamanı da gönderilecektir
+- Tüm istekler için response zamanı da gönderilecektir

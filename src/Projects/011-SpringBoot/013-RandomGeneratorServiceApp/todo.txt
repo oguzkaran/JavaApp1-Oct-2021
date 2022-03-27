@@ -1,7 +1,0 @@
-Aşağıdaki açıklanan request'lere ilişkin servisleri bir controller içerisinde yazınız
-* ~/api/random/number/int: Bu istekte rasgele üretilmiş [0, 99] aralığında sayı üretilsin ve tür bilgisi  JSON olarak döndürülecektir
-* ~/api/random/number/double: Bu istekte rasgele üretilmiş [0, 1) aralığında sayı üretilsin ve tür bilgisi  JSON olarak döndürülecektir
-- ~/api/random/string/tr: Bu istekte rasgele üretilmiş Türkçe karakterlerden oluşan [10, 20] aralığında yine rasgele
-üretilmiş sayıda karakterden oluşan bir yazı dil (tr) ile birlikte JSON olarak döndürülecektir
-- ~/api/random/string/en: Yukarıdaki url gibi İnglizce karakterlerden oluşan bir yazı üretilecektir
-- Tüm istekler için istek zamanı da gönderilecektir

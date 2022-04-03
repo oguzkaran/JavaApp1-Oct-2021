@@ -1,11 +1,8 @@
 package org.csystem.app.service.rest.competiton.dto;
 
-import java.time.LocalDateTime;
-
-public class AuthorDetailDTO {
+public class AuthorDTO {
     private String m_email;
     private String m_name;
-    private LocalDateTime m_registerTime;
 
     public String getEmail()
     {
@@ -25,15 +22,5 @@ public class AuthorDetailDTO {
     public void setName(String name)
     {
         m_name = name;
-    }
-
-    public LocalDateTime getRegisterTime()
-    {
-        return m_registerTime;
-    }
-
-    public void setRegisterTime(LocalDateTime registerTime)
-    {
-        m_registerTime = registerTime;
     }
 }

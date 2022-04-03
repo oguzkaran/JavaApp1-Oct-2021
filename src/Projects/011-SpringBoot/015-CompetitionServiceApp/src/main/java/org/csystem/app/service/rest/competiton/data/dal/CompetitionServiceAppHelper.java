@@ -26,7 +26,7 @@ public class CompetitionServiceAppHelper {
         return m_authorRepository.findById(email);
     }
 
-    public Iterable<Author> findAuthorByName(String name)
+    public Iterable<Author> findAuthorsByName(String name)
     {
         return m_authorRepository.findByName(name);
     }

@@ -9,7 +9,7 @@ create table questions (
     text varchar(4096) not null,
     level int default(1) not null,
     entry_date timestamp default(current_timestamp) not null,
-    email varchar(50) references authors(email) not null
+    author_email varchar(50) references authors(email) not null
 );
 
 create table options (

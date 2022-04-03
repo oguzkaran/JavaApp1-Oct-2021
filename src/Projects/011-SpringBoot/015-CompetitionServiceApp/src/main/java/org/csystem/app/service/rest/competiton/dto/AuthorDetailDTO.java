@@ -1,5 +1,7 @@
 package org.csystem.app.service.rest.competiton.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class AuthorDetailDTO {
@@ -31,6 +33,7 @@ public class AuthorDetailDTO {
     {
         return m_registerTime;
     }
+
 
     public void setRegisterTime(LocalDateTime registerTime)
     {

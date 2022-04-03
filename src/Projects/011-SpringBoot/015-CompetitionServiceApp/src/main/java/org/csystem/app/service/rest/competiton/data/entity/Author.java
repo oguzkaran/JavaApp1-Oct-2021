@@ -3,10 +3,20 @@ package org.csystem.app.service.rest.competiton.data.entity;
 import java.time.LocalDateTime;
 
 public class Author {
-    public int id;
     public String email;
     public String name;
-    public LocalDateTime registerDate;
+    public LocalDateTime registerTime;
 
+    public Author()
+    {
+
+    }
+
+    public Author(String email, String name, LocalDateTime registerTime)
+    {
+        this.email = email;
+        this.name = name;
+        this.registerTime = registerTime;
+    }
     //...
 }

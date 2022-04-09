@@ -1,11 +1,14 @@
 package org.csystem.app.service.rest.competiton.data.repository;
 
+import com.fasterxml.jackson.databind.BeanProperty;
 import org.csystem.app.service.rest.competiton.data.entity.Author;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +21,7 @@ public class AuthorRepository implements IAuthorRepository {
     private static final String FIND_BY_NAME_SQL = "select * from authors where name = :name";
     private static final String FIND_BY_MONTH_BETWEEN = "select * from authors where date_part('month', register_date) between :min and :max";
     private static final String FIND_BY_YEAR_BETWEEN = "select * from authors where date_part('year', register_date) between :min and :max";
+    private static final String SAVE_SQL = "insert into authors (email, name) values (:email, :name)";
 
     private static void fillCount(ResultSet rs, ArrayList<Long> counts) throws SQLException
     {
@@ -30,7 +34,6 @@ public class AuthorRepository implements IAuthorRepository {
             authors.add(new Author(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate()));
         while (rs.next());
     }
-
 
     private final NamedParameterJdbcTemplate m_jdbcTemplate;
 
@@ -104,6 +107,17 @@ public class AuthorRepository implements IAuthorRepository {
         return authors;
     }
 
+    @Override
+    public <S extends Author> S save(S author)
+    {
+        var parameterSource = new BeanPropertySqlParameterSource(author);
+
+        m_jdbcTemplate.update(SAVE_SQL, parameterSource);
+
+        return author;
+    }
+
+
 
     /////////////////////////////////////////////////////////////////////////
 
@@ -151,11 +165,6 @@ public class AuthorRepository implements IAuthorRepository {
     }
 
 
-    @Override
-    public <S extends Author> S save(S entity)
-    {
-        throw new UnsupportedOperationException();
-    }
 
     @Override
     public <S extends Author> Iterable<S> save(Iterable<S> entities)

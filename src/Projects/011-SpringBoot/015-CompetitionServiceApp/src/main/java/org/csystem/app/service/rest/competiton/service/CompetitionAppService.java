@@ -3,6 +3,7 @@ package org.csystem.app.service.rest.competiton.service;
 import org.csystem.app.service.rest.competiton.data.dal.CompetitionServiceAppHelper;
 import org.csystem.app.service.rest.competiton.dto.AuthorDTO;
 import org.csystem.app.service.rest.competiton.dto.AuthorDetailDTO;
+import org.csystem.app.service.rest.competiton.dto.AuthorSaveDTO;
 import org.csystem.app.service.rest.competiton.mapper.IAuthorMapper;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +55,12 @@ public class CompetitionAppService {
     public Iterable<AuthorDetailDTO> findAuthorDetailByYearBetween(int min, int max)
     {
         return toIterable(m_competitionServiceAppHelper.findAuthorByYearBetween(min, max), m_authorMapper::toAuthorDetailDTO);
+    }
+
+    public AuthorSaveDTO saveAuthor(AuthorSaveDTO authorSaveDTO)
+    {
+        m_competitionServiceAppHelper.saveAuthor(m_authorMapper.toAuthor(authorSaveDTO));
+
+        return authorSaveDTO;
     }
 }

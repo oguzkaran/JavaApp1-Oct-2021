@@ -2,13 +2,11 @@ package org.csystem.app.service.rest.competiton.controller;
 
 import org.csystem.app.service.rest.competiton.dto.AuthorDTO;
 import org.csystem.app.service.rest.competiton.dto.AuthorDetailDTO;
+import org.csystem.app.service.rest.competiton.dto.AuthorSaveDTO;
 import org.csystem.app.service.rest.competiton.service.CompetitionAppService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -68,5 +66,23 @@ public class AuthorServiceController {
             max = LocalDate.now().getYear();
 
         return m_competitionAppService.findAuthorDetailByYearBetween(min, max);
+    }
+
+    @PostMapping("authors/save")
+    public AuthorSaveDTO saveAuthor(@RequestBody AuthorSaveDTO authorSaveDTO)
+    {
+        return m_competitionAppService.saveAuthor(authorSaveDTO);
+    }
+
+    @PostMapping("authors/save/status")
+    public boolean saveAuthorStatusResponse(@RequestBody AuthorSaveDTO authorSaveDTO)
+    {
+        try {
+            m_competitionAppService.saveAuthor(authorSaveDTO);
+            return true;
+        }
+        catch (Throwable ignore) {
+            return false;
+        }
     }
 }

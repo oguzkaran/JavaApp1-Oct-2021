@@ -40,4 +40,9 @@ public class CompetitionServiceAppHelper {
     {
         return m_authorRepository.findByYearBetween(min, max);
     }
+
+    public Author saveAuthor(Author author)
+    {
+        return m_authorRepository.save(author);
+    }
 }

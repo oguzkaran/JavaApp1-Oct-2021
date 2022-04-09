@@ -16,6 +16,8 @@ public class AuthorRepository implements IAuthorRepository {
     private static final String COUNT_SQL = "select count(*) from authors";
     private static final String FIND_BY_EMAIL_SQL = "select * from authors where email = :email";
     private static final String FIND_BY_NAME_SQL = "select * from authors where name = :name";
+    private static final String FIND_BY_MONTH_BETWEEN = "select * from authors where date_part('month', register_date) between :min and :max";
+    private static final String FIND_BY_YEAR_BETWEEN = "select * from authors where date_part('year', register_date) between :min and :max";
 
     private static void fillCount(ResultSet rs, ArrayList<Long> counts) throws SQLException
     {
@@ -25,7 +27,7 @@ public class AuthorRepository implements IAuthorRepository {
     private static void fillAuthor(ResultSet rs, ArrayList<Author> authors) throws SQLException
     {
         do
-            authors.add(new Author(rs.getString(1), rs.getString(2), rs.getTimestamp(3).toLocalDateTime()));
+            authors.add(new Author(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate()));
         while (rs.next());
     }
 
@@ -70,6 +72,34 @@ public class AuthorRepository implements IAuthorRepository {
         var authors = new ArrayList<Author>();
 
         m_jdbcTemplate.query(FIND_BY_NAME_SQL, map, (ResultSet rs) -> fillAuthor(rs, authors));
+
+        return authors;
+    }
+
+    @Override
+    public Iterable<Author> findByMonthBetween(int min, int max)
+    {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("min", min);
+        map.put("max", max);
+        var authors = new ArrayList<Author>();
+
+        m_jdbcTemplate.query(FIND_BY_MONTH_BETWEEN, map, (ResultSet rs) -> fillAuthor(rs, authors));
+
+        return authors;
+    }
+
+    @Override
+    public Iterable<Author> findByYearBetween(int min, int max)
+    {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("min", min);
+        map.put("max", max);
+        var authors = new ArrayList<Author>();
+
+        m_jdbcTemplate.query(FIND_BY_YEAR_BETWEEN, map, (ResultSet rs) -> fillAuthor(rs, authors));
 
         return authors;
     }

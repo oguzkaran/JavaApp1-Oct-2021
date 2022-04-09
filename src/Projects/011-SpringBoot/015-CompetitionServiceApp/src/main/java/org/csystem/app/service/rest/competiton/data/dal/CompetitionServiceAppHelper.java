@@ -1,12 +1,12 @@
 package org.csystem.app.service.rest.competiton.data.dal;
 
+import org.csystem.app.service.rest.competiton.annotation.DataHelper;
 import org.csystem.app.service.rest.competiton.data.entity.Author;
 import org.csystem.app.service.rest.competiton.data.repository.IAuthorRepository;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
+@DataHelper
 public class CompetitionServiceAppHelper {
     private final IAuthorRepository m_authorRepository;
     //...
@@ -29,5 +29,15 @@ public class CompetitionServiceAppHelper {
     public Iterable<Author> findAuthorsByName(String name)
     {
         return m_authorRepository.findByName(name);
+    }
+
+    public Iterable<Author> findAuthorByMonthBetween(int min, int max)
+    {
+        return m_authorRepository.findByMonthBetween(min, max);
+    }
+
+    public Iterable<Author> findAuthorByYearBetween(int min, int max)
+    {
+        return m_authorRepository.findByYearBetween(min, max);
     }
 }

@@ -1,13 +1,11 @@
 package org.csystem.app.service.rest.competiton.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AuthorDetailDTO {
     private String m_email;
     private String m_name;
-    private LocalDateTime m_registerTime;
+    private LocalDate m_registerDate;
 
     public String getEmail()
     {
@@ -29,14 +27,13 @@ public class AuthorDetailDTO {
         m_name = name;
     }
 
-    public LocalDateTime getRegisterTime()
+    public LocalDate getRegisterDate()
     {
-        return m_registerTime;
+        return m_registerDate;
     }
 
-
-    public void setRegisterTime(LocalDateTime registerTime)
+    public void setRegisterDate(LocalDate registerDate)
     {
-        m_registerTime = registerTime;
+        m_registerDate = registerDate;
     }
 }

@@ -3,6 +3,7 @@ package org.csystem.app.service.rest.competiton.controller;
 import org.csystem.app.service.rest.competiton.dto.AuthorDTO;
 import org.csystem.app.service.rest.competiton.dto.AuthorDetailDTO;
 import org.csystem.app.service.rest.competiton.dto.AuthorSaveDTO;
+import org.csystem.app.service.rest.competiton.dto.AuthorsDetailDTO;
 import org.csystem.app.service.rest.competiton.service.CompetitionAppService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,20 +27,32 @@ public class AuthorServiceController {
         return m_competitionAppService.authorCount();
     }
 
+    @GetMapping("authors/detail/all")
+    public Iterable<AuthorDetailDTO> findAllDetail()
+    {
+        return m_competitionAppService.findAllDetailAuthors();
+    }
+
     @GetMapping("authors/detail/email")
-    public ResponseEntity<AuthorDetailDTO> findDetailsByEmail(@RequestParam(name = "e") String email) // Optional dönmeyecek
+    public ResponseEntity<AuthorDetailDTO> findDetailsByEmail(@RequestParam(name = "e") String email)
     {
         return ResponseEntity.of(m_competitionAppService.findAuthorDetailByEmail(email));
+    }
+
+    @GetMapping("authors/detail/name/contains")
+    public AuthorsDetailDTO findDetailByNameContains(@RequestParam(name = "t") String text)
+    {
+        return m_competitionAppService.findAuthorsDetailByNameContains(text);
     }
 
     @GetMapping("authors/detail/name")
     public Iterable<AuthorDetailDTO> findDetailByName(@RequestParam(name = "n") String name)
     {
-        return m_competitionAppService.findAuthorDetailsByName(name);
+        return m_competitionAppService.findAuthorsDetailsByName(name);
     }
 
     @GetMapping("authors/email")
-    public ResponseEntity<AuthorDTO> findByEmail(@RequestParam(name = "e") String email) // Optional dönmeyecek
+    public ResponseEntity<AuthorDTO> findByEmail(@RequestParam(name = "e") String email)
     {
         var opt = m_competitionAppService.findAuthorByEmail(email);
 
@@ -55,7 +68,7 @@ public class AuthorServiceController {
     @GetMapping("authors/detail/date/month")
     public Iterable<AuthorDetailDTO> findDetailByMonthBetween(int min, int max)
     {
-        return m_competitionAppService.findAuthorDetailByMonthBetween(min, max);
+        return m_competitionAppService.findAuthorsDetailByMonthBetween(min, max);
     }
 
     @GetMapping("authors/detail/date/year")
@@ -65,7 +78,14 @@ public class AuthorServiceController {
         if (max == -1) //Örnek amaçlı yazılmıştır
             max = LocalDate.now().getYear();
 
-        return m_competitionAppService.findAuthorDetailByYearBetween(min, max);
+        return m_competitionAppService.findAuthorsDetailByYearBetween(min, max);
+    }
+
+    @GetMapping("authors/detail/date/my")
+    public Iterable<AuthorDetailDTO> findDetailByMonthAndYear(@RequestParam int month,
+                                                             @RequestParam int year)
+    {
+        return m_competitionAppService.findAuthorsDetailByMonthAndYear(month, year);
     }
 
     @PostMapping("authors/save")
@@ -77,12 +97,33 @@ public class AuthorServiceController {
     @PostMapping("authors/save/status")
     public boolean saveAuthorStatusResponse(@RequestBody AuthorSaveDTO authorSaveDTO)
     {
+        boolean status = false;
         try {
             m_competitionAppService.saveAuthor(authorSaveDTO);
-            return true;
+            status = true;
         }
         catch (Throwable ignore) {
-            return false;
+
         }
+
+        return status;
     }
 }
+
+/*
+{
+    "authors":
+    [
+        {
+            "name": "Kara Heathorn",
+            "email": "kheathorn74@va.gov",
+            "registerDate": "2021-10-13"
+        },
+        {
+            "name": "Kara Simmgen",
+            "email": "ksimmgenao@arizona.edu",
+            "registerDate": "2021-10-12"
+        }
+    ]
+}
+ */

@@ -21,6 +21,11 @@ public class CompetitionServiceAppHelper {
         return m_authorRepository.count();
     }
 
+    public Iterable<Author> findAllAuthors()
+    {
+        return m_authorRepository.findAll();
+    }
+
     public Optional<Author> findAuthorByEmail(String email)
     {
         return m_authorRepository.findById(email);
@@ -31,14 +36,24 @@ public class CompetitionServiceAppHelper {
         return m_authorRepository.findByName(name);
     }
 
-    public Iterable<Author> findAuthorByMonthBetween(int min, int max)
+    public Iterable<Author> findAuthorsByNameContains(String text)
+    {
+        return m_authorRepository.findByNameContains(text);
+    }
+
+    public Iterable<Author> findAuthorsByMonthBetween(int min, int max)
     {
         return m_authorRepository.findByMonthBetween(min, max);
     }
 
-    public Iterable<Author> findAuthorByYearBetween(int min, int max)
+    public Iterable<Author> findAuthorsByYearBetween(int min, int max)
     {
         return m_authorRepository.findByYearBetween(min, max);
+    }
+
+    public Iterable<Author> findAuthorsByMonthAndYear(int month, int year)
+    {
+        return m_authorRepository.findByMonthAndYear(month, year);
     }
 
     public Author saveAuthor(Author author)

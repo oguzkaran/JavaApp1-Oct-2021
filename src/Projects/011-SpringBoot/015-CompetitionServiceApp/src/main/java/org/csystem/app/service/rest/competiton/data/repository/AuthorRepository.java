@@ -1,6 +1,5 @@
 package org.csystem.app.service.rest.competiton.data.repository;
 
-import com.fasterxml.jackson.databind.BeanProperty;
 import org.csystem.app.service.rest.competiton.data.entity.Author;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +15,13 @@ import java.util.Optional;
 @Repository
 public class AuthorRepository implements IAuthorRepository {
     private static final String COUNT_SQL = "select count(*) from authors";
+    private static final String FIND_ALL_SQL = "select * from authors";
     private static final String FIND_BY_EMAIL_SQL = "select * from authors where email = :email";
     private static final String FIND_BY_NAME_SQL = "select * from authors where name = :name";
-    private static final String FIND_BY_MONTH_BETWEEN = "select * from authors where date_part('month', register_date) between :min and :max";
-    private static final String FIND_BY_YEAR_BETWEEN = "select * from authors where date_part('year', register_date) between :min and :max";
+    private static final String FIND_BY_NAME_CONTAINS_SQL = "select * from authors where name like :text";
+    private static final String FIND_BY_MONTH_BETWEEN_SQL = "select * from authors where date_part('month', register_date) between :min and :max";
+    private static final String FIND_BY_MONTH_AND_YEAR_SQL = "select * from authors where date_part('month', register_date) = :month and date_part('year', register_date) = :year";
+    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from authors where date_part('year', register_date) between :min and :max";
     private static final String SAVE_SQL = "insert into authors (email, name) values (:email, :name)";
 
     private static void fillCount(ResultSet rs, ArrayList<Long> counts) throws SQLException
@@ -54,6 +55,16 @@ public class AuthorRepository implements IAuthorRepository {
 
 
     @Override
+    public Iterable<Author> findAll()
+    {
+        var authors = new ArrayList<Author>();
+
+        m_jdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillAuthor(rs, authors));
+
+        return authors;
+    }
+
+    @Override
     public Optional<Author> findById(String email)
     {
         Map<String, Object> map = new HashMap<>();
@@ -80,6 +91,19 @@ public class AuthorRepository implements IAuthorRepository {
     }
 
     @Override
+    public Iterable<Author> findByNameContains(String text)
+    {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("text", "%" + text + "%");
+        var authors = new ArrayList<Author>();
+
+        m_jdbcTemplate.query(FIND_BY_NAME_CONTAINS_SQL, map, (ResultSet rs) -> fillAuthor(rs, authors));
+
+        return authors;
+    }
+
+    @Override
     public Iterable<Author> findByMonthBetween(int min, int max)
     {
         Map<String, Object> map = new HashMap<>();
@@ -88,7 +112,7 @@ public class AuthorRepository implements IAuthorRepository {
         map.put("max", max);
         var authors = new ArrayList<Author>();
 
-        m_jdbcTemplate.query(FIND_BY_MONTH_BETWEEN, map, (ResultSet rs) -> fillAuthor(rs, authors));
+        m_jdbcTemplate.query(FIND_BY_MONTH_BETWEEN_SQL, map, (ResultSet rs) -> fillAuthor(rs, authors));
 
         return authors;
     }
@@ -102,7 +126,21 @@ public class AuthorRepository implements IAuthorRepository {
         map.put("max", max);
         var authors = new ArrayList<Author>();
 
-        m_jdbcTemplate.query(FIND_BY_YEAR_BETWEEN, map, (ResultSet rs) -> fillAuthor(rs, authors));
+        m_jdbcTemplate.query(FIND_BY_YEAR_BETWEEN_SQL, map, (ResultSet rs) -> fillAuthor(rs, authors));
+
+        return authors;
+    }
+
+    @Override
+    public Iterable<Author> findByMonthAndYear(int month, int year)
+    {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("month", month);
+        map.put("year", year);
+        var authors = new ArrayList<Author>();
+
+        m_jdbcTemplate.query(FIND_BY_MONTH_AND_YEAR_SQL, map, (ResultSet rs) -> fillAuthor(rs, authors));
 
         return authors;
     }
@@ -116,8 +154,6 @@ public class AuthorRepository implements IAuthorRepository {
 
         return author;
     }
-
-
 
     /////////////////////////////////////////////////////////////////////////
 
@@ -152,11 +188,7 @@ public class AuthorRepository implements IAuthorRepository {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public Iterable<Author> findAll()
-    {
-        throw new UnsupportedOperationException();
-    }
+
 
     @Override
     public Iterable<Author> findAllById(Iterable<String> emails)

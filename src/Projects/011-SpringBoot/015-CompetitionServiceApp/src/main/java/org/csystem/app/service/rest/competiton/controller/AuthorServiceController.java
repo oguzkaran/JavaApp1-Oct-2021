@@ -98,6 +98,7 @@ public class AuthorServiceController {
     public boolean saveAuthorStatusResponse(@RequestBody AuthorSaveDTO authorSaveDTO)
     {
         boolean status = false;
+
         try {
             m_competitionAppService.saveAuthor(authorSaveDTO);
             status = true;
@@ -109,21 +110,3 @@ public class AuthorServiceController {
         return status;
     }
 }
-
-/*
-{
-    "authors":
-    [
-        {
-            "name": "Kara Heathorn",
-            "email": "kheathorn74@va.gov",
-            "registerDate": "2021-10-13"
-        },
-        {
-            "name": "Kara Simmgen",
-            "email": "ksimmgenao@arizona.edu",
-            "registerDate": "2021-10-12"
-        }
-    ]
-}
- */

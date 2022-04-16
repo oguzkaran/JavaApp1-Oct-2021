@@ -1,0 +1,27 @@
+Aşağıdaki REST servisleri yazınız:
+- ~/api/movie/movies/count: Kaç tane movie olduğu bilgisini getiren servis
+- ~/api/movie/movies/find/sdate/month?m=3: m parametresi ile verilen ay içerisinde vizyona girmiş tüm movie'leri getiren servis
+- ~/api/movie/movies/find/sdate/year?y=2020: y parametresi ile verilen yıl içerisinde vizyona girmiş tüm movie'leri getiren servis
+- ~/api/movie/movies/find/sdate/my?month=3&year=2020: m parametresi ile verilen ay ve y parametresi ile verilen yıl
+ içerisinde vizyona girmiş tüm movie'leri getiren servis
+- ~/api/movie/movies/find/sdate/year/between?min=2020&max=2022: Verilen iki tane yıl bilgisi arasındaki tüm movie'leri
+getiren servis
+
+Açıklama:
+- Yukarıdaki servisler tek bir controller içerisinde yazılacaktır
+- Tüm servisler aşağıdaki formatta yanıt verecektir
+
+{
+    "movies": [
+        {
+            "name": "Face Off",
+            "sceneDate":"1996-05-12"
+            "cost": "1000000.67"
+        },
+        {
+            "name": "Face Off",
+            "sceneDate":"1996-05-12"
+            "cost": "1000000.67"
+        }
+    ]
+}

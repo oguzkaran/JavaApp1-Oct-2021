@@ -10,9 +10,10 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>CompetitionServiceApp</artifactId>
+	<artifactId>GenericApp</artifactId>
 	<version>10.0.0</version>
-	<name>CompetitionServiceApp</name>
+	<name>GenericApp</name>
+	<description>Generic Spring (Boot) application</description>
 
 	<repositories>
 		<repository>

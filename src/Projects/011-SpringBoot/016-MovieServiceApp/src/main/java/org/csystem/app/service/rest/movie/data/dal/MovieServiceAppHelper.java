@@ -21,6 +21,19 @@ public class MovieServiceAppHelper {
     {
         return m_movieRepository.findByMonth(month);
     }
+    public Iterable<Movie> findMoviesByYear(int year)
+    {
+        return m_movieRepository.findByYear(year);
+    }
+    public Iterable<Movie> findMoviesByMonthAndYear(int month, int year)
+    {
+        return m_movieRepository.findByMonthAndYear(month, year);
+    }
+
+    public Iterable<Movie> findMoviesByYearBetween(int begin, int end)
+    {
+        return m_movieRepository.findByYearBetween(begin, end);
+    }
 
     //...
 }

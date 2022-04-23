@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,15 @@ import java.util.Optional;
 public class MovieRepository implements IMovieRepository {
     private static final String COUNT_SQL = "select count(*) from movies";
     private static final String FIND_BY_MONTH_SQL = "select * from movies where date_part('month', scene_date) = :month";
+    private static final String FIND_BY_YEAR_SQL = "select * from movies where date_part('year', scene_date) = :year";
+    private static final String FIND_BY_MONTH_YEAR_SQL = """
+                            select * from movies 
+                            where  
+                            date_part('month', scene_date) = :month and date_part('year', scene_date) = :year
+                            """;
+
+    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from movies where date_part('year', scene_date) between :begin and :end";
+    private static final String FIND_BY_DATE_BETWEEN_SQL = "select * from movies where scene_date between :begin and :end";
 
     private final NamedParameterJdbcTemplate m_jdbcTemplate;
 
@@ -65,22 +75,49 @@ public class MovieRepository implements IMovieRepository {
     @Override
     public Iterable<Movie> findByYear(int year)
     {
-        throw new UnsupportedOperationException();
+        var paramMap = new HashMap<String, Object>();
+
+        paramMap.put("year", year);
+        var movies = new ArrayList<Movie>();
+
+        m_jdbcTemplate.query(FIND_BY_YEAR_SQL, paramMap, (ResultSet rs) -> fillMovies(rs, movies));
+
+        return movies;
     }
 
     @Override
     public Iterable<Movie> findByMonthAndYear(int month, int year)
     {
-        throw new UnsupportedOperationException();
+        var paramMap = new HashMap<String, Object>();
+
+        paramMap.put("month", month);
+        paramMap.put("year", year);
+        var movies = new ArrayList<Movie>();
+
+        m_jdbcTemplate.query(FIND_BY_MONTH_YEAR_SQL, paramMap, (ResultSet rs) -> fillMovies(rs, movies));
+
+        return movies;
     }
 
     @Override
-    public Iterable<Movie> findByYearBetween(int min, int max)
+    public Iterable<Movie> findByYearBetween(int begin, int end)
+    {
+        var paramMap = new HashMap<String, Object>();
+
+        paramMap.put("begin", begin);
+        paramMap.put("end", end);
+        var movies = new ArrayList<Movie>();
+
+        m_jdbcTemplate.query(FIND_BY_YEAR_BETWEEN_SQL, paramMap, (ResultSet rs) -> fillMovies(rs, movies));
+
+        return movies;
+    }
+
+    @Override
+    public Iterable<Movie> findByDateBetween(LocalDate begin, LocalDate end)
     {
         throw new UnsupportedOperationException();
     }
-
-
 
     /////////////////////////////////////////
 

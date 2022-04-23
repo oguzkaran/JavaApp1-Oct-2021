@@ -29,5 +29,23 @@ public class MovieServiceController {
         return m_movieAppService.findMoviesByMonth(month);
     }
 
+    @GetMapping("find/sdate/year")
+    public MoviesDTO findByYear(@RequestParam(name = "y") int year)
+    {
+        return m_movieAppService.findMoviesByYear(year);
+    }
+
+    @GetMapping("find/sdate/my")
+    public MoviesDTO findByMonthAndYear(int month, int year)
+    {
+        return m_movieAppService.findMoviesByMonthAndYear(month, year);
+    }
+
+    @GetMapping("find/sdate/year/between")
+    public MoviesDTO findByYearBetween(int begin, int end)
+    {
+        return m_movieAppService.findMoviesByYearBetween(begin, end);
+    }
+
     //...
 }

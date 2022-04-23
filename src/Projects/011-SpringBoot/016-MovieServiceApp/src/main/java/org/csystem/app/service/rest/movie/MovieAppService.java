@@ -29,5 +29,20 @@ public class MovieAppService {
         return m_movieMapper.toMoviesDTO(toList(m_movieServiceAppHelper.findMoviesByMonth(month), m_movieMapper::toMovieDTO));
     }
 
+    public MoviesDTO findMoviesByYear(int year)
+    {
+        return m_movieMapper.toMoviesDTO(toList(m_movieServiceAppHelper.findMoviesByYear(year), m_movieMapper::toMovieDTO));
+    }
+
+    public MoviesDTO findMoviesByMonthAndYear(int month, int year)
+    {
+        return m_movieMapper.toMoviesDTO(toList(m_movieServiceAppHelper.findMoviesByMonthAndYear(month, year), m_movieMapper::toMovieDTO));
+    }
+
+    public MoviesDTO findMoviesByYearBetween(int begin, int end)
+    {
+        return m_movieMapper.toMoviesDTO(toList(m_movieServiceAppHelper.findMoviesByYearBetween(begin, end), m_movieMapper::toMovieDTO));
+    }
+
     //...
 }

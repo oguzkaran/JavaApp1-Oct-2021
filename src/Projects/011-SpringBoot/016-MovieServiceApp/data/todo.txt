@@ -1,10 +1,11 @@
 Aşağıdaki REST servisleri yazınız:
 + ~/api/movie/movies/count: Kaç tane movie olduğu bilgisini getiren servis
 + ~/api/movie/movies/find/sdate/month?m=3: m parametresi ile verilen ay içerisinde vizyona girmiş tüm movie'leri getiren servis
-- ~/api/movie/movies/find/sdate/year?y=2020: y parametresi ile verilen yıl içerisinde vizyona girmiş tüm movie'leri getiren servis
-- ~/api/movie/movies/find/sdate/my?month=3&year=2020: m parametresi ile verilen ay ve y parametresi ile verilen yıl
++ ~/api/movie/movies/find/sdate/year?y=2020: y parametresi ile verilen yıl içerisinde vizyona girmiş tüm movie'leri getiren servis
++ ~/api/movie/movies/find/sdate/my?month=3&year=2020: m parametresi ile verilen ay ve y parametresi ile verilen yıl
  içerisinde vizyona girmiş tüm movie'leri getiren servis
-- ~/api/movie/movies/find/sdate/year/between?min=2020&max=2022: Verilen iki tane yıl bilgisi arasındaki tüm movie'leri
++ ~/api/movie/movies/find/sdate/year/between?begin=2020&end=2022: Verilen iki tane yıl bilgisi arasındaki tüm movie'leri
+
 getiren servis
 
 Açıklama:

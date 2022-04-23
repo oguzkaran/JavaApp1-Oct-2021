@@ -1,5 +1,8 @@
 package org.csystem.app.service.rest.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -23,11 +26,13 @@ public class MovieDTO {
         return m_sceneDate;
     }
 
+    @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     public void setSceneDate(LocalDate sceneDate)
     {
         m_sceneDate = sceneDate;
     }
 
+    @JsonProperty("budget")
     public BigDecimal getCost()
     {
         return m_cost;

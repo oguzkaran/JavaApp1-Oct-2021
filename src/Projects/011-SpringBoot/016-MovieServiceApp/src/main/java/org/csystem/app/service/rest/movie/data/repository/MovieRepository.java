@@ -2,12 +2,15 @@ package org.csystem.app.service.rest.movie.data.repository;
 
 
 import org.csystem.app.service.rest.movie.data.entity.Movie;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,9 +27,9 @@ public class MovieRepository implements IMovieRepository {
                             where  
                             date_part('month', scene_date) = :month and date_part('year', scene_date) = :year
                             """;
-
     private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from movies where date_part('year', scene_date) between :begin and :end";
     private static final String FIND_BY_DATE_BETWEEN_SQL = "select * from movies where scene_date between :begin and :end";
+    private static final String SAVE_SQL = "insert into movies (name, scene_date, cost) values (:name, :sceneDate, :cost)";
 
     private final NamedParameterJdbcTemplate m_jdbcTemplate;
 
@@ -119,6 +122,21 @@ public class MovieRepository implements IMovieRepository {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public <S extends Movie> S save(S movie)
+    {
+        var keyHolder = new GeneratedKeyHolder();
+        var parameterSource = new BeanPropertySqlParameterSource(movie);
+        parameterSource.registerSqlType("sceneDate", Types.DATE);
+        parameterSource.registerSqlType("cost", Types.DECIMAL);
+
+        m_jdbcTemplate.update(SAVE_SQL, parameterSource, keyHolder, new String[] {"movie_id"});
+
+        movie.setId(keyHolder.getKey().longValue());
+
+        return movie;
+    }
+
     /////////////////////////////////////////
 
     @Override
@@ -169,11 +187,7 @@ public class MovieRepository implements IMovieRepository {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public <S extends Movie> S save(S entity)
-    {
-        throw new UnsupportedOperationException();
-    }
+
 
     @Override
     public <S extends Movie> Iterable<S> save(Iterable<S> entities)

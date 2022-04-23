@@ -1,18 +1,16 @@
 package org.csystem.app.service.rest.movie.controller;
 
 import org.csystem.app.service.rest.movie.MovieAppService;
+import org.csystem.app.service.rest.movie.dto.MovieSaveDTO;
 import org.csystem.app.service.rest.movie.dto.MoviesDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/movie/movies")
-public class MovieServiceController {
+public class MovieController {
     private final MovieAppService m_movieAppService;
 
-    public MovieServiceController(MovieAppService movieAppService)
+    public MovieController(MovieAppService movieAppService)
     {
         m_movieAppService = movieAppService;
     }
@@ -45,6 +43,12 @@ public class MovieServiceController {
     public MoviesDTO findByYearBetween(int begin, int end)
     {
         return m_movieAppService.findMoviesByYearBetween(begin, end);
+    }
+
+    @PostMapping("save")
+    public MovieSaveDTO save(@RequestBody MovieSaveDTO movieSaveDTO)
+    {
+        return m_movieAppService.saveMovie(movieSaveDTO);
     }
 
     //...

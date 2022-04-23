@@ -1,6 +1,7 @@
 package org.csystem.app.service.rest.movie;
 
 import org.csystem.app.service.rest.movie.data.dal.MovieServiceAppHelper;
+import org.csystem.app.service.rest.movie.dto.MovieSaveDTO;
 import org.csystem.app.service.rest.movie.dto.MoviesDTO;
 import org.csystem.app.service.rest.movie.mapper.IMovieMapper;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class MovieAppService {
     public MoviesDTO findMoviesByYearBetween(int begin, int end)
     {
         return m_movieMapper.toMoviesDTO(toList(m_movieServiceAppHelper.findMoviesByYearBetween(begin, end), m_movieMapper::toMovieDTO));
+    }
+
+    public MovieSaveDTO saveMovie(MovieSaveDTO movieSaveDTO)
+    {
+        return m_movieMapper.toMovieSaveDTO(m_movieServiceAppHelper.saveMovie(m_movieMapper.toMovie(movieSaveDTO)));
     }
 
     //...

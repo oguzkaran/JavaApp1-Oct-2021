@@ -11,6 +11,8 @@ public class MovieDTO {
     private LocalDate m_sceneDate;
     private BigDecimal m_cost;
 
+    private long m_rating;
+
     public String getName()
     {
         return m_name;
@@ -41,5 +43,15 @@ public class MovieDTO {
     public void setCost(BigDecimal cost)
     {
         m_cost = cost;
+    }
+
+    public long getRating()
+    {
+        return m_rating;
+    }
+
+    public void setRating(long rating)
+    {
+        m_rating = rating;
     }
 }

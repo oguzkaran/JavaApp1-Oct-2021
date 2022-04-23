@@ -1,16 +1,19 @@
 package org.csystem.app.service.rest.movie.data.dal;
 
 import org.csystem.app.service.rest.movie.data.entity.Movie;
+import org.csystem.app.service.rest.movie.data.repository.IDirectorRepository;
 import org.csystem.app.service.rest.movie.data.repository.IMovieRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieServiceAppHelper {
     private final IMovieRepository m_movieRepository;
+    private final IDirectorRepository m_directorRepository;
 
-    public MovieServiceAppHelper(IMovieRepository movieRepository)
+    public MovieServiceAppHelper(IMovieRepository movieRepository, IDirectorRepository directorRepository)
     {
         m_movieRepository = movieRepository;
+        m_directorRepository = directorRepository;
     }
 
     public long movieCount()
@@ -33,6 +36,11 @@ public class MovieServiceAppHelper {
     public Iterable<Movie> findMoviesByYearBetween(int begin, int end)
     {
         return m_movieRepository.findByYearBetween(begin, end);
+    }
+
+    public  Movie saveMovie(Movie movie)
+    {
+        return m_movieRepository.save(movie);
     }
 
     //...

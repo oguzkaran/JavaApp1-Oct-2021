@@ -8,7 +8,6 @@ public class Director {
     private String m_middleName;
     private String m_familyName;
     private LocalDate m_birthDate;
-
     public long getId()
     {
         return m_id;

@@ -1,6 +1,6 @@
 package org.csystem.app.service.rest.movie.controller;
 
-import org.csystem.app.service.rest.movie.MovieAppService;
+import org.csystem.app.service.rest.movie.service.MovieAppService;
 import org.csystem.app.service.rest.movie.dto.MovieSaveDTO;
 import org.csystem.app.service.rest.movie.dto.MoviesDTO;
 import org.springframework.web.bind.annotation.*;

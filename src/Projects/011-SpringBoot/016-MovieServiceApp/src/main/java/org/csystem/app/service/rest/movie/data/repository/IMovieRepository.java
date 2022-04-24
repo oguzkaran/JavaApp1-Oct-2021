@@ -10,6 +10,7 @@ public interface IMovieRepository extends ICrudRepository<Movie, Long> {
     Iterable<Movie> findByYear(int year);
     Iterable<Movie> findByMonthAndYear(int month, int year);
     Iterable<Movie> findByDateBetween(LocalDate begin, LocalDate end);
-
     Iterable<Movie> findByYearBetween(int begin, int end);
+
+    Iterable<Movie> findByDirectorId(long directorId);
 }

@@ -29,6 +29,12 @@ public class MovieRepository implements IMovieRepository {
                             """;
     private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from movies where date_part('year', scene_date) between :begin and :end";
     private static final String FIND_BY_DATE_BETWEEN_SQL = "select * from movies where scene_date between :begin and :end";
+
+    private static final String FIND_BY_DIRECTOR_ID = """
+                            select m.movie_id, m.name, m.scene_date, m.rating, m.cost, m.imdb
+                            from movies m inner join movies_to_director mtd on m.movie_id = mtd.movie_id
+                            where mtd.director_id = :director_id
+                            """;
     private static final String SAVE_SQL = "insert into movies (name, scene_date, cost) values (:name, :sceneDate, :cost)";
 
     private final NamedParameterJdbcTemplate m_jdbcTemplate;
@@ -123,10 +129,24 @@ public class MovieRepository implements IMovieRepository {
     }
 
     @Override
+    public Iterable<Movie> findByDirectorId(long directorId)
+    {
+        var paramMap = new HashMap<String, Object>();
+
+        paramMap.put("director_id", directorId);
+        var movies = new ArrayList<Movie>();
+
+        m_jdbcTemplate.query(FIND_BY_DIRECTOR_ID, paramMap, (ResultSet rs) -> fillMovies(rs, movies));
+
+        return movies;
+    }
+
+    @Override
     public <S extends Movie> S save(S movie)
     {
         var keyHolder = new GeneratedKeyHolder();
         var parameterSource = new BeanPropertySqlParameterSource(movie);
+
         parameterSource.registerSqlType("sceneDate", Types.DATE);
         parameterSource.registerSqlType("cost", Types.DECIMAL);
 

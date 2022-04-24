@@ -1,5 +1,6 @@
 package org.csystem.app.service.rest.movie.data.dal;
 
+import org.csystem.app.service.rest.movie.data.entity.DirectorDetail;
 import org.csystem.app.service.rest.movie.data.entity.Movie;
 import org.csystem.app.service.rest.movie.data.repository.IDirectorRepository;
 import org.csystem.app.service.rest.movie.data.repository.IMovieRepository;
@@ -16,6 +17,7 @@ public class MovieServiceAppHelper {
         m_directorRepository = directorRepository;
     }
 
+    //Movie
     public long movieCount()
     {
         return m_movieRepository.count();
@@ -42,6 +44,13 @@ public class MovieServiceAppHelper {
     {
         return m_movieRepository.save(movie);
     }
+
+    //Director
+    public Iterable<DirectorDetail> findAllDirectorsDetail()
+    {
+        return m_directorRepository.findAllDetail();
+    }
+
 
     //...
 }

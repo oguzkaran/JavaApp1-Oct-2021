@@ -10,9 +10,7 @@ public class MovieDTO {
     private String m_name;
     private LocalDate m_sceneDate;
     private BigDecimal m_cost;
-
     private long m_rating;
-
     public String getName()
     {
         return m_name;

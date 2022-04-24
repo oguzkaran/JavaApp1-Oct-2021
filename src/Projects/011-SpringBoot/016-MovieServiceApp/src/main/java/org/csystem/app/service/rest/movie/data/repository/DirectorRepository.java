@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Repository
 public class DirectorRepository implements IDirectorRepository {
-
     private static final String FIND_DIRECTORS_VIA_FULL_NAME = """
             select
                 case

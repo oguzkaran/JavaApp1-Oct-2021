@@ -52,5 +52,14 @@ public class MovieServiceAppHelper {
     }
 
 
+    public Iterable<Movie> findByDirectorId(long directorId)
+    {
+        return m_movieRepository.findByDirectorId(directorId);
+    }
+
+    public Iterable<DirectorDetail> findDirectorsDetailByMovieId(long movieId)
+    {
+        return m_directorRepository.findDetailByMovieId(movieId);
+    }
     //...
 }

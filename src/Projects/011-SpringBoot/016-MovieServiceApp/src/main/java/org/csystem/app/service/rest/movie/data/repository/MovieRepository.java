@@ -30,6 +30,7 @@ public class MovieRepository implements IMovieRepository {
     private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from movies where date_part('year', scene_date) between :begin and :end";
     private static final String FIND_BY_DATE_BETWEEN_SQL = "select * from movies where scene_date between :begin and :end";
 
+    //Bu sorgunun fonksiyon yapılması daha iyi bir tekniktir. Durumu göstermek için fonksiyon yapılmamıştır
     private static final String FIND_BY_DIRECTOR_ID = """
                             select m.movie_id, m.name, m.scene_date, m.rating, m.cost, m.imdb
                             from movies m inner join movies_to_director mtd on m.movie_id = mtd.movie_id

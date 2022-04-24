@@ -6,4 +6,5 @@ import org.csystem.util.data.repository.ICrudRepository;
 
 public interface IDirectorRepository extends ICrudRepository<Director, Long> {
     Iterable<DirectorDetail> findAllDetail();
+    Iterable<DirectorDetail> findDetailByMovieId(long movieId);
 }

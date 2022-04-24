@@ -51,6 +51,12 @@ public class MovieAppService {
                 m_movieMapper::toMovieDTO));
     }
 
+    public MoviesDTO findMoviesByDirectorId(long directorId)
+    {
+        return m_movieMapper.toMoviesDTO(toList(m_movieServiceAppHelper.findByDirectorId(directorId),
+                m_movieMapper::toMovieDTO));
+    }
+
     public MovieSaveDTO saveMovie(MovieSaveDTO movieSaveDTO)
     {
         return m_movieMapper.toMovieSaveDTO(m_movieServiceAppHelper.saveMovie(m_movieMapper.toMovie(movieSaveDTO)));
@@ -59,6 +65,12 @@ public class MovieAppService {
     public DirectorsDetailDTO findAllDirectorsDetail()
     {
         return m_directorMapper.toDirectorsDetail(toList( m_movieServiceAppHelper.findAllDirectorsDetail(),
+                m_directorMapper::toDirectorDetailDTO));
+    }
+
+    public DirectorsDetailDTO findAllDirectorsDetailByMovieId(long movieId)
+    {
+        return m_directorMapper.toDirectorsDetail(toList( m_movieServiceAppHelper.findDirectorsDetailByMovieId(movieId),
                 m_directorMapper::toDirectorDetailDTO));
     }
 

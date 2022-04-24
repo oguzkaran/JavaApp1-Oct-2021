@@ -45,11 +45,20 @@ public class MovieController {
         return m_movieAppService.findMoviesByYearBetween(begin, end);
     }
 
+    @GetMapping("find/director")
+    public MoviesDTO findByDirectorId(@RequestParam("id") long directorId)
+    {
+        return m_movieAppService.findMoviesByDirectorId(directorId);
+    }
+
     @PostMapping("save")
     public MovieSaveDTO save(@RequestBody MovieSaveDTO movieSaveDTO)
     {
         return m_movieAppService.saveMovie(movieSaveDTO);
     }
+
+
+
 
     //...
 }

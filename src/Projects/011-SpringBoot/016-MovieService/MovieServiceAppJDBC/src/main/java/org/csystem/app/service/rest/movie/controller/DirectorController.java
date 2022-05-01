@@ -23,7 +23,6 @@ public class DirectorController {
         return m_appService.findAllDirectorsDetail();
     }
 
-
     @GetMapping("find/movie")
     public DirectorsDetailDTO findByMovieId(@RequestParam("id") long movieId)
     {

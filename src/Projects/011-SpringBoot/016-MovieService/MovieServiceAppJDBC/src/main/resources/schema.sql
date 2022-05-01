@@ -23,13 +23,16 @@ create table if not exists movies_to_director (
     director_id bigint references directors(director_id)
 );
 
+truncate table movies_to_director cascade;
+truncate table directors cascade;
+truncate table movies cascade;
 
 create or replace function get_directors_by_movie_id(mid bigint)
 returns table (
     fullname varchar,
     birth_date date
 )
-as '
+as $$
     begin
         return query select
                     case
@@ -39,5 +42,4 @@ as '
                     d.birth_date
                  from directors d inner join movies_to_director mtd on mtd.director_id = d.director_id
                  where mtd.movie_id = mid;
-    end
-' language plpgsql;
+end $$ language plpgsql;

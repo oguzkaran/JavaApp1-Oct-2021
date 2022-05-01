@@ -39,5 +39,5 @@ as $$
                     d.birth_date
                  from directors d inner join movies_to_director mtd on mtd.director_id = d.director_id
                  where mtd.movie_id = mid;
-    end;$$
-        language plpgsql;
+    end
+$$ language plpgsql;

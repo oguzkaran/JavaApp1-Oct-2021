@@ -25,6 +25,11 @@ public class SystemAdminAppService {
         m_memberMapper = memberMapper;
     }
 
+    public MembersDTO findAllMembers()
+    {
+        return m_memberMapper.toMembersDTO(toList(m_adminAppHelper.findAllMembers(), m_memberMapper::toMemberDTO));
+    }
+
     public MembersDTO findMemberByEnabled(boolean enabled)
     {
         return m_memberMapper.toMembersDTO(toList(m_adminAppHelper.findMemberByEnabled(enabled), m_memberMapper::toMemberDTO));

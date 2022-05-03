@@ -5,7 +5,6 @@ import org.csystem.app.service.rest.movie.data.entity.DirectorDetail;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.print.attribute.standard.JobKOctets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

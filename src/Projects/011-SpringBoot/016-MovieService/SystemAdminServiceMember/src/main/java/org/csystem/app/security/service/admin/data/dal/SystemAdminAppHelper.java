@@ -18,11 +18,15 @@ public class SystemAdminAppHelper {
         m_memberRepository = memberRepository;
     }
 
+    public Iterable<Member> findAllMembers()
+    {
+        return m_memberRepository.findAll();
+    }
+
     public Member saveMember(Member m)
     {
         return m_memberRepository.save(m);
     }
-
 
     public Optional<Member> findMemberByEnabledAndUsernameAndPassword(boolean enabled, String username, String password)
     {

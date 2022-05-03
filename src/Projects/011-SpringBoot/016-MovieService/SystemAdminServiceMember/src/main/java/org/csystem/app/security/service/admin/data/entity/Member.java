@@ -12,20 +12,20 @@ public class Member { //POJO (Plain Old Java Object)
     @Column(name = "member_id")
     public int id;
 
-    @Column(length = 300, nullable = false)
+    @Column(length = 300, unique = true, nullable = false)
     public String username;
-
-    @Column(length = 300, nullable = false)
-    public String firstName;
-
-    @Column(length = 300)
-    public String middleName;
-
-    @Column(length = 300, nullable = false)
-    public String lastName;
 
     @Column(length = 512, nullable = false)
     public String password;
+
+    @Column(name = "first_name", length = 300, nullable = false)
+    public String firstName;
+
+    @Column(name = "middle_name", length = 300)
+    public String middleName;
+
+    @Column(name = "last_name",length = 300, nullable = false)
+    public String lastName;
 
     @Column(nullable = false)
     public boolean enabled;

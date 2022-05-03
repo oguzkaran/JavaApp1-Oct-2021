@@ -21,6 +21,12 @@ public class MemberController {
         m_systemAdminAppService = systemAdminAppService;
     }
 
+    @GetMapping("members/all")
+    public MembersDTO findAllMembers()
+    {
+        return m_systemAdminAppService.findAllMembers();
+    }
+
     @GetMapping("members/find/enabled")
     public MembersDTO findByEnabled(@RequestParam("e") boolean enabled)
     {

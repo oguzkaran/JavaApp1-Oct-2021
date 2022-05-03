@@ -32,16 +32,16 @@ returns table (
     fullname varchar,
     birth_date date
 )
-as '
+as $$
     begin
 
         return query select
                     case
-                         when d.middle_name isnull then cast(d.first_name || " " || d.family_name as varchar(200))
-                         else cast(d.first_name || " " || d.middle_name || " " || d.family_name as varchar(200))
+                         when d.middle_name isnull then cast(d.first_name || ' ' || d.family_name as varchar(200))
+                         else cast(d.first_name || ' ' || d.middle_name || ' '  || d.family_name as varchar(200))
                     end,
                     d.birth_date
                  from directors d inner join movies_to_director mtd on mtd.director_id = d.director_id
                  where mtd.movie_id = mid;
 end
-    '  language plpgsql;
+    $$  language plpgsql;

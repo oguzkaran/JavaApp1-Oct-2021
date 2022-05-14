@@ -1,0 +1,65 @@
+package org.csystem.app.service.rest.movie.data.dal;
+
+import org.csystem.app.service.rest.movie.data.entity.DirectorDetail;
+import org.csystem.app.service.rest.movie.data.entity.Movie;
+import org.csystem.app.service.rest.movie.data.repository.IDirectorRepositoryJDBC;
+import org.csystem.app.service.rest.movie.data.repository.IMovieRepositoryJDBC;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MovieServiceAppHelper {
+    private final IMovieRepositoryJDBC m_movieRepository;
+    private final IDirectorRepositoryJDBC m_directorRepository;
+
+    public MovieServiceAppHelper(IMovieRepositoryJDBC movieRepository, IDirectorRepositoryJDBC directorRepository)
+    {
+        m_movieRepository = movieRepository;
+        m_directorRepository = directorRepository;
+    }
+
+    //Movie
+    public long movieCount()
+    {
+        return m_movieRepository.count();
+    }
+    public Iterable<Movie> findMoviesByMonth(int month)
+    {
+        return m_movieRepository.findByMonth(month);
+    }
+    public Iterable<Movie> findMoviesByYear(int year)
+    {
+        return m_movieRepository.findByYear(year);
+    }
+    public Iterable<Movie> findMoviesByMonthAndYear(int month, int year)
+    {
+        return m_movieRepository.findByMonthAndYear(month, year);
+    }
+
+    public Iterable<Movie> findMoviesByYearBetween(int begin, int end)
+    {
+        return m_movieRepository.findByYearBetween(begin, end);
+    }
+
+    public  Movie saveMovie(Movie movie)
+    {
+        return m_movieRepository.save(movie);
+    }
+
+    //Director
+    public Iterable<DirectorDetail> findAllDirectorsDetail()
+    {
+        return m_directorRepository.findAllDetail();
+    }
+
+
+    public Iterable<Movie> findByDirectorId(long directorId)
+    {
+        return m_movieRepository.findByDirectorId(directorId);
+    }
+
+    public Iterable<DirectorDetail> findDirectorsDetailByMovieId(long movieId)
+    {
+        return m_directorRepository.findDetailByMovieId(movieId);
+    }
+    //...
+}

@@ -1,13 +1,13 @@
 package org.csystem.app.security.service.admin.controller;
 
 import org.csystem.app.security.service.admin.service.AdminAppService;
-import org.csystem.app.security.service.admin.service.dto.MembersDTO;
+import org.csystem.app.security.service.admin.service.dto.UsersDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/member/")
+@RequestMapping("api/user/")
 public class AdminMicroServiceAppController {
     private final AdminAppService m_appService;
 
@@ -16,9 +16,9 @@ public class AdminMicroServiceAppController {
         m_appService = appService;
     }
 
-    @GetMapping("members/all")
-    public MembersDTO findAll()
+    @GetMapping("users/find/year")
+    public UsersDTO findByYear(int year)
     {
-        return m_appService.getAllMembersFromService();
+        return m_appService.getUsersFromServiceByYear(year);
     }
 }

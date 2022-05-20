@@ -1,6 +1,6 @@
 package org.csystem.app.security.service.admin.service.dto;
 
-public class MemberRoleDTO {
+public class UserRoleDTO {
     private String m_role;
 
     public String getRole()

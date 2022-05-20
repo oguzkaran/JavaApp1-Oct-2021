@@ -14,7 +14,6 @@ public class MemberDTO {
 
     private boolean m_enabled;
 
-
     private LocalDate m_registerDate = LocalDate.now();
 
     private List<MemberRoleDTO> m_roles;

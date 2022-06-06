@@ -21,5 +21,11 @@ public class PeriodicWeatherInfoHelper {
         return m_placeInfoRepository.findAll();
     }
 
+    public void savePlaceInfo(PlaceInfo placeInfo)
+    {
+        m_placeInfoRepository.save(placeInfo);
+    }
+
+
     //...
 }

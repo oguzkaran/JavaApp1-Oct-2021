@@ -1,58 +1,49 @@
 package org.csystem.app.security.service.admin.service.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.List;
 
 public class UserDTO {
-    private String m_username;
 
-    private boolean m_enabled;
+    private String username;
+    private boolean enabled;
+    private String regDate;
+    private List<UserRoleDTO> roles;
 
-    private String m_regDate;
-
-    private List<UserRoleDTO> m_roles;
-
-    public String getUsername()
-    {
-        return m_username;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsername(String username)
-    {
-        m_username = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public boolean isEnabled()
-    {
-        return m_enabled;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setEnabled(boolean enabled)
-    {
-        m_enabled = enabled;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @JsonGetter("regDate")
-    public String getRegDate()
-    {
-        return m_regDate;
+    public String getRegDate() {
+        return regDate;
     }
 
     @JsonSetter("registerDate")
-    public void setRegDate(String regDate)
-    {
-        m_regDate = regDate;
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
     }
 
-    public List<UserRoleDTO> getRoles()
-    {
-        return m_roles;
+    public List<UserRoleDTO> getRoles() {
+        return roles;
     }
 
-    public void setRoles(List<UserRoleDTO> roles)
-    {
-        m_roles = roles;
+    public void setRoles(List<UserRoleDTO> roles) {
+        this.roles = roles;
     }
 }

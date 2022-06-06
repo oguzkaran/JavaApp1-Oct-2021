@@ -7,17 +7,15 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import java.util.List;
 
 public class UsersDTO {
-    private List<UserDTO> m_userDTOS;
+    private List<UserDTO> userDTOS;
 
     @JsonGetter("users")
-    public List<UserDTO> getUserDTOS()
-    {
-        return m_userDTOS;
+    public List<UserDTO> getMemberDTOS() {
+        return userDTOS;
     }
 
     @JsonSetter("members")
-    public void setUserDTOS(List<UserDTO> userDTOS)
-    {
-        m_userDTOS = userDTOS;
+    public void setMemberDTOS(List<UserDTO> userDTOS) {
+        this.userDTOS = userDTOS;
     }
 }

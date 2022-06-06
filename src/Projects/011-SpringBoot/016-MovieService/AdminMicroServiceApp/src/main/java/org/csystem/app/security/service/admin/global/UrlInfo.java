@@ -7,4 +7,10 @@ import org.springframework.stereotype.Component;
 public class UrlInfo {
     @Value("${admin.service.url.find.year}")
     public String findUserByYearUrl;
+
+    @Value("${admin.service.url.find.date}")
+    public String findUserByRegisterDateUrl;
+
+    @Value("${admin.service.url.find.enabled}")
+    public String findUserByEnabledUrl;
 }

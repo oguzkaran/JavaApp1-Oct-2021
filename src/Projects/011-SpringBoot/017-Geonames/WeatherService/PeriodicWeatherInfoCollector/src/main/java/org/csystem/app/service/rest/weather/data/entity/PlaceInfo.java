@@ -1,6 +1,7 @@
 package org.csystem.app.service.rest.weather.data.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,10 @@ public class PlaceInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "place_info_id")
     public int id;
+
+
+    @Column(name = "place_name", nullable = false)
+    public String placeName;
 
     @Column(nullable = false)
     public double north;
@@ -23,6 +28,6 @@ public class PlaceInfo {
     @Column(nullable = false)
     public double west;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "placeInfo", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "placeInfo", cascade = CascadeType.ALL)
     public Set<WeatherInfo> weatherInfos;
 }

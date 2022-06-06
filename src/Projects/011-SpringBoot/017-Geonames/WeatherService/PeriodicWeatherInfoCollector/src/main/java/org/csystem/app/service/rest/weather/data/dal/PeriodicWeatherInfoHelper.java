@@ -7,12 +7,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PeriodicWeatherInfoHelper {
-    private final IWeatherInfoRepository m_weatherInfoRepository;
     private final IPlaceInfoRepository m_placeInfoRepository;
 
-    public PeriodicWeatherInfoHelper(IWeatherInfoRepository weatherInfoRepository, IPlaceInfoRepository placeInfoRepository)
+    public PeriodicWeatherInfoHelper(IPlaceInfoRepository placeInfoRepository)
     {
-        m_weatherInfoRepository = weatherInfoRepository;
         m_placeInfoRepository = placeInfoRepository;
     }
 
@@ -26,6 +24,11 @@ public class PeriodicWeatherInfoHelper {
         m_placeInfoRepository.save(placeInfo);
     }
 
+
+    public PlaceInfo findPlaceWeatherInfoByPlaceName(String placeName)
+    {
+        return m_placeInfoRepository.findByPlaceName(placeName);
+    }
 
     //...
 }

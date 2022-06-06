@@ -10,10 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>GenericApp</artifactId>
+	<artifactId>PeriodicWeatherInfoCollector</artifactId>
 	<version>10.0.0</version>
-	<name>GenericApp</name>
-	<description>Generic Spring (Boot) application</description>
+	<name>PeriodicWeatherInfoCollector</name>
 
 	<repositories>
 		<repository>

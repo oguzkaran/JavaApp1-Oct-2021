@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IWeatherInfoRepository extends JpaRepository<WeatherInfo, Long> {
-    //...
+
 }

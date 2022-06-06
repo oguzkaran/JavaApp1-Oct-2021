@@ -1,5 +1,8 @@
 package org.csystem.app.service.rest.weather.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
 @Entity
@@ -52,7 +55,8 @@ public class WeatherInfo { //POJO (Plain Old Java Object)
     @Column(name = "hecto_pasc_alimeter")
     public int hectoPascAltimeter;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "place_info_id", nullable = false)
+    @JsonIgnore
     public PlaceInfo placeInfo;
 }

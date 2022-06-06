@@ -2,14 +2,10 @@ package org.csystem.app.service.rest.weather.geonames.scheduler;
 
 import org.csystem.app.service.rest.weather.data.dal.PeriodicWeatherInfoHelper;
 import org.csystem.app.service.rest.weather.data.entity.PlaceInfo;
-import org.csystem.app.service.rest.weather.data.entity.WeatherInfo;
-import org.csystem.app.service.rest.weather.data.repository.IWeatherInfoRepository;
 import org.csystem.app.service.rest.weather.geonames.WeatherObservation;
 import org.csystem.app.service.rest.weather.geonames.WeatherObservations;
-import org.csystem.app.service.rest.weather.mapper.IWeatherMapper;
-import org.csystem.util.console.Console;
+import org.csystem.app.service.rest.weather.mapper.IWeatherInfoMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class WeatherInfoScheduler {
     private final PeriodicWeatherInfoHelper m_periodicWeatherInfoHelper;
     private final RestTemplate m_restTemplate;
-    private final IWeatherMapper m_weatherMapper;
+    private final IWeatherInfoMapper m_weatherMapper;
 
     @Value("${geonames.url}")
     private String m_urlTemplate;
@@ -45,7 +41,7 @@ public class WeatherInfoScheduler {
         wis.weatherObservations.forEach(wo -> placeInfoCallback(wo, pi));
     }
 
-    public WeatherInfoScheduler(PeriodicWeatherInfoHelper periodicWeatherInfoHelper, RestTemplate restTemplate, IWeatherMapper weatherMapper)
+    public WeatherInfoScheduler(PeriodicWeatherInfoHelper periodicWeatherInfoHelper, RestTemplate restTemplate, IWeatherInfoMapper weatherMapper)
     {
         m_periodicWeatherInfoHelper = periodicWeatherInfoHelper;
         m_restTemplate = restTemplate;
@@ -53,7 +49,7 @@ public class WeatherInfoScheduler {
     }
 
     //@Scheduled(fixedRate = 1, timeUnit = TimeUnit.DAYS)
-    @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)
+    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.HOURS)
     public void schedulerCallback()
     {
         var places = m_periodicWeatherInfoHelper.findAllPlaces();

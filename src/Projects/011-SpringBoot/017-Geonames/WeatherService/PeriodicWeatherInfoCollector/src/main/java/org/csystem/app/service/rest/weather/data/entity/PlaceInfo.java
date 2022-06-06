@@ -13,7 +13,7 @@ public class PlaceInfo {
     public int id;
 
 
-    @Column(name = "place_name", nullable = false)
+    @Column(name = "place_name", nullable = false, unique = true)
     public String placeName;
 
     @Column(nullable = false)

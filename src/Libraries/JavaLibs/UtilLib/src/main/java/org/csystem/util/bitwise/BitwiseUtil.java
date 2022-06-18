@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-	FILE        : NumberUtil.java
+	FILE        : BitwiseUtil.java
 	AUTHOR      : JavaApp1-Oct-2021 group
 	LAST UPDATE : 07.11.2021
 

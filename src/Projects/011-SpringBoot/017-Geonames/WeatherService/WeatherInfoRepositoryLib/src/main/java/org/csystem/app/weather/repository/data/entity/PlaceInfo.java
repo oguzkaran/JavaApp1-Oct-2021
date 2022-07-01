@@ -14,6 +14,12 @@ public class PlaceInfo {
     public String placeName;
 
     @Column(nullable = false)
+    public String country;
+
+    @Column(nullable = false)
+    public int code;
+
+    @Column(nullable = false)
     public double north;
 
     @Column(nullable = false)

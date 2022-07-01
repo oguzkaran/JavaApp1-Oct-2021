@@ -2,7 +2,7 @@ package com.cagilcebeci.app.service.rest.weather.geonames.scheduler;
 
 import com.cagilcebeci.app.service.rest.weather.geonames.WeatherObservations;
 import com.cagilcebeci.app.service.rest.weather.mapper.IWeatherInfoMapper;
-import org.csystem.app.weather.repository.data.dal.WeatherInfoCollectorAppHelper;
+import org.csystem.app.weather.repository.data.dal.WeatherInfoAppHelper;
 import org.csystem.app.weather.repository.data.entity.PlaceInfo;
 import org.csystem.app.weather.repository.data.entity.WeatherInfo;
 import org.csystem.util.console.Console;
@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @EnableScheduling
 public class WeatherInfoScheduler {
-    private final WeatherInfoCollectorAppHelper m_weatherInfoCollectorAppHelper;
+    private final WeatherInfoAppHelper m_weatherInfoAppHelper;
     private final RestTemplate m_restTemplate;
     private final IWeatherInfoMapper m_weatherMapper;
 
@@ -25,7 +25,9 @@ public class WeatherInfoScheduler {
     private void weatherInfoCallback(WeatherInfo wi, PlaceInfo pi)
     {
         wi.placeInfo = pi;
-        m_weatherInfoCollectorAppHelper.saveWeatherInfo(wi);
+        if (m_weatherInfoAppHelper.existsWeatherInfoByPlaceInfoAndDatetime(pi, wi.datetime))
+            return;
+        m_weatherInfoAppHelper.saveWeatherInfo(wi);
     }
 
     private void schedulerCallback(PlaceInfo pi)
@@ -36,18 +38,19 @@ public class WeatherInfoScheduler {
         wos.weatherObservations.stream().map(m_weatherMapper::toWeatherInfo).forEach(wi -> weatherInfoCallback(wi, pi));
     }
 
-    public WeatherInfoScheduler(WeatherInfoCollectorAppHelper weatherInfoCollectorAppHelper, RestTemplate restTemplate, IWeatherInfoMapper weatherMapper)
+    public WeatherInfoScheduler(WeatherInfoAppHelper weatherInfoAppHelper, RestTemplate restTemplate, IWeatherInfoMapper weatherMapper)
     {
-        m_weatherInfoCollectorAppHelper = weatherInfoCollectorAppHelper;
+        m_weatherInfoAppHelper = weatherInfoAppHelper;
         m_restTemplate = restTemplate;
         m_weatherMapper = weatherMapper;
     }
 
+    //@Scheduled(cron = "0,25 25 23 * * *")
     @Scheduled(cron = "0 0 2,3,14,15 * * *")
     public void schedulerCallback()
     {
         Console.writeLine("Schedule");
-        var places = m_weatherInfoCollectorAppHelper.findAllPlaces();
+        var places = m_weatherInfoAppHelper.findAllPlaces();
 
         places.forEach(this::schedulerCallback);
     }

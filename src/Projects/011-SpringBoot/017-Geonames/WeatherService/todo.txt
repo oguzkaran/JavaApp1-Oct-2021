@@ -1,8 +1,7 @@
 Aşağıdaki url'leri ilişkin servisi yazınız
 
-+ ~/api/weather/info/place?p=izmir: Bu servis sorgulanan gün içerisindeki bilgiyi verecektir
-- ~/api/weather/info/place/history/month?m=3&p=izmir: Bu servis ilgili ayda ilgili şehrin tüm öçümlerini verecektir
-- ~/api/weather/info/place/history/my?m=3&y=2021&p=izmir: Bu servis ilgili ay ve yılda ilgili şehrin tüm ölçümlerini verecektir
-- Standalone çalışan ve her pazar saat 23:00'da weather_info bilgilerini ayrı bir veritabanına yedekleyen uygulamayı yazınız
-
-- "place_info" veritabanına place bilgileri eklenebilen bir servis yazınız.
+- (CSD) ~/api/weather/info/place?p=izmir: Bu servis sorgulanan gün içerisindeki bilgiyi verecektir
+- (CSD) Standalone çalışan ve her pazar saat 23:00'da weather_info bilgilerini ayrı bir veritabanına yedekleyen uygulamayı yazınız
+- (Olcay) ~/api/weather/info/place/history/month?m=3&p=izmir: Bu servis ilgili ayda ilgili şehrin tüm öçümlerini verecektir 
+- (Olcay) ~/api/weather/info/place/history/my?m=3&y=2021&p=izmir: Bu servis ilgili ay ve yılda ilgili şehrin tüm ölçümlerini verecektir
++ (Olcay) "place_info" veritabanına place bilgileri eklenebilen ve silinebilen bir servis yazınız

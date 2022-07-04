@@ -1,5 +1,0 @@
-Aşağıdaki url'leri servise ekleyiniz:
-
-~/api/weather/info/date/month?m=3
-~/api/weather/info/date/my?m=3&y=2020
-~/api/weather/info/date/md?d=6&m=6

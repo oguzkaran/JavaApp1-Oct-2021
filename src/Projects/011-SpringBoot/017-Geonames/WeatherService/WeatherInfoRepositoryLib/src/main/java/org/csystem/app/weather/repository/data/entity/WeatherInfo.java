@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class WeatherInfo { //POJO (Plain Old Java Object)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "weather_informaiton_id")
+    @Column(name = "weather_information_id")
     public long id;
 
     public double lng;
@@ -46,6 +46,7 @@ public class WeatherInfo { //POJO (Plain Old Java Object)
     public String windSpeed;
 
     public double lat;
+
     @Column(name = "weather_condition_code")
     public String weatherConditionCode;
 

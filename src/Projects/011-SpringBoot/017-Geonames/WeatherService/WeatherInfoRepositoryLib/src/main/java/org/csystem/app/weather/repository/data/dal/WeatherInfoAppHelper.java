@@ -19,9 +19,9 @@ public class WeatherInfoAppHelper {
         m_weatherInfoRepository = weatherInfoRepository;
     }
 
-    public boolean existsWeatherInfoByPlaceInfoAndDatetime(PlaceInfo pi, LocalDateTime dateTime)
+    public boolean existsByPlaceInfoAndDatetimeAndStationName(PlaceInfo pi, LocalDateTime dateTime, String stationName)
     {
-        return m_weatherInfoRepository.existsByPlaceInfoAndDatetime(pi, dateTime);
+        return m_weatherInfoRepository.existsByPlaceInfoAndDatetimeAndStationName(pi, dateTime, stationName);
     }
 
     public Iterable<PlaceInfo> findAllPlaces()
@@ -43,6 +43,16 @@ public class WeatherInfoAppHelper {
     public PlaceInfo findPlaceWeatherInfoByPlaceName(String placeName)
     {
         return m_placeInfoRepository.findByPlaceName(placeName);
+    }
+
+    public Iterable<WeatherInfo> findWeatherInfoByPlaceName(String placeName)
+    {
+        return m_weatherInfoRepository.findByPlaceName(placeName);
+    }
+
+    public Iterable<WeatherInfo> findByPlaceNameAndHourAndMinute(String placeName, int hour, int minute)
+    {
+        return m_weatherInfoRepository.findByPlaceNameAndHourAndMinute(placeName, hour, minute);
     }
 
     public void deletePlaceInfoById(int id)

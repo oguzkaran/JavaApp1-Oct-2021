@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-application-weather-repository</artifactId>
-	<version>12.1.0</version>
+	<version>14.0.0</version>
 	<name>org-csystem-application-weather-repository</name>
 	<description>Generic Library Provider</description>
 

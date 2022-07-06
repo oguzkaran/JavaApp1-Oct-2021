@@ -25,8 +25,9 @@ public class WeatherInfoScheduler {
     private void weatherInfoCallback(WeatherInfo wi, PlaceInfo pi)
     {
         wi.placeInfo = pi;
-        if (m_weatherInfoAppHelper.existsWeatherInfoByPlaceInfoAndDatetime(pi, wi.datetime))
+        if (m_weatherInfoAppHelper.existsByPlaceInfoAndDatetimeAndStationName(pi, wi.datetime, wi.stationName))
             return;
+
         m_weatherInfoAppHelper.saveWeatherInfo(wi);
     }
 
@@ -45,8 +46,8 @@ public class WeatherInfoScheduler {
         m_weatherMapper = weatherMapper;
     }
 
-    //@Scheduled(cron = "0,25 25 23 * * *")
-    @Scheduled(cron = "0 0 2,3,14,15 * * *")
+    @Scheduled(cron = "0 33 0 * * *")
+    //@Scheduled(cron = "0 0 2,3,14,15 * * *")
     public void schedulerCallback()
     {
         Console.writeLine("Schedule");

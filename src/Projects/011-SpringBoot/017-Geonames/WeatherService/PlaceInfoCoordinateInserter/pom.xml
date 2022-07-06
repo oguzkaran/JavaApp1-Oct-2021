@@ -62,7 +62,7 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-application-weather-repository</artifactId>
-			<version>11.0.0</version>
+			<version>13.0.0</version>
 		</dependency>
 
 		<dependency>

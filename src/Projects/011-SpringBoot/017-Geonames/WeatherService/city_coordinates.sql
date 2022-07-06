@@ -1,4 +1,4 @@
-INSERT INTO place_info (country, code, place_name, north, south, east, west) VALUES
+INSERT INTO place_info (country, code, place_name, north, east, south, west) VALUES
 ('tr', 1, 'adana',  37.07200400, 35.46199500, 36.93552300, 35.17470600),
 ('tr', 2,'adıyaman', 37.82566700, 38.33546500, 37.71708600, 38.18818800),
 ('tr', 3,'afyonkarahisar', 38.80210500, 30.61116700, 38.71428900, 30.44232000),

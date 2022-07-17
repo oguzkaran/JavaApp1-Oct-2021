@@ -55,6 +55,11 @@ public class WeatherInfoAppHelper {
         return m_weatherInfoRepository.findByPlaceNameAndHourAndMinute(placeName, hour, minute);
     }
 
+    public void deleteAllWeatherInfo()
+    {
+        m_weatherInfoRepository.deleteAll();
+    }
+
     public void deletePlaceInfoById(int id)
     {
         m_placeInfoRepository.deleteById(id);

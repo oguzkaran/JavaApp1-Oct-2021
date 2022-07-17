@@ -75,6 +75,12 @@
 
 		<dependency>
 			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-application-weather-backup-repository</artifactId>
+			<version>10.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-console</artifactId>
 			<version>10.1.0</version>
 		</dependency>

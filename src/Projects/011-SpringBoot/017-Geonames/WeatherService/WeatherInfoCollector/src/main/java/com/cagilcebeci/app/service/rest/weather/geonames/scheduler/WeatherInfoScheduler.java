@@ -46,7 +46,7 @@ public class WeatherInfoScheduler {
         m_weatherMapper = weatherMapper;
     }
 
-    //@Scheduled(cron = "0 17 22 * * *")
+    //@Scheduled(cron = "0 38 13 * * *")
     @Scheduled(cron = "0 0 2,3,14,15 * * *")
     public void schedulerCallback()
     {

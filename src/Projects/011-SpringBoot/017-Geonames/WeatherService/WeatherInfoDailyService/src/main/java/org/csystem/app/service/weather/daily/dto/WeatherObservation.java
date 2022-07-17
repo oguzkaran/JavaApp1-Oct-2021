@@ -1,5 +1,6 @@
 package org.csystem.app.service.weather.daily.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WeatherObservation {
@@ -18,6 +19,7 @@ public class WeatherObservation {
     public int windDirection;
     public String windSpeed;
     public double lat;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String weatherConditionCode;
     public double seaLevelPressure;
     public int hectoPascAltimeter;

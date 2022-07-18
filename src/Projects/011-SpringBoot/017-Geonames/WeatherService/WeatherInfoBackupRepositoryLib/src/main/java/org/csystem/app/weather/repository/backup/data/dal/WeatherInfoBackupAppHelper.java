@@ -27,5 +27,10 @@ public class WeatherInfoBackupAppHelper {
         m_weatherInfoRepository.save(weatherInfo);
     }
 
+    public void saveAllWeatherInfo(Iterable<WeatherInfo> weatherInfos)
+    {
+        m_weatherInfoRepository.saveAll(weatherInfos);
+    }
+
     //...
 }

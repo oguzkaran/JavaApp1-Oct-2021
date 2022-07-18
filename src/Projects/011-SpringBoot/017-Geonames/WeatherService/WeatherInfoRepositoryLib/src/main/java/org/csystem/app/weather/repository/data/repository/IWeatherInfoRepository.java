@@ -17,6 +17,11 @@ public interface IWeatherInfoRepository extends JpaRepository<WeatherInfo, Long>
     @Query(value = "select w from WeatherInfo w inner join PlaceInfo p on p = w.placeInfo where p.placeName = :placeName")
     Iterable<WeatherInfo> findByPlaceName(@Param("placeName") String placeName);
 
+    @Query(value = "select w from WeatherInfo w inner join PlaceInfo p on p = w.placeInfo where p.id = :placeId")
+    Iterable<WeatherInfo> findByPlaceId(@Param("placeId") int placeId);
+
+    Iterable<WeatherInfo> findByPlaceInfo(@Param("placeInfo") PlaceInfo pi);
+
     @Query(value = "select w.place_info_id, w.weather_information_id, w.lng, w.observation, w.iCAO, w.clouds, w.dew_point, w.clouds_code, "
             + "w.date_time, w.temperature, w.humidity, w.station_name, w.weather_condition, w.wind_direction, w.wind_speed, "
             + "w.lat, w.weather_condition_code, w.sea_level_pressure, w.hecto_pasc_alimeter "

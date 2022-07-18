@@ -1,27 +1,25 @@
-package com.cagilcebeci.app.service.rest.weather.configuration.datasource;
+package com.umututkuk.app.service.rest.weather.configuration.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig {
+public class BackupDataSourceConfig {
     private final DataSourceProperties m_dataSourceProperties;
 
-    public DataSourceConfig(@Qualifier("spring.datasource.weatherinfo") DataSourceProperties dataSourceProperties)
+    public BackupDataSourceConfig(@Qualifier("spring.datasource.weatherinfo.backup") DataSourceProperties dataSourceProperties)
     {
         m_dataSourceProperties = dataSourceProperties;
     }
 
     @Bean
-    @Primary
-    @ConfigurationProperties("spring.datasource.weatherinfo.configuration")
-    public DataSource weatherInfoDataSource()
+    @ConfigurationProperties("spring.datasource.weatherinfo.backup.configuration")
+    public DataSource weatherInfoBackupDataSource()
     {
         return m_dataSourceProperties.initializeDataSourceBuilder().build();
     }

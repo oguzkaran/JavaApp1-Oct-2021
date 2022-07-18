@@ -1,13 +1,11 @@
-package com.cagilcebeci.app.service.rest.weather;
+package com.umututkuk.app.service.rest.weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.cagilcebeci", "org.csystem"})
+@ComponentScan(basePackages = {"com.umututkuk", "org.csystem"})
 public class App {
 	public static void main(String[] args)
 	{

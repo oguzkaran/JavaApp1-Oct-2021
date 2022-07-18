@@ -1,15 +1,16 @@
-package com.cagilcebeci.app.service.rest.weather.scheduler;
+package com.umututkuk.app.service.rest.weather.scheduler;
 
-
-import com.cagilcebeci.app.service.rest.weather.mapper.IPlaceInfoMapper;
-import com.cagilcebeci.app.service.rest.weather.mapper.IWeatherInfoMapper;
+import com.umututkuk.app.service.rest.weather.mapper.IPlaceInfoMapper;
+import com.umututkuk.app.service.rest.weather.mapper.IWeatherInfoMapper;
 import org.csystem.app.weather.repository.backup.data.dal.WeatherInfoBackupAppHelper;
 import org.csystem.app.weather.repository.backup.data.entity.PlaceInfo;
 import org.csystem.app.weather.repository.data.dal.WeatherInfoAppHelper;
-import org.csystem.util.console.Console;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Configuration
 @EnableScheduling
@@ -21,7 +22,11 @@ public class WeatherInfoScheduler {
 
     private void schedulerCallback(PlaceInfo pi)
     {
-        Console.writeLine(pi.placeName);
+        var wos = m_weatherInfoAppHelper.findWeatherInfoByPlaceName(pi.placeName);
+
+        //Console.writeLine(StreamSupport.stream(wos.spliterator(), false).count());
+        m_weatherInfoBackupAppHelper.saveAllWeatherInfo(StreamSupport.stream(wos.spliterator(), false)
+                .map(m_weatherMapper::toWeatherInfoBackup).peek(wi -> wi.placeInfo = pi).collect(Collectors.toList()));
     }
 
     public WeatherInfoScheduler(WeatherInfoAppHelper weatherInfoAppHelper,
@@ -34,14 +39,13 @@ public class WeatherInfoScheduler {
         m_placeInfoMapper = placeInfoMapper;
     }
 
-    @Scheduled(cron = "0 6 15 * * *")
-    //@Scheduled(cron = "0 55 23 * * *")
+    //@Scheduled(cron = "0 40 23 * * *")
+    @Scheduled(cron = "0 55 23 * * *")
     public void schedulerCallback()
     {
-        Console.writeLine("Schedule");
         var places = m_weatherInfoBackupAppHelper.findAllPlaces();
 
         places.forEach(this::schedulerCallback);
-        //m_weatherInfoAppHelper.deleteAllWeatherInfo();
+        m_weatherInfoAppHelper.deleteAllWeatherInfo();
     }
 }

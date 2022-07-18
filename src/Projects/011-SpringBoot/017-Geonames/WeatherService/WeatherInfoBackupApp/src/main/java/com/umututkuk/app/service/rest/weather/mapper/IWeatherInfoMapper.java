@@ -1,4 +1,4 @@
-package com.cagilcebeci.app.service.rest.weather.mapper;
+package com.umututkuk.app.service.rest.weather.mapper;
 
 import org.csystem.app.weather.repository.backup.data.entity.WeatherInfo;
 import org.mapstruct.Mapper;

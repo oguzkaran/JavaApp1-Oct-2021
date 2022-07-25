@@ -27,9 +27,19 @@ public class WeatherInfoBackupAppHelper {
         m_weatherInfoRepository.save(weatherInfo);
     }
 
+    public void savePlaceInfo(PlaceInfo placeInfo)
+    {
+        m_placeInfoRepository.save(placeInfo);
+    }
+
     public void saveAllWeatherInfo(Iterable<WeatherInfo> weatherInfos)
     {
         m_weatherInfoRepository.saveAll(weatherInfos);
+    }
+
+    public void deletePlaceInfoById(int id)
+    {
+        m_placeInfoRepository.deleteById(id);
     }
 
     //...

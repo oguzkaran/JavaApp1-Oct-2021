@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>WeatherInfoCollectorApp</artifactId>
+	<artifactId>WeatherInfoBackupApp</artifactId>
 	<version>10.0.0</version>
-	<name>WeatherInfoCollectorApp</name>
+	<name>WeatherInfoBackupApp</name>
 
 	<repositories>
 		<repository>
@@ -33,25 +33,6 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>tomcat-embed-el</artifactId>
-					<groupId>org.apache.tomcat.embed</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-embed-core</artifactId>
-					<groupId>org.apache.tomcat.embed</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-embed-websocket</artifactId>
-					<groupId>org.apache.tomcat.embed</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
@@ -62,11 +43,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>

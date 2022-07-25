@@ -18,28 +18,25 @@ public class WeatherInfoScheduler {
     private final WeatherInfoAppHelper m_weatherInfoAppHelper;
     private final WeatherInfoBackupAppHelper m_weatherInfoBackupAppHelper;
     private final IWeatherInfoMapper m_weatherMapper;
-    private final IPlaceInfoMapper m_placeInfoMapper;
 
     private void schedulerCallback(PlaceInfo pi)
     {
         var wos = m_weatherInfoAppHelper.findWeatherInfoByPlaceName(pi.placeName);
 
-        //Console.writeLine(StreamSupport.stream(wos.spliterator(), false).count());
         m_weatherInfoBackupAppHelper.saveAllWeatherInfo(StreamSupport.stream(wos.spliterator(), false)
                 .map(m_weatherMapper::toWeatherInfoBackup).peek(wi -> wi.placeInfo = pi).collect(Collectors.toList()));
     }
 
     public WeatherInfoScheduler(WeatherInfoAppHelper weatherInfoAppHelper,
                                 WeatherInfoBackupAppHelper weatherInfoBackupAppHelper,
-                                IWeatherInfoMapper weatherMapper, IPlaceInfoMapper placeInfoMapper)
+                                IWeatherInfoMapper weatherMapper)
     {
         m_weatherInfoAppHelper = weatherInfoAppHelper;
         m_weatherInfoBackupAppHelper = weatherInfoBackupAppHelper;
         m_weatherMapper = weatherMapper;
-        m_placeInfoMapper = placeInfoMapper;
     }
 
-    //@Scheduled(cron = "0 40 23 * * *")
+    //@Scheduled(cron = "0 41 23 * * *")
     @Scheduled(cron = "0 55 23 * * *")
     public void schedulerCallback()
     {

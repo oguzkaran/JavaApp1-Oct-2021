@@ -5,6 +5,7 @@ import org.csystem.app.weather.repository.data.entity.WeatherInfo;
 import org.csystem.app.weather.repository.data.repository.IPlaceInfoRepository;
 import org.csystem.app.weather.repository.data.repository.IWeatherInfoRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -55,9 +56,10 @@ public class WeatherInfoAppHelper {
         return m_weatherInfoRepository.findByPlaceNameAndHourAndMinute(placeName, hour, minute);
     }
 
+    @Transactional("weatherInfoTransactionManager")
     public void deleteAllWeatherInfo()
     {
-        m_weatherInfoRepository.deleteAll();
+        m_weatherInfoRepository.truncate();
     }
 
     public void deletePlaceInfoById(int id)

@@ -36,8 +36,8 @@ public class WeatherInfoScheduler {
         m_weatherMapper = weatherMapper;
     }
 
-    @Scheduled(cron = "0 13 23 * * *")
-    //@Scheduled(cron = "0 55 23 * * *")
+    //@Scheduled(cron = "0 13 23 * * *")
+    @Scheduled(cron = "0 55 23 * * *")
     public void schedulerCallback()
     {
         var places = m_weatherInfoBackupAppHelper.findAllPlaces();

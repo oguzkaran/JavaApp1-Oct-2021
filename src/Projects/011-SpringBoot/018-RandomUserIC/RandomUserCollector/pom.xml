@@ -10,9 +10,10 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>WeatherInfoCollectorApp</artifactId>
+	<artifactId>GenericApp</artifactId>
 	<version>10.0.0</version>
-	<name>WeatherInfoCollectorApp</name>
+	<name>GenericApp</name>
+	<description>Generic Spring (Boot) application</description>
 
 	<repositories>
 		<repository>
@@ -56,23 +57,33 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.7.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vladmihalcea</groupId>
+			<artifactId>hibernate-types-52</artifactId>
+			<version>2.9.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.9.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>1.4.2.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-application-weather-repository</artifactId>
-			<version>14.0.0</version>
 		</dependency>
 
 		<dependency>

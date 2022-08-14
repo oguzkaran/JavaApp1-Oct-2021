@@ -5,15 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.1</version>
+		<version>2.7.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>GenericApp</artifactId>
+	<artifactId>RandomUserCollectorApp</artifactId>
 	<version>10.0.0</version>
-	<name>GenericApp</name>
-	<description>Generic Spring (Boot) application</description>
+	<name>RandomUserCollectorApp</name>
 
 	<repositories>
 		<repository>
@@ -57,15 +56,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.6.7.Final</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.vladmihalcea</groupId>
 			<artifactId>hibernate-types-52</artifactId>
-			<version>2.9.7</version>
+			<version>2.17.1</version>
 		</dependency>
 
 		<dependency>

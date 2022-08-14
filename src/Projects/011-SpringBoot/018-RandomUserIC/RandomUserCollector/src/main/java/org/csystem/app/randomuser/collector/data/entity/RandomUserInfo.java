@@ -3,6 +3,7 @@ package org.csystem.app.randomuser.collector.data.entity;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.springframework.jdbc.support.xml.XmlBinaryStreamProvider;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,4 +30,6 @@ public class RandomUserInfo {
     @Type(type = "json")
     @Column(columnDefinition = "json")
     public UserInfo m_userInfo;
+
+
 }
